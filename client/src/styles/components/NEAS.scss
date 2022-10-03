@@ -1,11 +1,23 @@
+:root {
+    --leaflet-tile-filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+}
+
 .neas{
-    background-color: $blue;
+    display: flex;
+    justify-content:center;
+    background-color: $black;
     height: 100vh
 }
 
-.leaflet-container{
 
+
+.leaflet-container{
+    background: #303030;
         width: 70vw;
         height: 70vh;
 
+}
+
+.leaflet-tile {
+    filter: var(--leaflet-tile-filter, none);
 }

@@ -7,7 +7,6 @@ const Home = () => {
 
   const {setData, data, loading} = useContext(homeContext)
 
-  console.log(data);
     return <div className="home">
       {loading?null:<div className="fetchContainer">
         <div className="info-container">
