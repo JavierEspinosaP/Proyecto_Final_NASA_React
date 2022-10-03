@@ -1,0 +1,45 @@
+@import '../utils/variables.scss';
+
+.home {
+    background-color: $black;
+    height: 100vh;
+}
+
+
+.imgContainer {
+    position:absolute;
+    right:0;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+}
+
+
+
+.img-nasa{
+    width: 1200px;
+    z-index: 0;
+}
+
+.info-nasa{
+    margin-top: 100px;
+    justify-content:flex;
+    flex-direction:column;
+    justify-content:center;
+    color: $white;
+    position:absolute;
+    left:0;
+    width:300px;
+    min-width: 300px;
+    height: 100vh;
+    z-index: 1;
+}
+
+.info-container{
+    justify-content:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+
