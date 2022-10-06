@@ -4,22 +4,28 @@ import Header from './components/Header'
 import Main from './components/Main'
 import Footer from './components/Footer';
 import {homeContext} from './context/homeContext'
+import {neasContext} from './context/neasContext'
+import {landingsContext} from './context/landingsContext'
 import './styles/styles.scss';
-import useFetch from './hooks/useFetch';
 import axios from 'axios'
 
 function App() {
 
-  const { loading, result } = useFetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
+  const [homeData, setHomeData] = useState([]);
 
-  const [dataLandings, setDataLandings] = useState([])
+  const [landingsData, setLandingsData] = useState([])
 
-  const [dataNeas, setDataNeas] = useState([])
+  const [neasData, setNeasData] = useState([])
 
   useEffect(() => {
     async function fetchData() {
       try {
         // Petición HTTP
+
+        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
+        const home = await resHome.data;
+        console.log(home);
+
         const resLandings = await axios.get("http://localhost:3000/api/astronomy/landings");
         const landings = await resLandings.data;
 
@@ -27,35 +33,43 @@ function App() {
         const neas = await resNeas.data;
 
         // Guarda en el array de posts el resultado. Procesa los datos
-        setDataLandings(landings);
-        setDataNeas(neas)
-
+        setLandingsData(landings);
+        setNeasData(neas)
+        setHomeData(home)
 
       } catch (e) {
-        setDataLandings([])
-        setDataNeas([]) 
+        setLandingsData([])
+        setNeasData([]) 
+        setHomeData([])
       }
     }
 
     fetchData();
   }, []); 
 
-  const [data, setData] = useState([])
 
-  useEffect(()=>{
-    setData(result)
-  }, [result])
+  const homeDataObj = {
+    homeData, setHomeData
+  }
 
-  const homeData = {
-    data, setData, loading
+  const landingsDataObj = {
+    landingsData, setLandingsData
+  }
+
+  const neasDataObj = {
+    neasData, setNeasData
   }
 
   return (
     <div className="App">
     <BrowserRouter>
     <Header/>
-    <homeContext.Provider value={homeData}>
-    <Main/>      
+    <homeContext.Provider value={homeDataObj}>
+    <landingsContext.Provider value={landingsDataObj}>
+    <neasContext.Provider value={neasDataObj}>
+    <Main/>
+    </neasContext.Provider>
+    </landingsContext.Provider>   
     </homeContext.Provider>
     <Footer/>       
     </BrowserRouter> 

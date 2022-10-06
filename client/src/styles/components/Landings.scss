@@ -4,14 +4,32 @@
 
 .landings {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     background-color: $black;
     height: 100vh
 }
 
 
+h1{
+    color: white
+}
+
+.infoLandings{
+    color: #fff;
+    width: 300px;
+    margin-right: 20px
+}
+
+.infoMap{
+    display: flex;
+}
+
+
 .leaflet-container {
     background: #303030;
+    margin: 20px 50px auto auto;
     width: 70vw;
     height: 70vh;
 
