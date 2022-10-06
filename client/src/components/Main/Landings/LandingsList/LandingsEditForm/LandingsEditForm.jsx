@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';

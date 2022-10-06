@@ -4,12 +4,33 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import axios from 'axios'
+import axios from 'axios';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import NeasEditForm from '../NeasEditForm';
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 
 function NeasCard(props) {
 
 const nea = props.data
+
+const [open, setOpen] = React.useState(false);
+
+const handleOpen = () => {setOpen(true)}
+const handleClose = () => {setOpen(false)}
 
 
 const removeNea = async () =>{
@@ -25,6 +46,20 @@ const removeNea = async () =>{
 
   return (
     <div>
+
+<div className="modal">
+        <Modal
+          keepMounted
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="keep-mounted-modal-title"
+          aria-describedby="keep-mounted-modal-description"
+        >
+          <Box sx={style}>
+            <NeasEditForm name={nea.designation}/>
+          </Box>
+        </Modal>
+      </div>
             <Card sx={{ minWidth: 290, margin: 1 }}>
               {/* <CardMedia
                 component="img"
@@ -50,7 +85,7 @@ const removeNea = async () =>{
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Editar</Button>
+                <Button size="small" onClick={handleOpen}>Editar</Button>
                 <Button size="small" onClick={removeNea}>Borrar</Button>
               </CardActions>
             </Card>

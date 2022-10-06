@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import LandingsForm from "./LandingsForm";
+import LandingsForm from "./LandingsEditForm";
 
 describe("LandingsForm", () => {
   test("matches snapshot", () => {

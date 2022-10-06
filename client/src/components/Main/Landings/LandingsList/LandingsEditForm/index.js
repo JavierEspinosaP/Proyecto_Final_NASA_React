@@ -1,1 +1,1 @@
-export { default } from "./LandingsForm";
+export { default } from "./LandingsEditForm";
