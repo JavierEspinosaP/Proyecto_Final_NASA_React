@@ -3,14 +3,14 @@ import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 
-function LandingsForm() {
+function LandingsEditForm(props) {
 
-
+const name = props.name
 
   return (
     <div className="formContainer">
       <FormControl>
-        <Input placeholder="Nombre" />
+        <h4 className="landingName">Editar {name}</h4>
         <Input placeholder="Masa en kg" />
         <Input placeholder="Latitud" />
         <Input placeholder="Longitud" />
@@ -21,4 +21,4 @@ function LandingsForm() {
   )
 }
 
-export default LandingsForm
+export default LandingsEditForm

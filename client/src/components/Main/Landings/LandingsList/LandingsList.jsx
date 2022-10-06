@@ -5,14 +5,31 @@ import usePagination from "../../../../hooks/usePagination"
 import Pagination from '@mui/material/Pagination';
 import CardList from './CardList';
 import LandingsForm from './LandingsForm';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 import { Switch } from '@mui/material';
 
 
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 function LandingsList() {
   const { landingsData, setLandingsData } = useContext(landingsContext)
-  const [showText, setShowText] = useState(false);
   const [page, setPage] = useState(1);
-  const PER_PAGE = 10;
+  const PER_PAGE = 8;
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
@@ -24,15 +41,56 @@ function LandingsList() {
     _DATA.jump(p);
   };
 
+  function handleSortName() {
+    const sortedData = [...landingsData].sort((a, b) => {
+      return a.name > b.name ? 1 : -1
+    })
+    setLandingsData(sortedData)
+  }
+
+  function handleSortYear() {
+    const sortedData = [...landingsData].sort((a, b) => {
+      return a.year > b.year ? 1 : -1
+    })
+    setLandingsData(sortedData)
+  }
+
+  function handleSortMass() {
+    const sortedData = [...landingsData].sort((a, b) => {
+      return a.mass > b.mass ? 1 : -1
+    })
+    setLandingsData(sortedData)
+  }
+
+  const removeLanding = (i) =>{
+    const remainingLandings = landingsData.filter((l,j)=>i!==j)
+    setLandingsData(remainingLandings);
+  }
+
 
 
   return (
     <div className="landingsList">
-              <div className="toggle">
-              {showText && <LandingsForm/>}
-              <Switch {...label} color="warning" onClick={() => setShowText(!showText)} />
-        </div>
+      <div className="modal">
+      <Button onClick={handleOpen}>Añadir Landing</Button>
+      <Modal
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+        <LandingsForm edit={open} />
+        </Box>
+      </Modal>
+      </div>
       <section className="pagination">
+        <div className="botones">
+          <Button onClick={handleSortName} variant="outlined">Ordenar por Nombre</Button>
+          <Button onClick={handleSortYear} variant="outlined">Ordenar por Año</Button>
+          <Button onClick={handleSortMass} variant="outlined">Ordenar por Peso</Button>
+        </div>
         <Pagination
           count={count}
           size="large"
@@ -45,7 +103,7 @@ function LandingsList() {
       </section>
 
       <section className="cardsContainer">
-        {_DATA.currentData().map((d, i) => <CardList data={d} key={i} />)}
+        {_DATA.currentData().map((d, i) => <CardList data={d} key={i} remove={()=>removeLanding(i)} />)}
       </section>
       <section className="formContainer">
 

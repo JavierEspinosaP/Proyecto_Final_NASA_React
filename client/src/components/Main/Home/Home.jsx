@@ -17,7 +17,9 @@ const Home = () => {
         </div>
 
         <div className="imgContainer">
-        <img className="img-nasa" src={homeData.url} alt="nasa-img" />
+        {homeData.media_type=="image"?<img className="img-nasa" src={homeData.url} alt="nasa-img" />:<video src={homeData.url}>
+
+</video>}
         </div>
 
         </div>}</div>

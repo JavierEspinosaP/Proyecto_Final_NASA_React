@@ -55,7 +55,6 @@ const getLanding = async (req, res) => {
     }
     else {
         const landings = await Landing.getAllLandings();
-        console.log(landings);
         res.status(200).json(landings);
     }
 }

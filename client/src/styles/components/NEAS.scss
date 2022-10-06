@@ -1,23 +1,23 @@
-:root {
-    --leaflet-tile-filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
-}
+
 
 .neas{
     display: flex;
-    justify-content:center;
+    flex-direction: column;
     background-color: $black;
-    height: 100vh
+    height: 120vh
 }
 
-
-
-.leaflet-container{
-    background: #303030;
-        width: 70vw;
-        height: 70vh;
-
+.cardsContainer{
+    margin-top:50px;
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
 }
 
-.leaflet-tile {
-    filter: var(--leaflet-tile-filter, none);
+.pagination{
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
 }

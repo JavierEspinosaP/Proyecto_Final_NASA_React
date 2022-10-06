@@ -111,11 +111,12 @@ const updateLandings = async (landing) => {
     }
 };
 
-const deleteLandings = async (landing) => {
+const deleteLandings = async (id) => {
     try {
-        let answer = await Landing.deleteOne({id: landing.id})
-        console.log("Este es el console.log de lo que devuelve la api",answer);
-        return `Landing with id ${landing.id} deleted`
+        let a = await Landing.deleteOne({id: id})
+        // let answer = await Landing.deleteOne({id: landing.id})
+        console.log("Este es el console.log de lo que devuelve la api",a);
+        return `Landing with id ${id} deleted`
     }
   catch(error){
     console.log(`ERROR:${error}`)

@@ -8,6 +8,13 @@ import {neasContext} from './context/neasContext'
 import {landingsContext} from './context/landingsContext'
 import './styles/styles.scss';
 import axios from 'axios'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
 
@@ -63,6 +70,7 @@ function App() {
   return (
     <div className="App">
     <BrowserRouter>
+    <ThemeProvider theme={darkTheme}>
     <Header/>
     <homeContext.Provider value={homeDataObj}>
     <landingsContext.Provider value={landingsDataObj}>
@@ -71,7 +79,8 @@ function App() {
     </neasContext.Provider>
     </landingsContext.Provider>   
     </homeContext.Provider>
-    <Footer/>       
+    <Footer/>      
+    </ThemeProvider>     
     </BrowserRouter> 
     </div>
   );
