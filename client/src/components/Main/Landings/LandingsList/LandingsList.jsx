@@ -7,7 +7,6 @@ import CardList from './CardList';
 import LandingsForm from './LandingsForm';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { Switch } from '@mui/material';
 
 
 
@@ -24,14 +23,14 @@ const style = {
 };
 
 function LandingsList() {
+
+
   const { landingsData, setLandingsData } = useContext(landingsContext)
   const [page, setPage] = useState(1);
   const PER_PAGE = 8;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
   const count = Math.ceil(landingsData.length / PER_PAGE);
   const _DATA = usePagination(landingsData, PER_PAGE);

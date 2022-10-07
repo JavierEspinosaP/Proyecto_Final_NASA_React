@@ -24,6 +24,7 @@ function App() {
 
   const [neasData, setNeasData] = useState([])
 
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -31,7 +32,6 @@ function App() {
 
         const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
         const home = await resHome.data;
-        console.log(home);
 
         const resLandings = await axios.get("http://localhost:3000/api/astronomy/landings");
         const landings = await resLandings.data;

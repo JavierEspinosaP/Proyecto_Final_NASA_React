@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+// import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -58,7 +58,7 @@ function CardList(props) {
           aria-describedby="keep-mounted-modal-description"
         >
           <Box sx={style}>
-            <LandingsEditForm name={landing.name}/>
+            <LandingsEditForm id={landing.id} name={landing.name}/>
           </Box>
         </Modal>
       </div>

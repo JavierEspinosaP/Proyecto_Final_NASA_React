@@ -1,8 +1,7 @@
 import React from "react";
 import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
-
+import TextField from '@mui/material/TextField';
 
 function NeasForm() {
 
@@ -10,9 +9,9 @@ function NeasForm() {
   return (
     <div>      
       <FormControl>
-      <Input placeholder="Masa en kg" />
-      <Input placeholder="Periodo/Año" />
-      <Input placeholder="Clase de órbita" />
+      <TextField placeholder="Masa en kg" />
+      <TextField placeholder="Periodo/Año" />
+      <TextField placeholder="Clase de órbita" />
       <Button type="submit" variant="raised">Submit</Button>
     </FormControl></div>
   )

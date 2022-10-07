@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
+import React from "react";
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+
 
 function LandingsForm() {
 
@@ -9,14 +9,14 @@ function LandingsForm() {
 
   return (
     <div className="formContainer">
-      <FormControl>
-        <Input placeholder="Nombre" />
-        <Input placeholder="Masa en kg" />
-        <Input placeholder="Latitud" />
-        <Input placeholder="Longitud" />
-        <Input placeholder="Fecha" />
-        <Button type="submit" variant="raised">Submit</Button>
-      </FormControl>
+      <form action="">
+        <TextField placeholder="Nombre" />
+        <TextField placeholder="Masa en kg" />
+        <TextField placeholder="Latitud" />
+        <TextField placeholder="Longitud" />
+        <TextField placeholder="Fecha" />
+        <Button type="submit" variant="raised">Submit</Button>        
+      </form>
     </div>
   )
 }

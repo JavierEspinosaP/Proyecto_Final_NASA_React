@@ -90,14 +90,14 @@ const updateLandings = async (landing) => {
         const newLanding = {
             "id": landing.id,
             "name": landing.name,
-            "nametype": landing.nametype,
-            "recclass": landing.recclass,
+            // "nametype": landing.nametype,
+            // "recclass": landing.recclass,
             "mass": landing.mass,
-            "fall": landing.fall,
+            // "fall": landing.fall,
             "year": landing.year,
             "reclat": landing.reclat,
             "reclong": landing.reclong,
-            "geolocation": landing.geolocation
+            // "geolocation": landing.geolocation
         } //Landing del body
         console.log("esto es newLanding: ", newLanding);
         const oldLanding = await Landing.findOneAndUpdate({id: landing.id}, newLanding); //Busqueda del landing por id
