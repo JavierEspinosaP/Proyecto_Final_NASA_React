@@ -12,11 +12,6 @@ const Landings = () => {
 
   const icono = new L.Icon({
     iconUrl: require('../../../assets/asteroid.png'),
-    iconAnchor: null,
-    popupAnchor: [0, -10],
-    shadowUrl: null,
-    shadowSize: null,
-    shadowAnchor: null,
     iconSize: new L.Point(15, 15)
   });
 

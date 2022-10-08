@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,7 +9,9 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import LandingsEditForm from '../LandingsEditForm';
-
+import {loginContext} from '../../../../../context/loginContext'
+import {countContext} from '../../../../../context/countContext'
+import {productsContext} from '../../../../../context/productsContext'
 
 const style = {
   position: 'absolute',
@@ -28,6 +30,10 @@ function CardList(props) {
   const landing = props.data
 
 
+  const { loginData,setLoginData} = useContext(loginContext)
+  let { countProducts,setCount} = useContext(countContext)
+  const { products,setProducts} = useContext(productsContext)
+
 
   const [open, setOpen] = React.useState(false);
 
@@ -44,6 +50,15 @@ function CardList(props) {
       console.log(e);
     }
   }
+
+  const manageProducts = () => {
+  
+
+  setProducts([landing, ...products])  
+  setCount(products.length)
+  }
+
+
 
 
 
@@ -90,6 +105,7 @@ function CardList(props) {
         <CardActions>
           <Button size="small" onClick={handleOpen} >Editar</Button>
           <Button size="small" onClick={removeLanding}>Borrar</Button>
+          {loginData? <Button size="small" onClick={manageProducts} >Añadir al carro</Button>:null}
         </CardActions>
       </Card>
     </div>

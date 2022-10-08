@@ -20,6 +20,15 @@ const getUser = async (req, res) => {
     }
 }
 
+const getOneUser = async (req, res) => {
+
+    let userEmail = req.params.nickname
+
+        const users = await User.getUserByNickname(userEmail);
+        res.status(200).json(users);
+    
+}
+
 const createUser = async (req, res) => {
     try{
      let newUser = await User.createUsers(req.body);
@@ -60,6 +69,7 @@ const deleteUser = async (req, res) => {
 
 const UserControllers = {
     getUser,
+    getOneUser,
     createUser,
     updateUser,
     deleteUser
