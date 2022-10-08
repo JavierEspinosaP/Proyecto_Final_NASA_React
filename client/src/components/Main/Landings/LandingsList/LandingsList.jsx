@@ -7,6 +7,7 @@ import CardList from './CardList';
 import LandingsForm from './LandingsForm';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 
 
 
@@ -28,9 +29,14 @@ function LandingsList() {
   const { landingsData, setLandingsData } = useContext(landingsContext)
   const [page, setPage] = useState(1);
   const PER_PAGE = 8;
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openAdd, setOpenAdd] = React.useState(false);
+  const handleOpenAdd = () => setOpenAdd(true);
+  const handleCloseAdd = () => setOpenAdd(false);
+  const [openSearch, setOpenSearch] = React.useState(false);
+  const handleOpenSearch = () => setOpenSearch(true);
+  const handleCloseSearch = () => setOpenSearch(false);
+  const [search, setSearch] = useState(null)
+  const [searchData, setSearchData] = useState([])
 
   const count = Math.ceil(landingsData.length / PER_PAGE);
   const _DATA = usePagination(landingsData, PER_PAGE);
@@ -40,25 +46,26 @@ function LandingsList() {
     _DATA.jump(p);
   };
 
-  function handleSortName() {
-    const sortedData = [...landingsData].sort((a, b) => {
-      return a.name > b.name ? 1 : -1
+  function handleSortMass() {
+    const data = [...landingsData].sort((a, b) => {
+      return a.mass > b.mass ? 1:-1
     })
-    setLandingsData(sortedData)
+    setLandingsData(data)
+  }
+
+
+  function handleSortName() {
+    const data = [...landingsData].sort((a, b) => {
+      return a.name > b.name ? 1:-1
+    })
+    setLandingsData(data)
   }
 
   function handleSortYear() {
-    const sortedData = [...landingsData].sort((a, b) => {
-      return a.year > b.year ? 1 : -1
+    const data = [...landingsData].sort((a, b) => {
+      return a.year > b.year ? 1:-1
     })
-    setLandingsData(sortedData)
-  }
-
-  function handleSortMass() {
-    const sortedData = [...landingsData].sort((a, b) => {
-      return a.mass > b.mass ? 1 : -1
-    })
-    setLandingsData(sortedData)
+    setLandingsData(data)
   }
 
   const removeLanding = (i) =>{
@@ -66,21 +73,62 @@ function LandingsList() {
     setLandingsData(remainingLandings);
   }
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    const landing = e.target.name.value;
+    setSearch(landing);
+
+    const map = landingsData.map(l =>l.name)
+
+    for (let i = 0; i < map.length; i++) {
+      if (map[i] == search) {
+        setSearchData(map[i])
+      }}
+
+
+    console.log(map);    
+
+
+    e.target.name.value="";
+  }
+
+
 
 
   return (
     <div className="landingsList">
-      <div className="modal">
-      <Button onClick={handleOpen}>Añadir Landing</Button>
+      <div className="modalAdd">
+      <Button onClick={handleOpenAdd}>Añadir Landing</Button>
       <Modal
         keepMounted
-        open={open}
-        onClose={handleClose}
+        open={openAdd}
+        onClose={handleCloseAdd}
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-        <LandingsForm edit={open} />
+        <LandingsForm edit={openAdd} />
+        </Box>
+      </Modal>
+      </div>
+
+
+      <div className="search">
+      <form onSubmit={handleSubmit}>
+          <TextField name="name" label="Busqueda de Landings" />
+          <Button type="submit" variant="contained" onClick={handleOpenSearch}>Search</Button>
+        </form>
+      </div>
+      <div className="modalAdd">
+      <Modal
+        keepMounted
+        open={openSearch}
+        onClose={handleCloseSearch}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+        <p className="searchData">{searchData}</p>
         </Box>
       </Modal>
       </div>
