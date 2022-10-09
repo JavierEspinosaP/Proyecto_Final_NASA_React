@@ -11,6 +11,16 @@ const getAllLandings = async () => {
     }
 }
 
+const getLandingByName = async (name)=> {
+    try{
+        const getLandingName = await Landing.find({name:name}, "-_id")
+
+        return getLandingName  
+    }
+ catch(err){
+    console.error(err);
+}}
+
 
 const getLandingsMinMass = async (minMassNumber)=> {
     try{
@@ -90,14 +100,14 @@ const updateLandings = async (landing) => {
         const newLanding = {
             "id": landing.id,
             "name": landing.name,
-            "nametype": landing.nametype,
-            "recclass": landing.recclass,
+            // "nametype": landing.nametype,
+            // "recclass": landing.recclass,
             "mass": landing.mass,
-            "fall": landing.fall,
+            // "fall": landing.fall,
             "year": landing.year,
             "reclat": landing.reclat,
             "reclong": landing.reclong,
-            "geolocation": landing.geolocation
+            // "geolocation": landing.geolocation
         } //Landing del body
         console.log("esto es newLanding: ", newLanding);
         const oldLanding = await Landing.findOneAndUpdate({id: landing.id}, newLanding); //Busqueda del landing por id
@@ -111,11 +121,12 @@ const updateLandings = async (landing) => {
     }
 };
 
-const deleteLandings = async (landing) => {
+const deleteLandings = async (id) => {
     try {
-        let answer = await Landing.deleteOne({id: landing.id})
-        console.log("Este es el console.log de lo que devuelve la api",answer);
-        return `Landing with id ${landing.id} deleted`
+        let a = await Landing.deleteOne({id: id})
+        // let answer = await Landing.deleteOne({id: landing.id})
+        console.log("Este es el console.log de lo que devuelve la api",a);
+        return `Landing with id ${id} deleted`
     }
   catch(error){
     console.log(`ERROR:${error}`)
@@ -124,6 +135,7 @@ const deleteLandings = async (landing) => {
 
 module.exports = {
     getAllLandings,
+    getLandingByName,
     getLandingsMinMass,
     getLandingFrom,
     getLandingTo, 

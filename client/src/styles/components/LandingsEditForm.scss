@@ -1,0 +1,14 @@
+@import '../utils/variables.scss';
+
+.formContainer{
+     padding: 10px
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+.landingName{
+    color: $white;
+}

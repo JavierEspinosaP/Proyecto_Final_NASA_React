@@ -1,0 +1,83 @@
+@import '../utils/variables.scss';
+
+.landingsList{
+    background-color: $black;
+    height: 115vh
+}
+
+.cardsContainer{
+    margin-top:50px;
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+}
+
+.pagination{
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+}
+.searchData{
+    color: $white;
+}
+
+.botones{
+    margin-bottom: 40px
+}
+.search{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.modalAdd{
+    padding:10px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.btns{
+    margin-bottom: 40px
+}
+
+.search{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal{
+    margin: 20px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+@media screen and (max-width: 1840px){
+    .landingsList{
+        height: 135vh
+    }
+}
+
+@media screen and (max-width: 1226px){
+    .landingsList{
+        height: 165vh
+    }
+}
+
+
+@media screen and (max-width: 920px){
+    .landingsList{
+        height: 235vh
+    }
+}
+
+@media screen and (max-width: 617px){
+    .landingsList{
+        height: 430vh
+    }
+}

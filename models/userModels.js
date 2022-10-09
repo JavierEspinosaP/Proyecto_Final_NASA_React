@@ -11,6 +11,16 @@ const getAllUsers = async () => {
     }
 }
 
+const getUserByNickname = async (nickname) => {
+    try {
+        const getUser = await User.find({nickname: nickname}, "-_id");
+        return getUser
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
 const getUserByMail = async (userEmail) => {
     try {
         const getUserByMail = await User.find({email: userEmail}, "-_id")
@@ -76,6 +86,7 @@ const deleteUsers = async (user) => {
 
 module.exports = {
     getAllUsers,
+    getUserByNickname,
     getUserByMail,
     createUsers,
     updateUsers,

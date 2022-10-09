@@ -5,7 +5,7 @@ const getNeas = async (req, res) => {
 
     let orbitClass = req.query.class
     let date = req.query.date
-
+    let designation = req.query.designation
     let from = req.query.from
     let to = req.query.to
 
@@ -15,6 +15,17 @@ const getNeas = async (req, res) => {
         try {
             let NeaByClass = await Nea.getNeasByOrbitClass(orbitClass)
             res.status(200).json(NeaByClass);
+        }
+        catch (error) {
+            console.log(`ERROR: ${error.stack}`)
+            res.status(404).json({ "message": "Nea not found" });
+        }
+    }
+
+    else if(designation){
+        try {
+            let NeaByDesignation = await Nea.getNeasByDesignation(designation)
+            res.status(200).json(NeaByDesignation);
         }
         catch (error) {
             console.log(`ERROR: ${error.stack}`)
