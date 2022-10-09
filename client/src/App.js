@@ -12,6 +12,7 @@ import { countContext } from './context/countContext'
 import './styles/styles.scss';
 import axios from 'axios'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import 'dotenv'
 
 const darkTheme = createTheme({
   palette: {
