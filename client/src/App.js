@@ -39,7 +39,9 @@ function App() {
       try {
         // Petición HTTP
 
-        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
+        const REACT_APP_API_KEY = process.env.REACT_APP_APIKEY
+
+        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${REACT_APP_API_KEY}`);
         const home = await resHome.data;
 
         const resLandings = await axios.get("http://localhost:3000/api/astronomy/landings");
