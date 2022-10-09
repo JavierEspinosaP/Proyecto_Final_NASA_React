@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { landingsContext } from '../../../../context/landingsContext'
 import Button from '@mui/material/Button';
 import usePagination from "../../../../hooks/usePagination"
@@ -8,7 +8,8 @@ import LandingsForm from './LandingsForm';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import axios from 'axios'
+import axios from 'axios';
+import images from '../../img'
 
 
 
@@ -81,11 +82,26 @@ function LandingsList() {
     e.target.name.value="";
   }
 
+const arrImages = [];    
+
+const paintImages = () => {
+
+     for (let i = 0; i < landingsData.length; i++) {
+      if (arrImages.length < landingsData.length) {
+        arrImages.push(images[Math.floor(Math.random() * images.length)])
+      }}
+      
+    }
+  
+  
+
+
 
 
 
   return (
     <div className="landingsList">
+      {paintImages()}
       <div className="modalAdd">
       <Button onClick={handleOpenAdd}>Añadir Landing</Button>
       <Modal
@@ -139,7 +155,7 @@ function LandingsList() {
       </section>
 
       <section className="cardsContainer">
-        {_DATA.currentData().map((d, i) => <CardList data={d} key={i} remove={()=>removeLanding(i)} />)}
+        {_DATA.currentData().map((d, i) => <CardList data={d} key={i} remove={()=>removeLanding(i)} img={arrImages[i]} />)}
       </section>
       <section className="formContainer">
 

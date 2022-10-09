@@ -8,6 +8,8 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import NeasEditForm from '../NeasEditForm';
+import CardMedia from '@mui/material/CardMedia';
+
 
 
 const style = {
@@ -26,7 +28,7 @@ const style = {
 function NeasCard(props) {
 
 const nea = props.data
-
+const img = props.img
 const [open, setOpen] = React.useState(false);
 
 const handleOpen = () => {setOpen(true)}
@@ -61,12 +63,12 @@ const removeNea = async () =>{
         </Modal>
       </div>
             <Card sx={{ minWidth: 290, margin: 1 }}>
-              {/* <CardMedia
+              <CardMedia
                 component="img"
                 height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image={img}
                 alt="green iguana"
-              /> */}
+              />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {nea.name}

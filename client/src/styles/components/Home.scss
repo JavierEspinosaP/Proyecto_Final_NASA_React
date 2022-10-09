@@ -20,20 +20,31 @@
 .img-nasa{
     width: 1200px;
     z-index: 0;
+    
 }
 
 .info-nasa{
-    margin-top: 160px;
+    margin-top: 100px;
     justify-content:flex;
     flex-direction:column;
     justify-content:center;
     color: $white;
     position:absolute;
-    left:80px;
-    width:300px;
+    left:120px;
+    width:400px;
     min-width: 300px;
-    height: 100vh;
+    height: 500px;
     z-index: 1;
+}
+
+
+
+.fade-in{
+    animation: fadeIn ease 7s;
+    -webkit-animation: fadeIn ease 7s;
+    -moz-animation: fadeIn ease 7s;
+    -o-animation: fadeIn ease 7s;
+    -ms-animation: fadeIn ease 7s;
 }
 
 .info-container{
@@ -43,29 +54,27 @@
     align-items:center;
 }
 
-@media screen and (max-width: 1674px){
-    .img-nasa{
-        width: 800px;
-        z-index: 0;
+
+
+@media screen and (max-width: 830px){
+    #imagen-nasa{
+        width: 600px
     }
-    .imgContainer {
-        display: flex;
-        justify-content: flex;
-        align-items: center;
+    .info-nasa{
         position:absolute;
-        left:430px;
-        top: 100px;
-        height: 50vh;
-        overflow: hidden;
-        z-index: 0;
+        left: 30px;
+        top: 0px;
+        width:600px;
+        margin-top:0
     }
+
 }
 
-@media screen and (max-width:1291px){
+@media screen and (max-width:1800px){
     .img-nasa{
         position:absolute;
         top: 100px;
-        width: 600px;
+        width: 800px;
         z-index: 0;
     }
     .imgContainer {
@@ -82,17 +91,47 @@
         justify-content:center;
     }
     .info-nasa{
-        top: 400px
+        position:relative;
+        left: 30px;
+        top: 700px;
+        width:600px;
     }
 }
 
 @media screen and (max-width: 640px){
-    .img-nasa{
-        width: 400px;
+    #imagen-nasa{
+        width: 450px;
     }
     .info-nasa{
-        top: 300px
+        top: 600px;
+        width: 350px
     }
 }
+
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
 
 

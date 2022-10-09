@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
+import images from '../../Main/img'
  
 
 
@@ -42,7 +43,6 @@ const NEAS = () => {
   const handleCloseSearch = () => setOpenSearch(false);
   const [searchData, setSearchData] = useState([])
   
-
   const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
   const count = Math.ceil(neasData.length / PER_PAGE);
@@ -89,6 +89,17 @@ const NEAS = () => {
     e.target.name.value="";
   }
 
+  const arrImages = [];  
+  const paintImages = () => {
+
+    for (let i = 0; i < neasData.length; i++) {
+     if (arrImages.length < neasData.length) {
+       arrImages.push(images[Math.floor(Math.random() * images.length)])
+     }}
+   }
+ 
+ paintImages()
+
 
 
   return <div className="neas">
@@ -122,7 +133,11 @@ const NEAS = () => {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-        <p className="searchData">{searchData.designation}</p>
+          {<img src={arrImages[Math.floor(Math.random() * arrImages.length)]} alt="AsteroidImg" />}
+        <p className="searchData">· Designación: {searchData.designation}</p>
+        <p className="searchData">· Órbita: {searchData.orbit_class}</p>
+        <p className="searchData">· Periodo: {searchData.period_yr}</p>
+        <p className="searchData">· Fecha de descubrimiento: {(searchData.discovery_date).slice(0,10)}</p>
         </Box>
       </Modal>
       </div>
@@ -144,7 +159,7 @@ const NEAS = () => {
       </section>
 
       <section className="cardsContainer">
-        {_DATA.currentData().map((d, i) => <NeasCard data={d} key={i} remove={()=>removeNea(i)} />)}
+        {_DATA.currentData().map((d, i) => <NeasCard data={d} key={i} remove={()=>removeNea(i)} img={arrImages[i]} />)}
       </section>
       <section className="formContainer">
 

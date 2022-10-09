@@ -40,15 +40,27 @@
     align-items:center;
 }
 
-
-@media screen and (max-width: 930px){
+@media screen and (max-width: 1840px){
     .neas{
-        height: 150vh
+        height: 130vh
+    }
+}
+
+@media screen and (max-width: 1226px){
+    .neas{
+        height: 160vh
+    }
+}
+
+
+@media screen and (max-width: 920px){
+    .neas{
+        height: 230vh
     }
 }
 
 @media screen and (max-width: 617px){
     .neas{
-        height: 260vh
+        height: 410vh
     }
 }

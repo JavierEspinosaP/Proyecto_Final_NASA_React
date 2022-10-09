@@ -12,12 +12,13 @@ const Home = () => {
         <div className="info-container">
         <section className="info-nasa">
           <h3>{homeData.title}</h3>
-          <p>{homeData.explanation}</p>
+          <p>{homeData.explanation}<span>&#160;</span></p>
         </section>
         </div>
 
         <div className="imgContainer">
-        {homeData.media_type=="image"?<img className="img-nasa" src={homeData.url} alt="nasa-img" />:<video src={homeData.url}>
+        
+        {homeData.media_type=="image"?<img className="img-nasa fade-in" id="imagen-nasa" src={homeData.url} alt="nasa-img" />:<video src={homeData.url}>
 
 </video>}
         </div>

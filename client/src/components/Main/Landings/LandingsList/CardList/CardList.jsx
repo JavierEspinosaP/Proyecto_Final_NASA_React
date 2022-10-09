@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
+import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -12,6 +12,9 @@ import LandingsEditForm from '../LandingsEditForm';
 import {loginContext} from '../../../../../context/loginContext'
 import {countContext} from '../../../../../context/countContext'
 import {productsContext} from '../../../../../context/productsContext'
+import images from '../../../../Main/img'
+import { landingsContext } from '../../../../../context/landingsContext'
+import { getBottomNavigationUtilityClass } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -27,9 +30,27 @@ const style = {
 
 function CardList(props) {
 
+
+  const {landingsData} = useContext(landingsContext)
+
+
+  // useEffect(() => {
+  //   const arrImages = [];
+
+  //   return () => {
+  //    for (let i = 0; i < landingsData.length; i++) {
+  //     if (arrImages.length < landingsData.length) {
+  //       arrImages.push(images[Math.floor(Math.random() * images.length)])
+  //     }
+
+  //    }
+  //    console.log(arrImages);
+  //   }
+  // }, [])
+  
+
   const landing = props.data
-
-
+  const img = props.img
   const { loginData,setLoginData} = useContext(loginContext)
   let { countProducts,setCount} = useContext(countContext)
   const { products,setProducts} = useContext(productsContext)
@@ -59,6 +80,7 @@ function CardList(props) {
   }
 
 
+  
 
 
 
@@ -78,13 +100,13 @@ function CardList(props) {
         </Modal>
       </div>
 
-      <Card sx={{ minWidth: 290, margin: 1 }}>
-        {/* <CardMedia
+      {img?<Card sx={{ minWidth: 290, margin: 1 }}>
+        <CardMedia
                 component="img"
                 height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image={img}
                 alt="green iguana"
-              /> */}
+              />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {landing.name}
@@ -107,7 +129,7 @@ function CardList(props) {
           <Button size="small" onClick={removeLanding}>Borrar</Button>
           {loginData? <Button size="small" onClick={manageProducts} >Añadir al carro</Button>:null}
         </CardActions>
-      </Card>
+      </Card>:null}
     </div>
   )
 }
