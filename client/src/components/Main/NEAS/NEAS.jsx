@@ -135,7 +135,7 @@ const NEAS = () => {
         <p className="searchData">· Designación: {searchData.designation}</p>
         <p className="searchData">· Órbita: {searchData.orbit_class}</p>
         <p className="searchData">· Periodo: {searchData.period_yr}</p>
-        <p className="searchData">· Fecha de descubrimiento: {(searchData.discovery_date).slice(0,10)}</p>
+        <p className="searchData">· Fecha de descubrimiento: {String(searchData.discovery_date).slice(0,10)}</p>
         </Box>
       </Modal>
       </div>
