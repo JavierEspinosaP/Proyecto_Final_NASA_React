@@ -42,7 +42,7 @@ function NeasEditForm(props) {
         <TextField {...register("date")} placeholder="Fecha" />
         <TextField {...register("period")} placeholder="Periodo/Año" />
         <TextField {...register("orbit")}placeholder="Clase de órbita" />
-        <Button type="submit" variant="raised">Submit</Button>
+        <Button type="submit" variant="contained">Submit</Button>
       </form>
     </div>
   )

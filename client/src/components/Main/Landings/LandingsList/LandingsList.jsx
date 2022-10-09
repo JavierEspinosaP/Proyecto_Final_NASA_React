@@ -8,6 +8,7 @@ import LandingsForm from './LandingsForm';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import axios from 'axios'
 
 
 
@@ -28,14 +29,13 @@ function LandingsList() {
 
   const { landingsData, setLandingsData } = useContext(landingsContext)
   const [page, setPage] = useState(1);
-  const PER_PAGE = 8;
+  const PER_PAGE = 12;
   const [openAdd, setOpenAdd] = React.useState(false);
   const handleOpenAdd = () => setOpenAdd(true);
   const handleCloseAdd = () => setOpenAdd(false);
   const [openSearch, setOpenSearch] = React.useState(false);
   const handleOpenSearch = () => setOpenSearch(true);
   const handleCloseSearch = () => setOpenSearch(false);
-  const [search, setSearch] = useState(null)
   const [searchData, setSearchData] = useState([])
 
   const count = Math.ceil(landingsData.length / PER_PAGE);
@@ -73,22 +73,11 @@ function LandingsList() {
     setLandingsData(remainingLandings);
   }
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) =>{
     e.preventDefault();
     const landing = e.target.name.value;
-    setSearch(landing);
-
-    const map = landingsData.map(l =>l.name)
-
-    for (let i = 0; i < map.length; i++) {
-      if (map[i] == search) {
-        setSearchData(map[i])
-      }}
-
-
-    console.log(map);    
-
-
+    const res = await axios.get(`http://localhost:3000/api/astronomy/landings?name=${landing}`)
+    setSearchData(res.data[0])
     e.target.name.value="";
   }
 
@@ -128,7 +117,7 @@ function LandingsList() {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-        <p className="searchData">{searchData}</p>
+        <p className="searchData">{searchData.name}</p>
         </Box>
       </Modal>
       </div>

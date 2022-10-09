@@ -29,11 +29,11 @@ const Login = () => {
 
     return  (<div className="formContainer">
     <form onSubmit={handleSubmit(loginValidation)}>
-      <h4 className="landingName">Introduce tu nickname</h4>
+      <h4 className="landingName">Introduce tu nickname (introduce "usuario" para la demo)</h4>
 
       <TextField name="nickname" {...register("nickname")} placeholder="Nickname  " />
 
-      <Button type="submit" variant="raised" >Submit</Button>
+      <Button type="submit" variant="contained" >Submit</Button>
     </form>
   </div>)
   }

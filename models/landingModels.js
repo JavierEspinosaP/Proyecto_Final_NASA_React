@@ -11,6 +11,16 @@ const getAllLandings = async () => {
     }
 }
 
+const getLandingByName = async (name)=> {
+    try{
+        const getLandingName = await Landing.find({name:name}, "-_id")
+
+        return getLandingName  
+    }
+ catch(err){
+    console.error(err);
+}}
+
 
 const getLandingsMinMass = async (minMassNumber)=> {
     try{
@@ -125,6 +135,7 @@ const deleteLandings = async (id) => {
 
 module.exports = {
     getAllLandings,
+    getLandingByName,
     getLandingsMinMass,
     getLandingFrom,
     getLandingTo, 

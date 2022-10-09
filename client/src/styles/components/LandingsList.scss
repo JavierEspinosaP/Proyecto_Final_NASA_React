@@ -2,7 +2,7 @@
 
 .landingsList{
     background-color: $black;
-    height: 150vh
+    height: 100vh
 }
 
 .cardsContainer{
@@ -21,4 +21,40 @@
 }
 .searchData{
     color: $white;
+}
+
+
+.btns{
+    margin-bottom: 40px
+}
+
+.search{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal{
+    margin: 20px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+@media screen and (max-width: 1234px){
+    .landingsList{
+        height: 120vh
+    }
+}
+
+@media screen and (max-width: 919px){
+    .landingsList{
+        height: 160vh
+    }
+}
+
+@media screen and (max-width: 616px){
+    .landingsList{
+        height: 282vh
+    }
 }

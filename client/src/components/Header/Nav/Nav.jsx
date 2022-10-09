@@ -43,9 +43,8 @@ const Nav = () => {
 
     return <div className="nav">
       <Link className="nav-link" to='/'>Home</Link>
-      <Accordion className="accordion" >
+      <Accordion className="accordion"  >
         <AccordionSummary
-   
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"

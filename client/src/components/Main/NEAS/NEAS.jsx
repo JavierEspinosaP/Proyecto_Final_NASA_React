@@ -9,6 +9,8 @@ import NeasCard from './NeasCard';
 import NeasForm from './NeasForm';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import axios from 'axios';
+import TextField from '@mui/material/TextField';
  
 
 
@@ -31,10 +33,15 @@ const NEAS = () => {
   const { neasData, setNeasData } = useContext(neasContext)
   const [showText, setShowText] = useState(false);
   const [page, setPage] = useState(1);
-  const PER_PAGE = 8;
+  const PER_PAGE = 12;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [openSearch, setOpenSearch] = React.useState(false);
+  const handleOpenSearch = () => setOpenSearch(true);
+  const handleCloseSearch = () => setOpenSearch(false);
+  const [searchData, setSearchData] = useState([])
+  
 
   const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
@@ -71,6 +78,16 @@ const NEAS = () => {
     const remainingNeas = neasData.filter((l,j)=>i!==j)
     setNeasData(remainingNeas);
   }
+  
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+    const nea = e.target.name.value;
+    const res = await axios.get(`http://localhost:3000/api/astronomy/neas?designation=${nea}`)
+    console.log(res);
+    setSearchData(res.data[0])
+
+    e.target.name.value="";
+  }
 
 
 
@@ -86,6 +103,26 @@ const NEAS = () => {
       >
         <Box sx={style}>
         <NeasForm />
+        </Box>
+      </Modal>
+      </div>
+
+      <div className="search">
+      <form onSubmit={handleSubmit}>
+          <TextField name="name" label="Busqueda de NEAS" />
+          <Button type="submit" variant="contained" onClick={handleOpenSearch}>Search</Button>
+        </form>
+      </div>
+      <div className="modalAdd">
+      <Modal
+        keepMounted
+        open={openSearch}
+        onClose={handleCloseSearch}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+        <p className="searchData">{searchData.designation}</p>
         </Box>
       </Modal>
       </div>

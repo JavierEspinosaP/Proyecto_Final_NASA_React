@@ -15,9 +15,40 @@
 }
 
 .pagination{
+    margin: 50px;
     color: $white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content:center;
+}
+
+.btns{
+    margin-bottom: 40px
+}
+
+.search{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal{
+    margin: 20px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+@media screen and (max-width: 930px){
+    .neas{
+        height: 150vh
+    }
+}
+
+@media screen and (max-width: 617px){
+    .neas{
+        height: 260vh
+    }
 }

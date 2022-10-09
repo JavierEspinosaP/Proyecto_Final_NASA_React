@@ -43,7 +43,7 @@ function LandingsForm() {
         <TextField name="reclat" {...register("reclat")} placeholder="Latitud" />
         <TextField name="reclong" {...register("reclong")} placeholder="Longitud" />
         <TextField name="year" {...register("year")} placeholder="Fecha" />
-        <Button type="submit" variant="raised" >Submit</Button>
+        <Button type="submit" variant="contained" >Submit</Button>
       </form>
     </div>
   )

@@ -10,6 +10,15 @@ const getAllNeas = async () => {
     }
 }
 
+const getNeasByDesignation = async (designation)=> {
+    try{
+        const getNeasByOClass = await Nea.find({designation: designation}, "-_id")
+        return getNeasByOClass
+    }
+ catch(err){
+    console.error(err);
+}}
+
 
 const getNeasByOrbitClass = async (orbitClass)=> {
     try{
@@ -135,6 +144,7 @@ const deleteNea = async (nea) => {
 module.exports = {
     getAllNeas,
     getNeasByOrbitClass,
+    getNeasByDesignation,
     getNeasFrom,
     getNeasTo, 
     getNeasFromTo,

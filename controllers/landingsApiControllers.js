@@ -4,6 +4,8 @@ const getLanding = async (req, res) => {
 
     let minimum_mass = req.query.minimum_mass
 
+    let name = req.query.name
+
     let from = req.query.from
     let to = req.query.to
 
@@ -13,6 +15,17 @@ const getLanding = async (req, res) => {
         try {
             let landingMinMass = await Landing.getLandingsMinMass(minMassNumber)
             res.status(200).json(landingMinMass);
+        }
+        catch (error) {
+            console.log(`ERROR: ${error.stack}`)
+            res.status(404).json({ "message": "landing not found" });
+        }
+    }
+
+    else if(name){
+        try {
+            let landingByName = await Landing.getLandingByName(name)
+            res.status(200).json(landingByName);
         }
         catch (error) {
             console.log(`ERROR: ${error.stack}`)

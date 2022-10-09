@@ -2,13 +2,14 @@
 
 .home {
     background-color: $black;
-    height: 100vh;
+    height: 115vh;
 }
 
 
 .imgContainer {
     position:absolute;
-    right:0;
+    right:80px;
+    top: 140px;
     height: 100vh;
     overflow: hidden;
     z-index: 0;
@@ -22,13 +23,13 @@
 }
 
 .info-nasa{
-    margin-top: 100px;
+    margin-top: 160px;
     justify-content:flex;
     flex-direction:column;
     justify-content:center;
     color: $white;
     position:absolute;
-    left:0;
+    left:80px;
     width:300px;
     min-width: 300px;
     height: 100vh;
@@ -40,6 +41,58 @@
     flex-direction:column;
     justify-content:center;
     align-items:center;
+}
+
+@media screen and (max-width: 1674px){
+    .img-nasa{
+        width: 800px;
+        z-index: 0;
+    }
+    .imgContainer {
+        display: flex;
+        justify-content: flex;
+        align-items: center;
+        position:absolute;
+        left:430px;
+        top: 100px;
+        height: 50vh;
+        overflow: hidden;
+        z-index: 0;
+    }
+}
+
+@media screen and (max-width:1291px){
+    .img-nasa{
+        position:absolute;
+        top: 100px;
+        width: 600px;
+        z-index: 0;
+    }
+    .imgContainer {
+        position:static;
+        top: 100px;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .home {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content:center;
+    }
+    .info-nasa{
+        top: 400px
+    }
+}
+
+@media screen and (max-width: 640px){
+    .img-nasa{
+        width: 400px;
+    }
+    .info-nasa{
+        top: 300px
+    }
 }
 
 

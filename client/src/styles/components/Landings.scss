@@ -13,7 +13,9 @@
 
 
 h1{
-    color: white
+    color: white;
+    position: absolute;
+    top: 100px
 }
 
 .infoLandings{
@@ -38,3 +40,47 @@ h1{
 .leaflet-tile {
     filter: var(--leaflet-tile-filter, none);
 }
+
+@media screen and (max-width:1268px){
+    .leaflet-container {
+        width: 50vh;
+        height: 70vh;
+    }
+    h1{
+        position: absolute;
+        top: 100px
+    }
+}
+
+@media screen and (max-width:930px){
+    .leaflet-container {
+        width: 30vh;
+        height: 50vh;
+    
+    }
+}
+
+@media screen and (max-width:710px){
+    .leaflet-container {
+        width: 50vh;
+        height: 50vh;
+    
+    }
+    .infoLandings{
+        display: none
+    }
+
+}
+
+@media screen and (max-width:613px){
+    .leaflet-container {
+        width: 35vh;
+        height: 50vh;
+    
+    }
+    .infoLandings{
+        display: none
+    }
+
+}
+
