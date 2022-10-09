@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -12,9 +12,6 @@ import LandingsEditForm from '../LandingsEditForm';
 import {loginContext} from '../../../../../context/loginContext'
 import {countContext} from '../../../../../context/countContext'
 import {productsContext} from '../../../../../context/productsContext'
-import images from '../../../../Main/img'
-import { landingsContext } from '../../../../../context/landingsContext'
-import { getBottomNavigationUtilityClass } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -29,30 +26,12 @@ const style = {
 };
 
 function CardList(props) {
-
-
-  const {landingsData} = useContext(landingsContext)
-
-
-  // useEffect(() => {
-  //   const arrImages = [];
-
-  //   return () => {
-  //    for (let i = 0; i < landingsData.length; i++) {
-  //     if (arrImages.length < landingsData.length) {
-  //       arrImages.push(images[Math.floor(Math.random() * images.length)])
-  //     }
-
-  //    }
-  //    console.log(arrImages);
-  //   }
-  // }, [])
   
 
   const landing = props.data
   const img = props.img
-  const { loginData,setLoginData} = useContext(loginContext)
-  let { countProducts,setCount} = useContext(countContext)
+  const { loginData} = useContext(loginContext)
+  let {setCount} = useContext(countContext)
   const { products,setProducts} = useContext(productsContext)
 
 

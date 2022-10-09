@@ -17,8 +17,8 @@ const manage404 = require('./middlewares/error404')
 const app = express()
 
 const cors = require("cors");
-const port = 3000
-
+const port = process.env.PORT || 3000
+app.use(express.static('public'));
 
 //Read body from request
 

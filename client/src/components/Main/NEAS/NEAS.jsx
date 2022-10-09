@@ -4,7 +4,6 @@ import { neasContext } from '../../../context/neasContext'
 import Button from '@mui/material/Button';
 import usePagination from "../../../hooks/usePagination"
 import Pagination from '@mui/material/Pagination';
-import { Switch } from '@mui/material';
 import NeasCard from './NeasCard';
 import NeasForm from './NeasForm';
 import Box from '@mui/material/Box';
@@ -32,7 +31,6 @@ const NEAS = () => {
 
 
   const { neasData, setNeasData } = useContext(neasContext)
-  const [showText, setShowText] = useState(false);
   const [page, setPage] = useState(1);
   const PER_PAGE = 12;
   const [open, setOpen] = React.useState(false);
@@ -43,7 +41,7 @@ const NEAS = () => {
   const handleCloseSearch = () => setOpenSearch(false);
   const [searchData, setSearchData] = useState([])
   
-  const label = { inputProps: { 'aria-label': 'Color switch demo' } };
+
 
   const count = Math.ceil(neasData.length / PER_PAGE);
   const _DATA = usePagination(neasData, PER_PAGE);

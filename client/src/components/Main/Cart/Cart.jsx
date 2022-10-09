@@ -3,7 +3,7 @@ import {productsContext} from '../../../context/productsContext'
 
 function Cart() {
 
-  const {products, setProducts} = useContext(productsContext)
+  const {products} = useContext(productsContext)
   return (
     <div>
       {products.map((p)=>

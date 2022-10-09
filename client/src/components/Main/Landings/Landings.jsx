@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
 import { landingsContext } from '../../../context/landingsContext'
@@ -8,7 +8,7 @@ import { landingsContext } from '../../../context/landingsContext'
 
 const Landings = () => {
 
-  const { landingsData, setLandingsData } = useContext(landingsContext)
+  const { landingsData} = useContext(landingsContext)
 
   const icono = new L.Icon({
     iconUrl: require('../../../assets/asteroid.png'),

@@ -37,8 +37,8 @@ const Nav = () => {
   const handleOpenCart = () => setOpenCart(true);
   const handleCloseCart = () => setOpenCart(false);
 
-  const {loginData,setLoginData} = useContext(loginContext)
-  const {countProducts,setCount} = useContext(countContext)
+  const {loginData} = useContext(loginContext)
+  const {countProducts} = useContext(countContext)
 
 
     return <div className="nav">
@@ -73,7 +73,7 @@ const Nav = () => {
         <Login edit={openLogin} />
         </Box>
       </Modal>
-      {loginData?<div className="cartContainer"><Button onClick={handleOpenCart}><img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts== 1?<p>  {String(countProducts)} Producto añadido</p>: <p>{String(countProducts)} Productos añadidos</p>}</div>:null}
+      {loginData?<div className="cartContainer"><Button onClick={handleOpenCart}><img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts=== 1?<p>  {String(countProducts)} Producto añadido</p>: <p>{String(countProducts)} Productos añadidos</p>}</div>:null}
       <Modal
         keepMounted
         open={openCart}

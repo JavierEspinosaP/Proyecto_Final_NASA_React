@@ -7,7 +7,7 @@ import {loginContext} from '../../../../context/loginContext'
 
 const Login = () => {
 
-  const { loginData,setLoginData} = useContext(loginContext)
+  const {setLoginData} = useContext(loginContext)
 
   const loginValidation = async (user)=>{
     try {

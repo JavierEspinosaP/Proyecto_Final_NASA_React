@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {useContext } from "react";
 import {homeContext} from '../../../context/homeContext'
 
 
 
 const Home = () => {
 
-  const {setHomeData, homeData, loadingHome} = useContext(homeContext)
+  const {homeData, loadingHome} = useContext(homeContext)
 
     return <div className="home">
       {loadingHome?null:<div className="fetchContainer">
@@ -18,7 +18,7 @@ const Home = () => {
 
         <div className="imgContainer">
         
-        {homeData.media_type=="image"?<img className="img-nasa fade-in" id="imagen-nasa" src={homeData.url} alt="nasa-img" />:<video src={homeData.url}>
+        {homeData.media_type==="image"?<img className="img-nasa fade-in" id="imagen-nasa" src={homeData.url} alt="nasa-img" />:<video src={homeData.url}>
 
 </video>}
         </div>

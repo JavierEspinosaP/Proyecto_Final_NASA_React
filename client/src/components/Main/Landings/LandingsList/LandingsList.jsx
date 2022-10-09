@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState} from 'react'
 import { landingsContext } from '../../../../context/landingsContext'
 import Button from '@mui/material/Button';
 import usePagination from "../../../../hooks/usePagination"
