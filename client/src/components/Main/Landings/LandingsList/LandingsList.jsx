@@ -18,7 +18,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -133,7 +133,12 @@ const paintImages = () => {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-        <p className="searchData">{searchData.name}</p>
+        {<img  src={arrImages[Math.floor(Math.random() * arrImages.length)]} alt="AsteroidImg" />}
+        <p className="searchData">· Nombre: {searchData.name}</p>
+        <p className="searchData">· Masa: {searchData.mass}kg</p>
+        <p className="searchData">· Latitud: {searchData.recclat}º</p>
+        <p className="searchData">· Longitud: {searchData.reclong}º</p>
+        <p className="searchData">· Fecha de descubrimiento: {String(searchData.year).slice(0,10)}</p>
         </Box>
       </Modal>
       </div>
