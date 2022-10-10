@@ -12,6 +12,8 @@ import LandingsEditForm from '../LandingsEditForm';
 import {loginContext} from '../../../../../context/loginContext'
 import {countContext} from '../../../../../context/countContext'
 import {productsContext} from '../../../../../context/productsContext'
+import { imageContext } from '../../../../../context/imageContext'
+
 
 const style = {
   position: 'absolute',
@@ -29,10 +31,11 @@ function CardList(props) {
   
 
   const landing = props.data
-  const img = props.img
+
   const { loginData} = useContext(loginContext)
   let {setCount} = useContext(countContext)
   const { products,setProducts} = useContext(productsContext)
+  const {arrImages} = useContext(imageContext)
 
 
   const [open, setOpen] = React.useState(false);
@@ -79,11 +82,11 @@ function CardList(props) {
         </Modal>
       </div>
 
-      {img?<Card sx={{ minWidth: 290, margin: 1 }}>
+      {landing.img?<Card sx={{ minWidth: 290, margin: 1 }}>
         <CardMedia
                 component="img"
                 height="140"
-                image={img}
+                image={landing.img}
                 alt="green iguana"
               />
         <CardContent>

@@ -1,4 +1,4 @@
-import React, { useContext, useState} from 'react'
+import React, { useContext, useState, useEffect} from 'react'
 import { landingsContext } from '../../../../context/landingsContext'
 import Button from '@mui/material/Button';
 import usePagination from "../../../../hooks/usePagination"
@@ -9,7 +9,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import images from '../../img'
+// import images from '../../img';
+import { imageContext } from '../../../../context/imageContext'
 
 
 
@@ -27,7 +28,7 @@ const style = {
 
 function LandingsList() {
 
-
+  const {arrImages} = useContext(imageContext)
   const { landingsData, setLandingsData } = useContext(landingsContext)
   const [page, setPage] = useState(1);
   const PER_PAGE = 12;
@@ -38,9 +39,10 @@ function LandingsList() {
   const handleOpenSearch = () => setOpenSearch(true);
   const handleCloseSearch = () => setOpenSearch(false);
   const [searchData, setSearchData] = useState([])
-
   const count = Math.ceil(landingsData.length / PER_PAGE);
   const _DATA = usePagination(landingsData, PER_PAGE);
+
+console.log(landingsData);
 
   const handleChange = (e, p) => {
     setPage(p);
@@ -82,18 +84,21 @@ function LandingsList() {
     e.target.name.value="";
   }
 
-const arrImages = [];    
+// const arrImages = [];    
 
-const paintImages = () => {
 
-     for (let i = 0; i < landingsData.length; i++) {
-      if (arrImages.length < landingsData.length) {
-        arrImages.push(images[Math.floor(Math.random() * images.length)])
-      }}
+
+
+// const paintImages = () => {
+
+//      for (let i = 0; i < landingsData.length; i++) {
+//       if (arrImages.length < landingsData.length) {
+//         arrImages.push(images[Math.floor(Math.random() * images.length)])
+//       }}
       
-    }
-  
-  
+//     }
+//     paintImages();
+
 
 
 
@@ -101,7 +106,7 @@ const paintImages = () => {
 
   return (
     <div className="landingsList">
-      {paintImages()}
+      {/* {arrImages.length>1?null:paintImages()} */}
       <div className="modalAdd">
       <Button onClick={handleOpenAdd}>Añadir Landing</Button>
       <Modal
@@ -133,7 +138,7 @@ const paintImages = () => {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-        {<img  src={arrImages[Math.floor(Math.random() * arrImages.length)]} alt="AsteroidImg" />}
+        {/* {<img  src={landingsData.img[0]} alt="AsteroidImg" />} */}
         <p className="searchData">· Nombre: {searchData.name}</p>
         <p className="searchData">· Masa: {searchData.mass}kg</p>
         <p className="searchData">· Latitud: {searchData.recclat}º</p>
@@ -160,7 +165,7 @@ const paintImages = () => {
       </section>
 
       <section className="cardsContainer">
-        {_DATA.currentData().map((d, i) => <CardList data={d} key={i} remove={()=>removeLanding(i)} img={arrImages[i]} />)}
+        {_DATA.currentData().map((d, i) => <CardList data={d} key={i} remove={()=>removeLanding(i)}/>)}
       </section>
       <section className="formContainer">
 

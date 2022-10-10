@@ -9,6 +9,8 @@ import { landingsContext } from './context/landingsContext'
 import { loginContext } from './context/loginContext'
 import { productsContext } from './context/productsContext'
 import { countContext } from './context/countContext'
+import { imageContext } from './context/imageContext'
+import images from './components/Main/img.js'
 import './styles/styles.scss';
 import axios from 'axios'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -33,6 +35,8 @@ function App() {
 
   const [products, setProducts] = useState([]);
 
+  const arrImages = [];    
+
 
   useEffect(() => {
     async function fetchData() {
@@ -49,9 +53,15 @@ function App() {
         const neas = await resNeas.data;
 
         // Guarda en el array de posts el resultado. Procesa los datos
-        setLandingsData(landings);
+        const landingsImg = landings.map((l,i)=>({...l, img: arrImages[i]}))
+
+        setLandingsData(landingsImg);          
+
+
         setNeasData(neas)
         setHomeData(home)
+
+     
 
       } catch (e) {
         setLandingsData([])
@@ -59,10 +69,21 @@ function App() {
         setHomeData([])
       }
     }
-
     fetchData();
+
   }, []);
 
+    const paintImages = async () => {
+      console.log(landingsData.length);
+    for (let i = 0; i < landingsData.length; i++) {
+        if (arrImages.length < landingsData.length) {
+          arrImages.push(images[Math.floor(Math.random() * images.length)])
+        }
+      }   
+    }
+    paintImages();  
+
+console.log(arrImages);
 
   const homeDataObj = {
     homeData, setHomeData
@@ -88,24 +109,30 @@ function App() {
     products, setProducts
   }
 
+  const imageObj = {
+    arrImages
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
         <ThemeProvider theme={darkTheme}>
-          <loginContext.Provider value={loginObj}>
-            <countContext.Provider value={countObj}>
-              <productsContext.Provider value={productsObj}>
-                <Header />
-                <homeContext.Provider value={homeDataObj}>
-                  <landingsContext.Provider value={landingsDataObj}>
-                    <neasContext.Provider value={neasDataObj}>
-                      <Main />
-                    </neasContext.Provider>
-                  </landingsContext.Provider>
-                </homeContext.Provider>
-              </productsContext.Provider>
-            </countContext.Provider>
-          </loginContext.Provider>
+          <imageContext.Provider value={imageObj}>
+            <loginContext.Provider value={loginObj}>
+              <countContext.Provider value={countObj}>
+                <productsContext.Provider value={productsObj}>
+                  <Header />
+                  <homeContext.Provider value={homeDataObj}>
+                    <landingsContext.Provider value={landingsDataObj}>
+                      <neasContext.Provider value={neasDataObj}>
+                        <Main />
+                      </neasContext.Provider>
+                    </landingsContext.Provider>
+                  </homeContext.Provider>
+                </productsContext.Provider>
+              </countContext.Provider>
+            </loginContext.Provider>
+          </imageContext.Provider>
           <Footer />
         </ThemeProvider>
       </BrowserRouter>
