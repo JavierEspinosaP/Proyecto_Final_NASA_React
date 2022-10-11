@@ -14,6 +14,7 @@ import images from './components/Main/img.js'
 import './styles/styles.scss';
 import axios from 'axios'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { set } from "mongoose";
 
 const darkTheme = createTheme({
   palette: {
@@ -35,7 +36,9 @@ function App() {
 
   const [products, setProducts] = useState([]);
 
-  const arrImages = [];    
+  const arrImages = [];
+
+
 
 
   useEffect(() => {
@@ -43,26 +46,37 @@ function App() {
       try {
         // Petición HTTP
 
-        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
-        const home = await resHome.data;
+        // const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
+        // const home = await resHome.data;
+
 
         const resLandings = await axios.get("http://localhost:3000/api/astronomy/landings");
         const landings = await resLandings.data;
+        console.log(landings.length);
 
+
+
+        // const landingsImg = await landings.map((l, i) => ({ ...l, img: arrImages[i] }))
         const resNeas = await axios.get("http://localhost:3000/api/astronomy/neas");
         const neas = await resNeas.data;
 
         // Guarda en el array de posts el resultado. Procesa los datos
-        const landingsImg = landings.map((l,i)=>({...l, img: arrImages[i]}))
-
-        setLandingsData(landingsImg);          
-
 
         setNeasData(neas)
-        setHomeData(home)
+        // setHomeData(home)
 
-     
+            const paintImages = () => {
+            console.log(landings.length);
+            for (let i = 0; i < landings.length; i++) {
+              if (arrImages.length < landings.length) {
+                arrImages.push(images[Math.floor(Math.random() * images.length)])
+              }
+            }
+          }
+          paintImages(); 
 
+    setLandingsData(landings.map((l, i) => ({ ...l, img: arrImages[i] })))  
+        console.log(landingsData.length);
       } catch (e) {
         setLandingsData([])
         setNeasData([])
@@ -71,23 +85,25 @@ function App() {
     }
     fetchData();
 
+
+
+
   }, []);
 
-    const paintImages = async () => {
-      console.log(landingsData.length);
-    for (let i = 0; i < landingsData.length; i++) {
-        if (arrImages.length < landingsData.length) {
-          arrImages.push(images[Math.floor(Math.random() * images.length)])
-        }
-      }   
-    }
-    paintImages();  
 
-console.log(arrImages);
 
-  const homeDataObj = {
-    homeData, setHomeData
-  }
+
+
+
+
+
+
+
+
+
+  // const homeDataObj = {
+  //   homeData, setHomeData
+  // }
 
   const landingsDataObj = {
     landingsData, setLandingsData
@@ -122,13 +138,13 @@ console.log(arrImages);
               <countContext.Provider value={countObj}>
                 <productsContext.Provider value={productsObj}>
                   <Header />
-                  <homeContext.Provider value={homeDataObj}>
-                    <landingsContext.Provider value={landingsDataObj}>
-                      <neasContext.Provider value={neasDataObj}>
-                        <Main />
-                      </neasContext.Provider>
-                    </landingsContext.Provider>
-                  </homeContext.Provider>
+                  {/* <homeContext.Provider value={homeDataObj}> */}
+                  <landingsContext.Provider value={landingsDataObj}>
+                    <neasContext.Provider value={neasDataObj}>
+                      <Main />
+                    </neasContext.Provider>
+                  </landingsContext.Provider>
+                  {/* </homeContext.Provider> */}
                 </productsContext.Provider>
               </countContext.Provider>
             </loginContext.Provider>

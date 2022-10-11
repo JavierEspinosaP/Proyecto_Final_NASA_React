@@ -82,12 +82,11 @@ function CardList(props) {
         </Modal>
       </div>
 
-      {landing.img?<Card sx={{ minWidth: 290, margin: 1 }}>
+      {<Card sx={{ minWidth: 290, margin: 1 }}>
         <CardMedia
                 component="img"
                 height="140"
                 image={landing.img}
-                alt="green iguana"
               />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -111,7 +110,7 @@ function CardList(props) {
           <Button size="small" onClick={removeLanding}>Borrar</Button>
           {loginData? <Button size="small" onClick={manageProducts} >Añadir al carro</Button>:null}
         </CardActions>
-      </Card>:null}
+      </Card>}
     </div>
   )
 }

@@ -42,8 +42,6 @@ function LandingsList() {
   const count = Math.ceil(landingsData.length / PER_PAGE);
   const _DATA = usePagination(landingsData, PER_PAGE);
 
-console.log(landingsData);
-
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
@@ -100,7 +98,7 @@ console.log(landingsData);
 //     paintImages();
 
 
-
+console.log(arrImages)
 
 
 
@@ -138,7 +136,8 @@ console.log(landingsData);
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-        {/* {<img  src={landingsData.img[0]} alt="AsteroidImg" />} */}
+          {}
+        <img  src={landingsData[searchData.id].img} alt="AsteroidImg" />
         <p className="searchData">· Nombre: {searchData.name}</p>
         <p className="searchData">· Masa: {searchData.mass}kg</p>
         <p className="searchData">· Latitud: {searchData.recclat}º</p>
