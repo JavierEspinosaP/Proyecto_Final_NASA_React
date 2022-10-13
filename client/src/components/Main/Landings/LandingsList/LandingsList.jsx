@@ -98,7 +98,6 @@ function LandingsList() {
 //     paintImages();
 
 
-console.log(arrImages)
 
 
 
@@ -137,7 +136,7 @@ console.log(arrImages)
       >
         <Box sx={style}>
           {}
-        {/* <img  src={_DATA[searchData.id].img} alt="AsteroidImg" /> */}
+        {searchData.id?<img src={landingsData[Math.floor(Math.random() * 99)].img} alt="AsteroidImg" />:null}
         <p className="searchData">· Nombre: {searchData.name}</p>
         <p className="searchData">· Masa: {searchData.mass}kg</p>
         <p className="searchData">· Latitud: {searchData.recclat}º</p>

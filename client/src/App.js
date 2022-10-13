@@ -14,7 +14,6 @@ import images from './components/Main/img.js'
 import './styles/styles.scss';
 import axios from 'axios'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { set } from "mongoose";
 
 const darkTheme = createTheme({
   palette: {
@@ -45,8 +44,8 @@ function App() {
     async function fetchData() {
       try {
         // Petición HTTP
-        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=nm3cjMhXbbfsmeZQhhAQAGCgeZpkN985h3xrg8We`);
-        // const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
+        // const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=nm3cjMhXbbfsmeZQhhAQAGCgeZpkN985h3xrg8We`);
+        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
         const home = await resHome.data;
 
 
@@ -72,10 +71,16 @@ function App() {
                 arrImages.push(images[Math.floor(Math.random() * images.length)])
               }
             }
+            for (let i = 0; i < neas.length; i++) {
+              if (arrImages.length < neas.length) {
+                arrImages.push(images[Math.floor(Math.random() * images.length)])
+              }
+            }
           }
           paintImages(); 
 
     setLandingsData(landings.map((l, i) => ({ ...l, img: arrImages[i] })))  
+    setNeasData(neas.map((l, i) => ({ ...l, img: arrImages[i] })))  
         console.log(landingsData.length);
       } catch (e) {
         setLandingsData([])

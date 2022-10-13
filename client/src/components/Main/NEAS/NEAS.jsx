@@ -40,7 +40,6 @@ const NEAS = () => {
   const handleOpenSearch = () => setOpenSearch(true);
   const handleCloseSearch = () => setOpenSearch(false);
   const [searchData, setSearchData] = useState([])
-  
 
 
   const count = Math.ceil(neasData.length / PER_PAGE);
@@ -131,7 +130,7 @@ const NEAS = () => {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-          {<img src={arrImages[Math.floor(Math.random() * arrImages.length)]} alt="AsteroidImg" />}
+          {<img src={neasData[Math.floor(Math.random() * 99)].img} alt="AsteroidImg" />}
         <p className="searchData">· Designación: {searchData.designation}</p>
         <p className="searchData">· Órbita: {searchData.orbit_class}</p>
         <p className="searchData">· Periodo: {searchData.period_yr}</p>

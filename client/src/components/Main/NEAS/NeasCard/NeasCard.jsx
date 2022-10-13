@@ -66,7 +66,7 @@ const removeNea = async () =>{
               <CardMedia
                 component="img"
                 height="140"
-                image={img}
+                image={nea.img}
                 alt="green iguana"
               />
               <CardContent>
