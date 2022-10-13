@@ -45,8 +45,8 @@ function App() {
     async function fetchData() {
       try {
         // Petición HTTP
-
-        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
+        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=nm3cjMhXbbfsmeZQhhAQAGCgeZpkN985h3xrg8We`);
+        // const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
         const home = await resHome.data;
 
 

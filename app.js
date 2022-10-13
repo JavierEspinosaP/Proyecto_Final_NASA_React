@@ -16,13 +16,22 @@ const manage404 = require('./middlewares/error404')
 
 const app = express()
 
+
+
 const cors = require("cors");
+app.use(cors());
+app.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
+    next(); 
+})
 const port = process.env.PORT || 3000
 app.use(express.static('public'));
 
 //Read body from request
 
-app.use(cors());
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
