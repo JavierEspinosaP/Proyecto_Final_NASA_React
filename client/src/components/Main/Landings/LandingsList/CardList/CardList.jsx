@@ -82,7 +82,7 @@ function CardList(props) {
         </Modal>
       </div>
 
-      {<Card sx={{ minWidth: 290, margin: 1 }}>
+      {<Card  sx={{ minWidth: 290, margin: 1 }}>
         <CardMedia
                 component="img"
                 height="140"

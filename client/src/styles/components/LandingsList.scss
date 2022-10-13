@@ -40,6 +40,23 @@
 }
 
 
+.MuiCardMedia-root{
+    max-width: 350px;
+    transition: transform 1s, filter 1s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(80%);
+}
+
+.MuiCardMedia-root:hover{
+    transform: scale(1.05);
+}
+
+
+.MuiPaper-root:hover{
+    box-shadow: 2px 3px 46px -10px $blue;
+}
+
+
 .btns{
     margin-bottom: 40px
 }

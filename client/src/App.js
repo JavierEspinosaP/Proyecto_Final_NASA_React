@@ -46,8 +46,8 @@ function App() {
       try {
         // Petición HTTP
 
-        // const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
-        // const home = await resHome.data;
+        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
+        const home = await resHome.data;
 
 
         const resLandings = await axios.get("http://localhost:3000/api/astronomy/landings");
@@ -63,7 +63,7 @@ function App() {
         // Guarda en el array de posts el resultado. Procesa los datos
 
         setNeasData(neas)
-        // setHomeData(home)
+        setHomeData(home)
 
             const paintImages = () => {
             console.log(landings.length);
@@ -101,9 +101,9 @@ function App() {
 
 
 
-  // const homeDataObj = {
-  //   homeData, setHomeData
-  // }
+  const homeDataObj = {
+    homeData, setHomeData
+  }
 
   const landingsDataObj = {
     landingsData, setLandingsData
@@ -138,13 +138,13 @@ function App() {
               <countContext.Provider value={countObj}>
                 <productsContext.Provider value={productsObj}>
                   <Header />
-                  {/* <homeContext.Provider value={homeDataObj}> */}
+                  <homeContext.Provider value={homeDataObj}>
                   <landingsContext.Provider value={landingsDataObj}>
                     <neasContext.Provider value={neasDataObj}>
                       <Main />
                     </neasContext.Provider>
                   </landingsContext.Provider>
-                  {/* </homeContext.Provider> */}
+                  </homeContext.Provider>
                 </productsContext.Provider>
               </countContext.Provider>
             </loginContext.Provider>

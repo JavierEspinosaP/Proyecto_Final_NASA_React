@@ -137,7 +137,7 @@ console.log(arrImages)
       >
         <Box sx={style}>
           {}
-        <img  src={landingsData[searchData.id].img} alt="AsteroidImg" />
+        {/* <img  src={_DATA[searchData.id].img} alt="AsteroidImg" /> */}
         <p className="searchData">· Nombre: {searchData.name}</p>
         <p className="searchData">· Masa: {searchData.mass}kg</p>
         <p className="searchData">· Latitud: {searchData.recclat}º</p>
@@ -164,7 +164,7 @@ console.log(arrImages)
       </section>
 
       <section className="cardsContainer">
-        {_DATA.currentData().map((d, i) => <CardList data={d} key={i} remove={()=>removeLanding(i)}/>)}
+        {_DATA.currentData().map((d, i) => <CardList  data={d} key={i} remove={()=>removeLanding(i)}/>)}
       </section>
       <section className="formContainer">
 
