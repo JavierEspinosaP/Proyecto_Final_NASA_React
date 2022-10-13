@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect} from 'react'
+import React, { useContext, useState} from 'react'
 import { landingsContext } from '../../../../context/landingsContext'
 import Button from '@mui/material/Button';
 import usePagination from "../../../../hooks/usePagination"
@@ -10,7 +10,6 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 // import images from '../../img';
-import { imageContext } from '../../../../context/imageContext'
 
 
 
@@ -28,7 +27,6 @@ const style = {
 
 function LandingsList() {
 
-  const {arrImages} = useContext(imageContext)
   const { landingsData, setLandingsData } = useContext(landingsContext)
   const [page, setPage] = useState(1);
   const PER_PAGE = 12;
