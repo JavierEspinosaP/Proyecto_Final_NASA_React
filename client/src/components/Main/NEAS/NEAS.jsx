@@ -41,7 +41,7 @@ const NEAS = () => {
   const handleCloseSearch = () => setOpenSearch(false);
   const [searchData, setSearchData] = useState([])
 
-
+  console.log(neasData);
   const count = Math.ceil(neasData.length / PER_PAGE);
   const _DATA = usePagination(neasData, PER_PAGE);
 

@@ -18,7 +18,7 @@ function NeasEditForm(props) {
   
   
       const upNeaObj = {
-        designation: designation,
+        designation: upNea.designation,
         date: upNea.discovery_date,
         period: upNea.period_yr,
         orbit: upNea.orbit_class,
