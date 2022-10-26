@@ -72,6 +72,8 @@ function LandingsList() {
     setLandingsData(remainingLandings);
   }
 
+
+
   const handleSubmit = async (e) =>{
     e.preventDefault();
     const landing = e.target.name.value;
@@ -142,13 +144,25 @@ function LandingsList() {
         <p className="searchData">· Fecha de descubrimiento: {String(searchData.year).slice(0,10)}</p>
         </Box>
       </Modal>
-      </div>
-      <section className="pagination">
-        <div className="botones">
+      <div className="botones">
           <Button onClick={handleSortName} variant="outlined">Ordenar por Nombre</Button>
           <Button onClick={handleSortYear} variant="outlined">Ordenar por Año</Button>
           <Button onClick={handleSortMass} variant="outlined">Ordenar por Peso</Button>
         </div>
+      </div>
+
+
+      <section className="cardsContainer">
+        {_DATA.currentData().map((d, i) => <CardList  data={d} key={i} remove={()=>removeLanding(i)}/>)}
+      </section>
+      <section className="formContainer">
+
+        <form action="">
+
+        </form>
+      </section>
+      <section className="pagination">
+
         <Pagination
           count={count}
           size="large"
@@ -160,15 +174,6 @@ function LandingsList() {
         />
       </section>
 
-      <section className="cardsContainer">
-        {_DATA.currentData().map((d, i) => <CardList  data={d} key={i} remove={()=>removeLanding(i)}/>)}
-      </section>
-      <section className="formContainer">
-
-        <form action="">
-
-        </form>
-      </section>
     </div>
   )
 }

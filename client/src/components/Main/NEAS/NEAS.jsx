@@ -41,7 +41,6 @@ const NEAS = () => {
   const handleCloseSearch = () => setOpenSearch(false);
   const [searchData, setSearchData] = useState([])
 
-  console.log(neasData);
   const count = Math.ceil(neasData.length / PER_PAGE);
   const _DATA = usePagination(neasData, PER_PAGE);
 
@@ -80,8 +79,9 @@ const NEAS = () => {
     e.preventDefault();
     const nea = e.target.name.value;
     const res = await axios.get(`http://localhost:3000/api/astronomy/neas?designation=${nea}`)
+    const resData = await res.data[0]
     console.log(res);
-    setSearchData(res.data[0])
+    setSearchData(resData)
 
     e.target.name.value="";
   }
@@ -130,7 +130,7 @@ const NEAS = () => {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-          {<img src={neasData[Math.floor(Math.random() * 99)].img} alt="AsteroidImg" />}
+        {<img src={neasData[Math.floor(Math.random() * 99)].img} alt="AsteroidImg" />}
         <p className="searchData">· Designación: {searchData.designation}</p>
         <p className="searchData">· Órbita: {searchData.orbit_class}</p>
         <p className="searchData">· Periodo: {searchData.period_yr}</p>
@@ -144,15 +144,7 @@ const NEAS = () => {
           <Button onClick={handleSortYear} variant="outlined">Ordenar por Año</Button>
           <Button onClick={handleSortPeriod} variant="outlined">Ordenar por Periodo</Button>
         </div>
-        <Pagination
-          count={count}
-          size="large"
-          color="primary"
-          page={page}
-          variant="outlined"
-          onChange={handleChange}
-          className="muiPag"
-        />
+
       </section>
 
       <section className="cardsContainer">
@@ -163,6 +155,15 @@ const NEAS = () => {
         <form action="">
 
         </form>
+        <Pagination
+          count={count}
+          size="large"
+          color="primary"
+          page={page}
+          variant="outlined"
+          onChange={handleChange}
+          className="muiPag"
+        />
       </section>
 </div>;
 }

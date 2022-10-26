@@ -43,24 +43,10 @@ const Nav = () => {
 
     return <div className="nav">
       <Link className="nav-link" to='/'>Home</Link>
-      <Accordion className="accordion"  >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography >Landings</Typography>
-        </AccordionSummary>
-        <AccordionDetails >
-      <Link className="nav-link" to='/landings'>Mapa</Link>
-        </AccordionDetails>
-        <AccordionDetails >
-      <Link className="nav-link" to='/landings/list'>Lista</Link>
-        </AccordionDetails>
-      </Accordion>
-
+      <Link className="nav-link" to='/landings'>Map</Link>
+      <Link className="nav-link" to='/landings/list'>Landings</Link>
       <Link className="nav-link" to='/neas'>NEAS</Link>
-      <Button onClick={handleOpenLogin}>Login</Button>
+      <p className="nav-link" onClick={handleOpenLogin}>Login</p>
 
       <Modal
         keepMounted

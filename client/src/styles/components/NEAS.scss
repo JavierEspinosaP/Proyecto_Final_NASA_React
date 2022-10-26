@@ -3,7 +3,7 @@
 .neas{
     display: flex;
     flex-direction: column;
-    background-color: $black;
+    background-image: $background;
     height: 120vh
 }
 
@@ -42,25 +42,25 @@
 
 @media screen and (max-width: 1840px){
     .neas{
-        height: 150vh
+        height: 180vh
     }
 }
 
 @media screen and (max-width: 1226px){
     .neas{
-        height: 185vh
+        height: 215vh
     }
 }
 
 
 @media screen and (max-width: 920px){
     .neas{
-        height: 265vh
+        height: 300vh
     }
 }
 
 @media screen and (max-width: 617px){
     .neas{
-        height: 490vh
+        height: 560vh
     }
 }

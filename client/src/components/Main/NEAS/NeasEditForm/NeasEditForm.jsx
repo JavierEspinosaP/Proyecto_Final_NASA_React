@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import Button from '@mui/material/Button';
 import axios from 'axios'
 import {useForm} from 'react-hook-form';
 import TextField from '@mui/material/TextField';
+import {neasContext} from '../../../../context/neasContext'
 
 
 function NeasEditForm(props) {
@@ -10,6 +11,7 @@ function NeasEditForm(props) {
   const designation = props.name
 
   const { register, handleSubmit } = useForm();
+  const { neasData, setNeasData } = useContext(neasContext)
 
   const updateNea = async(upNea)=>{
 

@@ -1,8 +1,9 @@
 @import '../utils/variables.scss';
 
 .footer{
+    letter-spacing: 5px;
     justify-content:center;
     text-align:center;
-    color:#fff;
+    color:$orange;
     background-color:$purple
 }
