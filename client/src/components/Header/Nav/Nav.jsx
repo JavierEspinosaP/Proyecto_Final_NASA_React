@@ -99,7 +99,7 @@ const Nav = () => {
         stop();
       }}
     >NEAS</Link>
-    <p className="nav-link" onClick={handleOpenLogin}
+    <p className="nav-link" id="login" onClick={handleOpenLogin}
       onMouseEnter={() => {
         setIsHovering(true);
         play();

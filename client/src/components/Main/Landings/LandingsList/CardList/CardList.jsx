@@ -77,7 +77,7 @@ function CardList(props) {
           aria-describedby="keep-mounted-modal-description"
         >
           <Box sx={style}>
-            <LandingsEditForm id={landing.id} name={landing.name}/>
+            <LandingsEditForm id={landing.id} name={landing.name} mass={landing.mass} lat={landing.reclat} long={landing.reclong} year={landing.year}/>
           </Box>
         </Modal>
       </div>

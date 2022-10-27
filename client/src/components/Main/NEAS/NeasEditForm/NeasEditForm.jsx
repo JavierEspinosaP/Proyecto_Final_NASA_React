@@ -8,7 +8,7 @@ import {neasContext} from '../../../../context/neasContext'
 
 function NeasEditForm(props) {
 
-  const designation = props.name
+  const designation = props.designation
 
   const { register, handleSubmit } = useForm();
   const { neasData, setNeasData } = useContext(neasContext)
@@ -20,10 +20,10 @@ function NeasEditForm(props) {
   
   
       const upNeaObj = {
-        designation: upNea.designation,
-        date: upNea.discovery_date,
-        period: upNea.period_yr,
-        orbit: upNea.orbit_class,
+        designation: upNea.designation!=''?upNea.designation:props.designation,
+        date: upNea.discovery_date!=''?upNea.discovery_date:props.discovery_date,
+        period: upNea.period_yr!=''?upNea.period_yr:props.period_yr,
+        orbit: upNea.orbit_class!=''?upNea.orbit_class:props.orbit_class,
       };
   
       const res = await axios.put(`http://localhost:3000/api/astronomy/neas/update/${designation}`, upNeaObj);

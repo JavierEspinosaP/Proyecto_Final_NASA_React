@@ -28,6 +28,7 @@ const style = {
 function LandingsList() {
 
   const { landingsData, setLandingsData } = useContext(landingsContext)
+  // console.log(landingsData);
   const [page, setPage] = useState(1);
   const PER_PAGE = 12;
   const [openAdd, setOpenAdd] = React.useState(false);
@@ -77,7 +78,8 @@ function LandingsList() {
   const handleSubmit = async (e) =>{
     e.preventDefault();
     const landing = e.target.name.value;
-    const res = await axios.get(`http://localhost:3000/api/astronomy/landings?name=${landing}`)
+    let landingUpper = landing.charAt(0).toUpperCase() + landing.slice(1);
+    const res = await axios.get(`http://localhost:3000/api/astronomy/landings?name=${landingUpper}`)
     setSearchData(res.data[0])
     e.target.name.value="";
   }

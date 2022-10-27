@@ -18,11 +18,11 @@ const updateLanding = async(upLanding)=>{
 
     const upLandingObj = {
       id: props.id,
-      name: upLanding.name,
-      mass: upLanding.mass,
-      year: upLanding.year,
-      reclat: upLanding.reclat,
-      reclong: upLanding.reclong,
+      name: upLanding.name!=''?upLanding.name:props.name,
+      mass: upLanding.mass!=''?upLanding.mass:props.mass,
+      year: upLanding.year!=''?upLanding.year:props.year,
+      reclat: upLanding.reclat!=''?upLanding.reclat:props.lat,
+      reclong: upLanding.reclong!=''?upLanding.reclong:props.long,
     };
 
     const res = await axios.put(`http://localhost:3000/api/astronomy/landings/update/${props.id}`, upLandingObj);

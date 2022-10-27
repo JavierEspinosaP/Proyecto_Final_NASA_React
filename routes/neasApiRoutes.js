@@ -7,7 +7,7 @@ const neasApiRouter = express.Router();
 
 neasApiRouter.get('/astronomy/neas', neasApiController.getNeas);
 neasApiRouter.post('/astronomy/neas/create', neasApiController.createNeas)
-neasApiRouter.put('/astronomy/neas/edit', neasApiController.updateNeas)
+neasApiRouter.put('/astronomy/neas/edit/:designation', neasApiController.updateNeas)
 neasApiRouter.delete('/astronomy/neas/delete/:designation', neasApiController.deleteNeas)
 
 module.exports = neasApiRouter;

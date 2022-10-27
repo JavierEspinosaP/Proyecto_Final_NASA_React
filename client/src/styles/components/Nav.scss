@@ -17,6 +17,10 @@
 
 }
 
+#login{
+   cursor: pointer; 
+}
+
 .nav-link{
     font-size:20px;
     letter-spacing:4px;
@@ -24,7 +28,6 @@
     color: $orange;
     text-decoration: none;
     z-index: 1;
-
 }
 
 .accSumary{

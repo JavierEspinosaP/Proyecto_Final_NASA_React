@@ -31,6 +31,7 @@ const NEAS = () => {
 
 
   const { neasData, setNeasData } = useContext(neasContext)
+  console.log(neasData);
   const [page, setPage] = useState(1);
   const PER_PAGE = 12;
   const [open, setOpen] = React.useState(false);
@@ -78,6 +79,7 @@ const NEAS = () => {
   const handleSubmit = async (e) =>{
     e.preventDefault();
     const nea = e.target.name.value;
+    console.log(nea);
     const res = await axios.get(`http://localhost:3000/api/astronomy/neas?designation=${nea}`)
     const resData = await res.data[0]
     console.log(res);
