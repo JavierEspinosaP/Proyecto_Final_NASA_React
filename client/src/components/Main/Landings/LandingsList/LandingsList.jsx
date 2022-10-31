@@ -155,7 +155,8 @@ function LandingsList() {
 
 
       <section className="cardsContainer">
-        {_DATA.currentData().map((d, i) => <CardList  data={d} key={i} remove={()=>removeLanding(i)}/>)}
+        {console.log(_DATA.currentData())}
+        {_DATA.currentData().map((d, i) => <CardList  landing={d} key={i} remove={()=>removeLanding(i)}/>)}
       </section>
       <section className="formContainer">
 
