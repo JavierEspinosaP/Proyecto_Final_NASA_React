@@ -3,8 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header'
 import Main from './components/Main'
 import Footer from './components/Footer';
-import { homeContext } from './context/homeContext'
-import { neasContext } from './context/neasContext'
+import { homeContext } from './context/homeContext';
+import { neasContext } from './context/neasContext';
 import { landingsContext } from './context/landingsContext'
 import { loginContext } from './context/loginContext'
 import { productsContext } from './context/productsContext'
@@ -44,16 +44,13 @@ function App() {
     async function fetchData() {
       try {
         // Petición HTTP
-        // const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=nm3cjMhXbbfsmeZQhhAQAGCgeZpkN985h3xrg8We`);
-        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
+        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=nm3cjMhXbbfsmeZQhhAQAGCgeZpkN985h3xrg8We`);
+        // const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_APIKEY}`);
         const home = await resHome.data;
 
 
         const resLandings = await axios.get("http://localhost:3000/api/astronomy/landings");
         const landings = await resLandings.data;
-        console.log(landings.length);
-
-
 
         // const landingsImg = await landings.map((l, i) => ({ ...l, img: arrImages[i] }))
         const resNeas = await axios.get("http://localhost:3000/api/astronomy/neas");
@@ -65,7 +62,6 @@ function App() {
         setHomeData(home)
 
             const paintImages = () => {
-            console.log(landings.length);
             for (let i = 0; i < landings.length; i++) {
               if (arrImages.length < landings.length) {
                 arrImages.push(images[Math.floor(Math.random() * images.length)])
@@ -81,7 +77,6 @@ function App() {
 
     setLandingsData(landings.map((l, i) => ({ ...l, img: arrImages[i] })))  
     setNeasData(neas.map((l, i) => ({ ...l, img: arrImages[i] })))  
-        console.log(landingsData.length);
       } catch (e) {
         setLandingsData([])
         setNeasData([])

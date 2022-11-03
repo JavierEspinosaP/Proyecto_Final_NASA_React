@@ -30,7 +30,9 @@ const style = {
 function CardList(props) {
   
 
-  const landing = props.data
+  const landing = props.landing
+  console.log(landing);
+
 
   const { loginData} = useContext(loginContext)
   let {setCount} = useContext(countContext)
@@ -55,14 +57,12 @@ function CardList(props) {
   }
 
   const manageProducts = () => {
-  
-
   setProducts([landing, ...products])  
   setCount(products.length)
   }
 
 
-  
+
 
 
 
@@ -77,7 +77,7 @@ function CardList(props) {
           aria-describedby="keep-mounted-modal-description"
         >
           <Box sx={style}>
-            <LandingsEditForm id={landing.id} name={landing.name}/>
+            <LandingsEditForm handleClose={handleClose} landing={landing}/>
           </Box>
         </Modal>
       </div>

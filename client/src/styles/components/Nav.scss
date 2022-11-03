@@ -1,24 +1,37 @@
 @import '../utils/variables.scss';
 
 .nav{
- background-color: $purple;
- color: $white;
+ background-image: linear-gradient(to right, $black , $purple);
+ color: $orange;
  display: flex;
  justify-content: space-evenly;
  align-content: center;
- height:48px;
+ height:52px;
+}
+
+#logo{
+    position: absolute;
+    top: 0px;
+    left: 70px;
+    width: 70px;
+
+}
+
+#login{
+   cursor: pointer; 
 }
 
 .nav-link{
-    margin-top:13px;
-    color: $white;
+    font-size:20px;
+    letter-spacing:4px;
+    margin-top:20px;
+    color: $orange;
     text-decoration: none;
     z-index: 1;
-
 }
 
 .accSumary{
-    color: $white;
+    color: $orange;
 }
 
 .accordion{
@@ -29,14 +42,17 @@
 
 #panel1a-header{
     background-color:$purple;
-    color:white;
+    color:$orange;
     max-height: 47px;
     
 }
 
 .MuiTypography-body1{
-    color:white;
+    color:$orange;
 
+}
+.MuiPaper-root:hover{
+    box-shadow: none;
 }
 
 #cart{

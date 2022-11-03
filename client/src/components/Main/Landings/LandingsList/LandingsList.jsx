@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
+import ContentLoader from 'react-content-loader'
 // import images from '../../img';
 
 
@@ -28,6 +29,7 @@ const style = {
 function LandingsList() {
 
   const { landingsData, setLandingsData } = useContext(landingsContext)
+  // console.log(landingsData);
   const [page, setPage] = useState(1);
   const PER_PAGE = 12;
   const [openAdd, setOpenAdd] = React.useState(false);
@@ -72,10 +74,13 @@ function LandingsList() {
     setLandingsData(remainingLandings);
   }
 
+
+
   const handleSubmit = async (e) =>{
     e.preventDefault();
     const landing = e.target.name.value;
-    const res = await axios.get(`http://localhost:3000/api/astronomy/landings?name=${landing}`)
+    let landingUpper = landing.charAt(0).toUpperCase() + landing.slice(1);
+    const res = await axios.get(`http://localhost:3000/api/astronomy/landings?name=${landingUpper}`)
     setSearchData(res.data[0])
     e.target.name.value="";
   }
@@ -142,13 +147,26 @@ function LandingsList() {
         <p className="searchData">· Fecha de descubrimiento: {String(searchData.year).slice(0,10)}</p>
         </Box>
       </Modal>
-      </div>
-      <section className="pagination">
-        <div className="botones">
+      <div className="botones">
           <Button onClick={handleSortName} variant="outlined">Ordenar por Nombre</Button>
           <Button onClick={handleSortYear} variant="outlined">Ordenar por Año</Button>
           <Button onClick={handleSortMass} variant="outlined">Ordenar por Peso</Button>
         </div>
+      </div>
+
+
+      <section className="cardsContainer">
+        {console.log(_DATA.currentData())}
+        {_DATA.currentData().map((d, i) => <CardList  landing={d} key={i} remove={()=>removeLanding(i)}/>)}
+      </section>
+      <section className="formContainer">
+
+        <form action="">
+
+        </form>
+      </section>
+      <section className="pagination">
+
         <Pagination
           count={count}
           size="large"
@@ -160,15 +178,6 @@ function LandingsList() {
         />
       </section>
 
-      <section className="cardsContainer">
-        {_DATA.currentData().map((d, i) => <CardList  data={d} key={i} remove={()=>removeLanding(i)}/>)}
-      </section>
-      <section className="formContainer">
-
-        <form action="">
-
-        </form>
-      </section>
     </div>
   )
 }

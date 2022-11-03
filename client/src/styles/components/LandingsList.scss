@@ -1,7 +1,7 @@
 @import '../utils/variables.scss';
 
 .landingsList{
-    background-color: $black;
+    background-image: $background;
     height: 125vh
 }
 
@@ -9,18 +9,19 @@
     display: flex;
     justify-content:space-evenly;
     flex-wrap: wrap;
+    margin-top:0
 }
 
 .pagination{
     margin:0;
-    color: $white;
+    color: $orange;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content:center;
 }
 .searchData{
-    color: $white;
+    color: $orange;
 }
 
 .botones{
@@ -53,7 +54,7 @@
 
 
 .MuiPaper-root:hover{
-    box-shadow: 2px 3px 46px -10px $blue;
+    box-shadow: 2px 3px 46px -10px rgb(47, 1, 255);
 }
 
 
@@ -76,25 +77,25 @@
 
 @media screen and (max-width: 1840px){
     .landingsList{
-        height: 160vh
+        height: 180vh
     }
 }
 
 @media screen and (max-width: 1226px){
     .landingsList{
-        height: 200vh
+        height: 230vh
     }
 }
 
 
 @media screen and (max-width: 920px){
     .landingsList{
-        height: 280vh
+        height: 320vh
     }
 }
 
 @media screen and (max-width: 617px){
     .landingsList{
-        height: 520vh
+        height: 600vh
     }
 }

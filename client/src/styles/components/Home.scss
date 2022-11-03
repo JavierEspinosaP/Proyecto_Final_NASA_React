@@ -1,41 +1,70 @@
 @import '../utils/variables.scss';
 
 .home {
-    background-color: $black;
-    height: 115vh;
+    background-image: $background;
+    height: 150vh;
 }
 
 
 .imgContainer {
-    position:absolute;
-    right:80px;
-    top: 140px;
-    height: 100vh;
+
+    display: flex;
+    justify-content:center;
+    padding-top: 100px;
+
     overflow: hidden;
     z-index: 0;
 }
 
 
 
+
+
+
 .img-nasa{
-    width: 1200px;
+    width: 1026px;
+    height:736px;
     z-index: 0;
+    max-width: 1026px;
+    transition: transform 0.5s, filter 0.5s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(85%);
     
 }
 
-.info-nasa{
-    margin-top: 100px;
-    justify-content:flex;
-    flex-direction:column;
-    justify-content:center;
-    color: $white;
-    position:absolute;
-    left:120px;
-    width:400px;
-    min-width: 300px;
-    height: 500px;
-    z-index: 1;
+.img-nasa:hover{
+transform: scale(1.01);    
+filter: brightness(100%);
+box-shadow: 2px 3px 46px -10px rgb(47, 1, 255);
 }
+
+
+#title{
+    margin-top:-30px;
+    z-index: 1;
+    color: $orange;
+    letter-spacing:8px;
+    font-size: 50px;
+}
+
+.info-nasa{
+    letter-spacing:5px;
+    color: $orange;
+    display:flex;
+    justify-content:center;
+    margin-top:50px;
+    z-index: 1;
+    font-weight: bold;
+    position: absolute;
+    top: 100%;
+    animation: scroll 105s linear 0s infinite;  
+}
+
+ 
+   @keyframes scroll {  
+    0%   { top: 100%; }  
+    100% { top: -65%; }  
+   } 
 
 
 
@@ -48,12 +77,35 @@
 }
 
 .info-container{
-    justify-content:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    // justify-content:flex;
+    // flex-direction:column;
+    // justify-content:center;
+    // align-items:center;
+    position: absolute; 
+    top:-1400px;
+    width: 18em;  
+    height: 50em;  
+    bottom: 0;  
+    left: 50%;  
+    margin-left: -9em;  
+    font-size: 350%;  
+    font-weight: bold;  
+    text-align: justify;  
+    overflow: hidden;  
+    transform-origin: 50% 100%;  
+    transform: perspective(300px) rotateX(26deg); 
 }
 
+.info-container:after {  
+    position: absolute;  
+    content: ' ';  
+    left: 0;  
+    right: 0;  
+    top: 0;  
+    bottom: 60%;  
+    background-image: linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);  
+    pointer-events: none;  
+   } 
 
 
 @media screen and (max-width: 830px){

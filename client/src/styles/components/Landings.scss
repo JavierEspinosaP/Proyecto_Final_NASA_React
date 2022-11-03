@@ -8,31 +8,38 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: $black;
+    background-image: $background;
     height: 100vh
 }
 
 
-h1{
-    color: white;
+h1 {
+    margin: 0 auto 0 auto;
+    font-size: 40px;
+    letter-spacing: 4px;
+    color: $orange;
     position: absolute;
     top: 110px
 }
 
-.infoLandings{
-    color: #fff;
+.infoLandings {
+    color: $orange;
     width: 300px;
-    margin-right: 20px
+    margin-right: 20px;
+    margin-top: 0;
+
 }
 
-.infoMap{
+
+.infoMap {
     display: flex;
+    letter-spacing: 4px;
 }
 
 
 .leaflet-container {
     background: #303030;
-    margin: 20px 50px auto auto;
+    margin: 0px 50px auto auto;
     width: 70vw;
     height: 70vh;
 
@@ -42,46 +49,48 @@ h1{
     filter: var(--leaflet-tile-filter, none);
 }
 
-@media screen and (max-width:1268px){
+@media screen and (max-width:1268px) {
     .leaflet-container {
         width: 50vh;
         height: 70vh;
     }
-    h1{
+
+    h1 {
         position: absolute;
         top: 100px
     }
 }
 
-@media screen and (max-width:930px){
+@media screen and (max-width:930px) {
     .leaflet-container {
         width: 30vh;
         height: 50vh;
-    
+
     }
 }
 
-@media screen and (max-width:710px){
+@media screen and (max-width:710px) {
     .leaflet-container {
         width: 50vh;
         height: 50vh;
-    
+
     }
-    .infoLandings{
+
+    .infoLandings {
         display: none
     }
 
 }
 
-@media screen and (max-width:613px){
+@media screen and (max-width:613px) {
     .leaflet-container {
         width: 35vh;
         height: 50vh;
-    
+
     }
-    .infoLandings{
+
+    .infoLandings {
         display: none
     }
 
 }
-

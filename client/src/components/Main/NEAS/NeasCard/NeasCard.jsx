@@ -45,6 +45,12 @@ const removeNea = async () =>{
   }   
 }
 
+// h_mag: props.h_mag,
+//         moid_au: props.moid_au,
+//         q_au_1: props.q_au_1,
+//         q_au_2: props.q_au_2,
+//         i_deg: props.i_deg,
+//         pha: props.pha,
   return (
     <div>
 
@@ -57,7 +63,7 @@ const removeNea = async () =>{
           aria-describedby="keep-mounted-modal-description"
         >
           <Box sx={style}>
-            <NeasEditForm name={nea.designation}/>
+            <NeasEditForm handleClose={handleClose} img={nea.img} h_mag={nea.h_mag} moid_au={nea.moid_au} q_au_1={nea.q_au_1} q_au_2={nea.q_au_2} i_deg={nea.i_deg} pha={nea.pha}  designation={nea.designation} discovery_date={nea.discovery_date} period_yr={nea.period_yr} orbit_class={nea.orbit_class} />
           </Box>
         </Modal>
       </div>
@@ -70,11 +76,11 @@ const removeNea = async () =>{
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {nea.name}
+                  {nea.designation}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                {/* <Typography variant="body2" color="text.secondary">
                   - Designación: {nea.designation}
-                </Typography>
+                </Typography> */}
                 <Typography variant="body2" color="text.secondary">
                   - Fecha: {String(nea.discovery_date).slice(0,10)}
                 </Typography>
