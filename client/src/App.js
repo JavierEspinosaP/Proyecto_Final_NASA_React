@@ -77,7 +77,6 @@ function App() {
 
     setLandingsData(landings.map((l, i) => ({ ...l, img: arrImages[i] })))  
     setNeasData(neas.map((l, i) => ({ ...l, img: arrImages[i] })))  
-        console.log(landingsData.length);
       } catch (e) {
         setLandingsData([])
         setNeasData([])

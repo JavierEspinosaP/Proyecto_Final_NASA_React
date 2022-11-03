@@ -31,7 +31,6 @@ const NEAS = () => {
 
 
   const { neasData, setNeasData } = useContext(neasContext)
-  console.log(neasData);
   const [page, setPage] = useState(1);
   const PER_PAGE = 12;
   const [open, setOpen] = React.useState(false);
@@ -132,7 +131,7 @@ const NEAS = () => {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-        {<img src={neasData[Math.floor(Math.random() * 99)].img} alt="AsteroidImg" />}
+        {searchData.id?<img src={neasData[Math.floor(Math.random() * 99)].img} alt="AsteroidImg" />:null}
         <p className="searchData">· Designación: {searchData.designation}</p>
         <p className="searchData">· Órbita: {searchData.orbit_class}</p>
         <p className="searchData">· Periodo: {searchData.period_yr}</p>

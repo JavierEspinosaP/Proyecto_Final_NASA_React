@@ -33,6 +33,7 @@ function CardList(props) {
   const landing = props.landing
   console.log(landing);
 
+
   const { loginData} = useContext(loginContext)
   let {setCount} = useContext(countContext)
   const { products,setProducts} = useContext(productsContext)

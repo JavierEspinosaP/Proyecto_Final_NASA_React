@@ -69,7 +69,9 @@ const updateLanding = async(upLanding)=>{
       showConfirmButton: false,
       timer: 2000
     })
-
+    setTimeout(() => {
+    window.location.reload(false);      
+    }, 1800);
 
   } catch (error) {
     console.log(error);
@@ -79,7 +81,7 @@ const updateLanding = async(upLanding)=>{
   return (
     <div className="formContainer">
       <form onSubmit={handleSubmit(updateLanding)}>
-        <h4 className="landingName">Editar {props.name}</h4>
+        <h4 className="landingName">Editar {props.landing.name}</h4>
         <TextField name="name" {...register("name")} placeholder={props.landing.name} />
         <TextField name="mass" {...register("mass")} placeholder={`${props.landing.mass} kg`} />
         <TextField name="reclat" {...register("reclat")} placeholder={`${props.landing.reclat}º`} />
