@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
+import ContentLoader from 'react-content-loader'
 // import images from '../../img';
 
 

@@ -1,15 +1,18 @@
 import React, {useContext } from "react";
 import {homeContext} from '../../../context/homeContext'
+import spinner from '../../../assets/spinner.gif'
 
 
 
 const Home = () => {
 
+
+
   const {homeData, loadingHome} = useContext(homeContext)
   console.log(homeData.url);
 
     return <div className="home">
-      {loadingHome?null:<div className="fetchContainer">
+      {loadingHome?spinner:<div className="fetchContainer">
 
 
         <div className="imgContainer">
