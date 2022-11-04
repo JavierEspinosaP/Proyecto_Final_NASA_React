@@ -56,6 +56,8 @@ function App() {
         const resNeas = await axios.get("http://localhost:3000/api/astronomy/neas");
         const neas = await resNeas.data;
 
+        
+
         // Guarda en el array de posts el resultado. Procesa los datos
 
         setNeasData(neas)
