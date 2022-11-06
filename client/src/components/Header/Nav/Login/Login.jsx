@@ -4,8 +4,11 @@ import Button from '@mui/material/Button';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import {loginContext} from '../../../../context/loginContext'
+import Swal from 'sweetalert2'
 
-const Login = () => {
+const Login = (props) => {
+
+  const close = props.close
 
   const {setLoginData} = useContext(loginContext)
 
@@ -16,8 +19,13 @@ const Login = () => {
       console.log(data);
       if (data.length > 0) {
         setLoginData(true)
-
       }
+      Swal.fire({
+        icon: 'success',
+        title: 'Usuario logueado!',
+        showConfirmButton: false,
+        timer: 2000
+      })
 
     }
     catch {
@@ -33,7 +41,7 @@ const Login = () => {
 
       <TextField name="nickname" {...register("nickname")} placeholder="Nickname  " />
 
-      <Button type="submit" variant="contained" >Submit</Button>
+      <Button type="submit" variant="contained" onClick={close} >Submit</Button>
     </form>
   </div>)
   }

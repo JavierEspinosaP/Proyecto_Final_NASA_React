@@ -117,10 +117,10 @@ const Nav = () => {
       aria-describedby="keep-mounted-modal-description"
     >
       <Box sx={style}>
-        <Login edit={openLogin} />
+        <Login edit={openLogin} close={handleCloseLogin} />
       </Box>
     </Modal>
-    {loginData ? <div className="cartContainer"><Button onClick={handleOpenCart}><img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts === 1 ? <p>  {String(countProducts)} Producto añadido</p> : <p>{String(countProducts)} Productos añadidos</p>}</div> : null}
+    {loginData ? <div className="cartContainer"><Button onClick={handleOpenCart}><img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts === 1 ? <p className="fontAddProducts">  {String(countProducts)} Producto añadido</p> : <p className="fontAddProducts">{String(countProducts)} Productos añadidos</p>}</div> : null}
     <Modal
       keepMounted
       open={openCart}
