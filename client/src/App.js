@@ -44,16 +44,16 @@ function App() {
     async function fetchData() {
       try {
         // Petición HTTP
-        const resHome = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=nm3cjMhXbbfsmeZQhhAQAGCgeZpkN985h3xrg8We`);
+        const resHome = await axios.get("https://api.nasa.gov/planetary/apod?api_key=nm3cjMhXbbfsmeZQhhAQAGCgeZpkN985h3xrg8We");
 
         const home = await resHome.data;
 
 
-        const resLandings = await axios.get("http://localhost:3000/api/astronomy/landings");
+        const resLandings = await axios.get("https://sleepy-retreat-77024.herokuapp.com/api/astronomy/landings");
         const landings = await resLandings.data;
 
         // const landingsImg = await landings.map((l, i) => ({ ...l, img: arrImages[i] }))
-        const resNeas = await axios.get("http://localhost:3000/api/astronomy/neas");
+        const resNeas = await axios.get("https://sleepy-retreat-77024.herokuapp.com/api/astronomy/neas");
         const neas = await resNeas.data;
 
         
