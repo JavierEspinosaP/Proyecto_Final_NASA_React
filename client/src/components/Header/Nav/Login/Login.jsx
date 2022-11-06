@@ -11,7 +11,7 @@ const Login = () => {
 
   const loginValidation = async (user)=>{
     try {
-      const res = await axios.get(`http://localhost:3000/api/users/${user.nickname}`)
+      const res = await axios.get(`https://sleepy-retreat-77024.herokuapp.com/api/users/${user.nickname}`)
       const data = await res.data;
       console.log(data);
       if (data.length > 0) {
