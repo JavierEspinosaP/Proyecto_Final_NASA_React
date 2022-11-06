@@ -23,7 +23,7 @@ function LandingsForm() {
         reclong: landing.reclong,
       };
   
-      const res = await axios.post(`http://localhost:3000/api/astronomy/landings/create`, landingObj);
+      const res = await axios.post(`https://sleepy-retreat-77024.herokuapp.com/api/astronomy/landings/create`, landingObj);
       const data = await res.data;
       console.log(data);
   

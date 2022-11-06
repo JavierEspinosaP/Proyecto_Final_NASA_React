@@ -40,7 +40,7 @@ const updateLanding = async(upLanding)=>{
       reclong: upLanding.reclong!=''?upLanding.reclong:props.landing.reclong,
     };
 
-    const res = await axios.put(`http://localhost:3000/api/astronomy/landings/update/${props.id}`, upLandingObj);
+    const res = await axios.put(`https://sleepy-retreat-77024.herokuapp.com/api/astronomy/landings/update/${props.id}`, upLandingObj);
     const data = await res.data;
     // const refreshLanding = (i) =>{
     //   const upLandingObj = {

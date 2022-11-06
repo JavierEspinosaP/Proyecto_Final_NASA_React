@@ -80,7 +80,7 @@ function LandingsList() {
     e.preventDefault();
     const landing = e.target.name.value;
     let landingUpper = landing.charAt(0).toUpperCase() + landing.slice(1);
-    const res = await axios.get(`http://localhost:3000/api/astronomy/landings?name=${landingUpper}`)
+    const res = await axios.get(`https://sleepy-retreat-77024.herokuapp.com/api/astronomy/landings?name=${landingUpper}`)
     setSearchData(res.data[0])
     e.target.name.value="";
   }

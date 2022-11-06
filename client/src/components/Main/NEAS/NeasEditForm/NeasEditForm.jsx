@@ -41,7 +41,7 @@ function NeasEditForm(props) {
         orbit_class: upNea.orbit_class!=''?upNea.orbit_class:props.orbit_class,
       };
   
-      const res = await axios.put(`http://localhost:3000/api/astronomy/neas/edit/${designation}`, upNeaObj);
+      const res = await axios.put(`https://sleepy-retreat-77024.herokuapp.com/api/astronomy/neas/edit/${designation}`, upNeaObj);
       const data = await res.data;
       console.log(data);
       Swal.fire({
