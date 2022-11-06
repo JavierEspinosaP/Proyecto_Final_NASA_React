@@ -142,7 +142,7 @@ function LandingsList() {
         {searchData.id?<img src={landingsData[Math.floor(Math.random() * 99)].img} alt="AsteroidImg" />:null}
         <p className="searchData">· Nombre: {searchData.name}</p>
         <p className="searchData">· Masa: {searchData.mass}kg</p>
-        <p className="searchData">· Latitud: {searchData.recclat}º</p>
+        <p className="searchData">· Latitud: {searchData.reclat}º</p>
         <p className="searchData">· Longitud: {searchData.reclong}º</p>
         <p className="searchData">· Fecha de descubrimiento: {String(searchData.year).slice(0,10)}</p>
         </Box>
