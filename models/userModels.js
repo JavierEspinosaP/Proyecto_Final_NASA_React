@@ -11,16 +11,6 @@ const getAllUsers = async () => {
     }
 }
 
-const getUserByNickname = async (nickname) => {
-    try {
-        const getUser = await User.find({nickname: nickname}, "-_id");
-        return getUser
-    }
-    catch (err) {
-        console.error(err);
-    }
-}
-
 const getUserByMail = async (userEmail) => {
     try {
         const getUserByMail = await User.find({email: userEmail}, "-_id")
@@ -85,38 +75,10 @@ const deleteUsers = async (user) => {
 }}
 
 
-const signInUser = async (user) => {
-    const logged = {$set: {logged: true}}
-    try {
-        let answer = await User.findOneAndUpdate({email: user.email}, logged)
-        console.log("Este es el console.log de lo que devuelve la api",answer);
-        return `User ${user.email} logged`
-    }
-    catch(e){
-        console.log(`ERROR:${error}`)
-    }
-}
-
-const signOutUser = async (user) => {
-    const logged = {$set: {logged: false}}
-    try {
-        let answer = await User.findOneAndUpdate({email: user.email}, logged)
-        console.log("Este es el console.log de lo que devuelve la api",answer);
-        return `User ${user.email} logout`
-    }
-    catch(e){
-        console.log(`ERROR:${error}`)
-    }
-}
-
-
 module.exports = {
     getAllUsers,
-    getUserByNickname,
     getUserByMail,
     createUsers,
     updateUsers,
-    deleteUsers,
-    signInUser,
-    signOutUser
+    deleteUsers
 }

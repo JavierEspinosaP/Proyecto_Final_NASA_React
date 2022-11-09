@@ -19,7 +19,10 @@
 
 #login{
    cursor: pointer; 
+   height: 20px
 }
+
+
 
 .nav-link{
     font-size:20px;
@@ -28,6 +31,18 @@
     color: $orange;
     text-decoration: none;
     z-index: 1;
+    overflow: hidden;
+    background: linear-gradient(to right, $orange, #ff9500 50%, $orange 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+    text-decoration: none; // text decorations are clipped in WebKit browsers
+    &:hover {
+      background-position: 0 100%;
+    }
 }
 
 .accSumary{

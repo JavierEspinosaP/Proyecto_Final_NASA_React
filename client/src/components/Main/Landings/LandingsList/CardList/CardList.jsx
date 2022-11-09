@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -31,11 +31,11 @@ function CardList(props) {
   
 
   const landing = props.landing
-  console.log(landing);
+  // console.log(landing);
 
 
   const { loginData} = useContext(loginContext)
-  let {setCount} = useContext(countContext)
+  let {countProducts, setCount} = useContext(countContext)
   const { products,setProducts} = useContext(productsContext)
   const {arrImages} = useContext(imageContext)
 
@@ -57,9 +57,11 @@ function CardList(props) {
   }
 
   const manageProducts = () => {
+    setCount(countProducts + 1)    
   setProducts([landing, ...products])  
-  setCount(products.length)
   }
+
+  
 
 
 

@@ -9,7 +9,6 @@ const Home = () => {
 
 
   const {homeData, loadingHome} = useContext(homeContext)
-  console.log(homeData.url);
 
     return <div className="home">
       {loadingHome?spinner:<div className="fetchContainer">

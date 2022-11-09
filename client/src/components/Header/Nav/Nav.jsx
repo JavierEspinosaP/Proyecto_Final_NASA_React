@@ -1,10 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import { Link } from "react-router-dom";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Login from './Login';
@@ -33,9 +28,37 @@ const style = {
 
 const Nav = () => {
 
+  const { loginData } = useContext(loginContext)  
   const [openLogin, setOpenLogin] = React.useState(false);
   const handleOpenLogin = () => setOpenLogin(true);
-  const handleCloseLogin = () => setOpenLogin(false);
+  let handleCloseLogin = () => setOpenLogin(false);
+
+  const landings = ["l", "a", "n", "d", "i", "n", "g", "s"]
+  const landingBlue = []
+
+
+
+  const landingsMap = () => {landings.map(l => 
+    landingBlue.push(l)
+    
+  )} 
+
+  console.log(landingBlue);
+
+  useEffect(() => {
+
+  handleCloseLogin = () => {
+    if (loginData) {
+      setOpenLogin(false);
+    }      
+  }  
+  handleCloseLogin()
+  }, [loginData])
+  
+
+
+
+
   const [openCart, setOpenCart] = React.useState(false);
   const handleOpenCart = () => setOpenCart(true);
   const handleCloseCart = () => setOpenCart(false);
@@ -44,14 +67,9 @@ const Nav = () => {
     { volume: 0.3 }
   );
   const [change] = useSound(changeSound, { volume: 0.5 });
-  const [isHovering, setIsHovering] = React.useState(
-    false
-  );
-  const { loginData } = useContext(loginContext)
+  const [isHovering, setIsHovering] = React.useState(false);
+
   const { countProducts } = useContext(countContext)
-
-
-
 
 
   return <div className="nav">
@@ -68,7 +86,7 @@ const Nav = () => {
       }}>Home</Link>
 
     <Link className="nav-link" to='/landings'
-    onClick={change}
+      onClick={change}
       onMouseEnter={() => {
         setIsHovering(true);
         play();
@@ -78,18 +96,20 @@ const Nav = () => {
         stop();
       }}>Map</Link>
     <Link className="nav-link" to='/landings/list'
-    onClick={change}
+      onClick={change}
       onMouseEnter={() => {
+        
         setIsHovering(true);
         play();
+        landingsMap()
       }}
       onMouseLeave={() => {
         setIsHovering(false);
         stop();
       }}
-    >Landings</Link>
+    >{landings}</Link>
     <Link className="nav-link" to='/neas'
-    onClick={change}
+      onClick={change}
       onMouseEnter={() => {
         setIsHovering(true);
         play();
@@ -99,7 +119,7 @@ const Nav = () => {
         stop();
       }}
     >NEAS</Link>
-    <p className="nav-link" id="login" onClick={handleOpenLogin}
+    {loginData ? null : <p className="nav-link" id="login" onClick={handleOpenLogin}
       onMouseEnter={() => {
         setIsHovering(true);
         play();
@@ -107,7 +127,8 @@ const Nav = () => {
       onMouseLeave={() => {
         setIsHovering(false);
         stop();
-      }}>Login</p>
+      }}>Login/Register</p>}
+
 
     <Modal
       keepMounted
@@ -120,7 +141,12 @@ const Nav = () => {
         <Login edit={openLogin} close={handleCloseLogin} />
       </Box>
     </Modal>
-    {loginData ? <div className="cartContainer"><Button onClick={handleOpenCart}><img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts === 1 ? <p className="fontAddProducts">  {String(countProducts)} Producto añadido</p> : <p className="fontAddProducts">{String(countProducts)} Productos añadidos</p>}</div> : null}
+    {loginData ?
+
+      <div className="cartContainer"><Button onClick={handleOpenCart}>
+        <img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts === 1 ?
+          <p className="fontAddProducts">  {String(countProducts)} Producto añadido</p> : <p className="fontAddProducts">{String(countProducts)} Productos añadidos</p>}
+      </div> : null}
     <Modal
       keepMounted
       open={openCart}

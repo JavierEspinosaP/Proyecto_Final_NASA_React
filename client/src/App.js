@@ -37,6 +37,11 @@ function App() {
 
   const arrImages = [];
 
+  const resetPage = () =>{
+    window.location.reload(false);    
+  }
+
+
 
 
 
@@ -92,15 +97,18 @@ function App() {
 // eslint-disable-next-line
   }, []);
 
+      const restartAutoReset = () => {
+        setTimeout(() => {
+            resetPage();
+          }, 30 * 60 * 1000);
+        };
+      
+  const onMouseMove = () => {
+          if (loginData) {
+          restartAutoReset();         
+          }
 
-
-
-
-
-
-
-
-
+        };
 
 
   const homeDataObj = {
@@ -132,7 +140,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" onMouseMove={onMouseMove}>
       <BrowserRouter>
         <ThemeProvider theme={darkTheme}>
           <imageContext.Provider value={imageObj}>
