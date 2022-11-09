@@ -34,8 +34,10 @@ const getUserByMail = async (userEmail) => {
 const createUsers = async (user) => {
 
     try {
+        console.log("Esto es useeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeer");
+        console.log(user);        
         let newUser = new User(user) //Crear el objeto user
-        console.log(newUser);
+
         let answer = await newUser.save() //Guardar objeto en Mondodb
         // console.log("Este es el console.log de lo que devuelve la api",answer);
         return {
@@ -51,7 +53,6 @@ const createUsers = async (user) => {
 const updateUsers = async (user) => {
     try{
         const newUser = {
-            "name": user.name,
             "nickname": user.nickname,
             "email":user.email,
             "picture": user.picture,
@@ -73,6 +74,7 @@ const updateUsers = async (user) => {
     }
 
 const deleteUsers = async (user) => {
+
     try {
         let answer = await User.deleteOne({email: user.email})
         console.log("Este es el console.log de lo que devuelve la api",answer);
@@ -83,6 +85,30 @@ const deleteUsers = async (user) => {
 }}
 
 
+const signInUser = async (user) => {
+    const logged = {$set: {logged: true}}
+    try {
+        let answer = await User.findOneAndUpdate({email: user.email}, logged)
+        console.log("Este es el console.log de lo que devuelve la api",answer);
+        return `User ${user.email} logged`
+    }
+    catch(e){
+        console.log(`ERROR:${error}`)
+    }
+}
+
+const signOutUser = async (user) => {
+    const logged = {$set: {logged: false}}
+    try {
+        let answer = await User.findOneAndUpdate({email: user.email}, logged)
+        console.log("Este es el console.log de lo que devuelve la api",answer);
+        return `User ${user.email} logout`
+    }
+    catch(e){
+        console.log(`ERROR:${error}`)
+    }
+}
+
 
 module.exports = {
     getAllUsers,
@@ -90,5 +116,7 @@ module.exports = {
     getUserByMail,
     createUsers,
     updateUsers,
-    deleteUsers
+    deleteUsers,
+    signInUser,
+    signOutUser
 }

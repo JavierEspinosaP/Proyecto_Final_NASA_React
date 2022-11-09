@@ -16,6 +16,7 @@ const Login = (props) => {
     try {
       const res = await axios.get(`https://sleepy-retreat-77024.herokuapp.com/api/users/${user.nickname}`)
       const data = await res.data;
+      // const validPass = await bcrypt.compare(password, response[0].password)
       console.log(data);
       if (data.length > 0) {
         setLoginData(true)

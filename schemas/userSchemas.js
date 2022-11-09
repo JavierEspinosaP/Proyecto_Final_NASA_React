@@ -1,34 +1,25 @@
 
 const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
     nickname: {
         type: String,
+        required: true,
+        unique: true,
+        dropDups: true
     },
     email: {
         type: String,
+        required: true,
+        unique: true,
+        dropDups: true
     },
-    picture: {
-        type: String,
+    password: {
+        type: String
     },
-    affiliatedNumber: {
-        type: Number,
-    },
-    affiliationDate: {
-        type: Date,
-    },
-    occupation: {
-        type: String,
-    },
-    birthdate: {
-        type: Date,
-    },
-    neas_discovered: [{
-        type: String,
-    }]
+    logged: {
+        type: Boolean,
+        default: true
+    }
 })
 
 const User = mongoose.model('users', userSchema);

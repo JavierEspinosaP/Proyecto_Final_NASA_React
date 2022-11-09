@@ -1,4 +1,5 @@
 const User = require('../models/userModels')
+const bcrypt = require('bcryptjs')
 
 const getUser = async (req, res) => {
 
@@ -30,8 +31,12 @@ const getOneUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
+    const password = await bcrypt.hash(req.body.password, 10)
+    const nickname = req.body.nickname
+    const email = req.body.email
+    const user = {nickname, email, password}
     try{
-     let newUser = await User.createUsers(req.body);
+     let newUser = await User.createUsers(user);
     res.status(200).json(newUser)   
     }
     catch(error){
@@ -67,12 +72,37 @@ const deleteUser = async (req, res) => {
 }
 
 
+
+const loginUser = async (req,res) => {
+    try {
+        await User.signInUser(req.body);
+        res.status(200).json({"message": "User logged"})
+    }
+    catch(e){
+        console.log(`Error: ${e.stack}`)
+        res.status(404).json({"message": "Login error"})
+    }
+}
+
+const logoutUser = async (req,res) => {
+    try {
+        await User.signOutUser(req.body);
+        res.status(200).json({"message": "Logout User"})
+    }
+    catch(e){
+        console.log(`Error: ${e.stack}`)
+        res.status(404).json({"message": "Logout error"})
+    }
+}
+
 const UserControllers = {
     getUser,
     getOneUser,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser,
+    logoutUser
 }
 
 module.exports = UserControllers;
