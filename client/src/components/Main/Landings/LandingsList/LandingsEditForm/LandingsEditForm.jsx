@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import TextField from '@mui/material/TextField';
 import {useForm} from 'react-hook-form';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {landingsContext} from '../../../../../context/landingsContext'
 
 function LandingsEditForm(props) {

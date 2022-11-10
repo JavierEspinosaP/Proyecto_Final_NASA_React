@@ -4,7 +4,7 @@ import axios from 'axios'
 import {useForm} from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import {neasContext} from '../../../../context/neasContext'
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 
 function NeasEditForm(props) {

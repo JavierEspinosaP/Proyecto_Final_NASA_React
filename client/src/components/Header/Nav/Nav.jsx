@@ -13,6 +13,7 @@ import tick from '../../../assets/sounds/tick.wav'
 import changeSound from '../../../assets/sounds/change.wav'
 import logo from '../../../assets/nasa.png'
 
+
 const style = {
   position: 'absolute',
   top: '50%',

@@ -4,14 +4,19 @@ import Button from '@mui/material/Button';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { loginContext } from '../../../../context/loginContext'
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import bcrypt from 'bcryptjs'
+import useSound from 'use-sound';
+import loginSound from '../../../../assets/sounds/login complete.wav'
 
 const Login = (props) => {
 
   const close = props.close 
 
   const { setLoginData } = useContext(loginContext)
+
+
+  const [change] = useSound(loginSound, { volume: 0.3 });
 
   const loginValidation = async (user) => {
     try {
@@ -23,14 +28,15 @@ const Login = (props) => {
       const validPass = await bcrypt.compare(password, data[0].password)
       console.log(validPass);
       if (validPass) {
-        
+
         setLoginData(true)
         Swal.fire({
           icon: 'success',
-          title: 'Usuario logueado!',
+          title: 'Login complete',
           showConfirmButton: false,
           timer: 2000
         })
+        change()
       }
     }
     catch {
