@@ -16,13 +16,10 @@ function shopping(state = initProduct, action) {
         case "ADD_CART":
             if (state.numberCart === 0) {
                 let cart = {
-                    id: action.payload.id,
-                    title: action.payload.title,
+                    name: action.payload.name,
                     quantity: 1,
-                    category: action.payload.category,
+                    mass: action.payload.mass,
                     image: action.payload.image,
-                    price: action.payload.price,
-                    description: action.payload.description
                 }
                 state.Carts.push(cart);
             } else {
@@ -35,13 +32,10 @@ function shopping(state = initProduct, action) {
                 });
                 if (!check) {
                     let _cart = {
-                        id: action.payload.id,
-                        title: action.payload.title,
+                        name: action.payload.name,
                         quantity: 1,
-                        category: action.payload.category,
+                        mass: action.payload.mass,
                         image: action.payload.image,
-                        price: action.payload.price,
-                        description: action.payload.description
                     }
                     state.Carts.push(_cart);
                 }

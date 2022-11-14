@@ -44,8 +44,6 @@ const Nav = () => {
     
   )} 
 
-  console.log(landingBlue);
-
   useEffect(() => {
 
   handleCloseLogin = () => {
