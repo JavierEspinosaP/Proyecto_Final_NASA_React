@@ -19,7 +19,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  'min-width': 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -153,7 +153,7 @@ const Nav = () => {
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
     >
-      <Box sx={style}>
+      <Box  sx={style}>
         <Cart edit={openCart} />
       </Box>
     </Modal>

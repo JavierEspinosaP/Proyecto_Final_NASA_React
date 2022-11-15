@@ -59,6 +59,8 @@ function CardList(props) {
 
   const manageProducts = () => {
     let numberLandingCount = 1
+    const precision = 10;
+    let priceItem = Math.floor(Math.random() * (10 * precision  - 1 * precision) + 1 * precision) / (10*precision)
 
     for (let i = 0; i < products.length; i++) {
       if (products[i].name == landing.name) {
@@ -66,7 +68,7 @@ function CardList(props) {
       }
       
     }
-    let landingCount = { ...landing, quantity: numberLandingCount, price: 0.50 }   
+    let landingCount = { ...landing, quantity: numberLandingCount, price: priceItem }   
     setProducts([landingCount, ...products])  
     setCount(countProducts + 1)
   }
