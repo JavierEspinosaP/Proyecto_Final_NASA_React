@@ -14,6 +14,7 @@ import images from './components/Main/img.js'
 import './styles/styles.scss';
 import axios from 'axios'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
 
 const darkTheme = createTheme({
   palette: {
@@ -34,6 +35,8 @@ function App() {
   const [countProducts, setCount] = useState(0)
 
   const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
 
   const arrImages = [];
 

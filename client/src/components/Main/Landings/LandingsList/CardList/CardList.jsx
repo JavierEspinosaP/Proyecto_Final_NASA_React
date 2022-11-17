@@ -13,6 +13,7 @@ import { loginContext } from '../../../../../context/loginContext'
 import { countContext } from '../../../../../context/countContext'
 import { productsContext } from '../../../../../context/productsContext'
 import { imageContext } from '../../../../../context/imageContext'
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const style = {
@@ -39,6 +40,8 @@ function CardList(props) {
   const { products, setProducts } = useContext(productsContext)
   const { arrImages } = useContext(imageContext)
   // let [numberLandingCount, setNumberLandingCount] = useState(1)
+
+  const dispatch = useDispatch();
 
 
   const [open, setOpen] = React.useState(false);
@@ -156,7 +159,12 @@ function CardList(props) {
         <CardActions>
           <Button size="small" onClick={handleOpen} >Editar</Button>
           <Button size="small" onClick={removeLanding}>Borrar</Button>
-          {loginData ? <Button size="small" onClick={manageProducts} >Añadir al carro</Button> : null}
+          {loginData ? <Button size="small" onClick={()=>{
+          dispatch({
+            type: "ADD_CART",
+            payload: landing
+          })
+        }} >Añadir al carro</Button> : null}
         </CardActions>
       </Card>}
     </div>
