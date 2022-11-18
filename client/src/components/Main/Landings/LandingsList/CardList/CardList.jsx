@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,10 +9,11 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import LandingsEditForm from '../LandingsEditForm';
-import {loginContext} from '../../../../../context/loginContext'
-import {countContext} from '../../../../../context/countContext'
-import {productsContext} from '../../../../../context/productsContext'
+import { loginContext } from '../../../../../context/loginContext'
+import { countContext } from '../../../../../context/countContext'
+import { productsContext } from '../../../../../context/productsContext'
 import { imageContext } from '../../../../../context/imageContext'
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const style = {
@@ -28,22 +29,25 @@ const style = {
 };
 
 function CardList(props) {
-  
+
 
   const landing = props.landing
   // console.log(landing);
 
 
-  const { loginData} = useContext(loginContext)
-  let {countProducts, setCount} = useContext(countContext)
-  const { products,setProducts} = useContext(productsContext)
-  const {arrImages} = useContext(imageContext)
+  const { loginData } = useContext(loginContext)
+  let { countProducts, setCount } = useContext(countContext)
+  const { products, setProducts } = useContext(productsContext)
+  const { arrImages } = useContext(imageContext)
+  // let [numberLandingCount, setNumberLandingCount] = useState(1)
+
+  const dispatch = useDispatch();
 
 
   const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {setOpen(true)}
-  const handleClose = () => {setOpen(false)}
+  const handleOpen = () => { setOpen(true) }
+  const handleClose = () => { setOpen(false) }
 
   const removeLanding = async () => {
     try {
@@ -57,11 +61,56 @@ function CardList(props) {
   }
 
   const manageProducts = () => {
-    setCount(countProducts + 1)    
-  setProducts([landing, ...products])  
+    let numberLandingCount = 1
+    const precision = 10;
+    let priceItem = Math.floor(Math.random() * (10 * precision  - 1 * precision) + 1 * precision) / (10*precision)
+
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].name == landing.name) {
+        numberLandingCount++
+      }
+      
+    }
+    let landingCount = { ...landing, quantity: numberLandingCount, price: priceItem }   
+    setProducts([landingCount, ...products])  
+    setCount(countProducts + 1)
   }
 
-  
+
+  // let isInCart = 0
+
+  // const landingCount = { ...landing, count: numberLandingCount }
+  // for (let i = 0; i < products.length; i++) {
+
+  //   if (products[i].name == landing.name) {
+  //     setNumberLandingCount(numberLandingCount++)
+  //     isInCart++
+      
+  //   }
+  // }
+
+  // if (isInCart == 0) {
+  //   setProducts([landingCount, ...products])
+  // }
+  // console.log(numberLandingCount);
+  // setCount(countProducts + 1)
+
+
+
+  // for (let i = 0; i < products.length; i++) {
+  //   if (products[i].name == landing.name) {
+  //     setNumberLandingCount(numberLandingCount++)
+  //     setProducts([landingCount, ...products]) 
+  //     const remainingLandings = products.slice(i,1)
+  //     console.log(remainingLandings);
+  //     setProducts(remainingLandings);
+  //     // isInCart++
+  //   }
+  //   else{
+  //     let landingCount = { ...landing, count: 1}
+  //     setProducts([landingCount, ...products]) 
+  //   }
+  // }
 
 
 
@@ -79,17 +128,17 @@ function CardList(props) {
           aria-describedby="keep-mounted-modal-description"
         >
           <Box sx={style}>
-            <LandingsEditForm handleClose={handleClose} landing={landing}/>
+            <LandingsEditForm handleClose={handleClose} landing={landing} />
           </Box>
         </Modal>
       </div>
 
-      {<Card  sx={{ minWidth: 290, margin: 1 }}>
+      {<Card sx={{ minWidth: 290, margin: 1 }}>
         <CardMedia
-                component="img"
-                height="140"
-                image={landing.img}
-              />
+          component="img"
+          height="140"
+          image={landing.img}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {landing.name}
@@ -110,7 +159,12 @@ function CardList(props) {
         <CardActions>
           <Button size="small" onClick={handleOpen} >Editar</Button>
           <Button size="small" onClick={removeLanding}>Borrar</Button>
-          {loginData? <Button size="small" onClick={manageProducts} >Añadir al carro</Button>:null}
+          {loginData ? <Button size="small" onClick={()=>{
+          dispatch({
+            type: "ADD_CART",
+            payload: landing
+          })
+        }} >Añadir al carro</Button> : null}
         </CardActions>
       </Card>}
     </div>

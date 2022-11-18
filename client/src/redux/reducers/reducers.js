@@ -1,88 +1,90 @@
 const initProduct = {
-    numberCart: 0,
-    Carts: [],
-    _products: []
+    numberCart:0,
+    Carts:[],
+    _products:[]
 }
 
+const precision = 10;
+let priceItem = Math.floor(Math.random() * (10 * precision  - 1 * precision) + 1 * precision) / (10*precision)
 
 function shopping(state = initProduct, action) {
     switch (action.type) {
         case "GET_ALL_PRODUCTS":
-            return {
+            return{
                 ...state,
                 _products: action.payload
             }
 
         case "ADD_CART":
-            if (state.numberCart === 0) {
+            if(state.numberCart===0){
                 let cart = {
-                    id: action.payload.id,
-                    title: action.payload.title,
-                    quantity: 1,
-                    category: action.payload.category,
-                    image: action.payload.image,
-                    price: action.payload.price,
-                    description: action.payload.description
-                }
-                state.Carts.push(cart);
-            } else {
+                    name:action.payload.name,
+                    mass: action.payload.mass,
+                    quantity:1,
+                    image:action.payload.img,
+                    price:priceItem,
+                } 
+                state.Carts.push(cart); 
+            } else{
                 let check = false;
-                state.Carts.map((item, i) => {
-                    if (item.id === action.payload.id) {
+                state.Carts.map((item,i)=>{
+                    if(item.name===action.payload.name){
                         state.Carts[i].quantity++;
-                        check = true;
+                        check=true;
                     }
                 });
-                if (!check) {
+                if(!check){
                     let _cart = {
-                        id: action.payload.id,
-                        title: action.payload.title,
-                        quantity: 1,
-                        category: action.payload.category,
-                        image: action.payload.image,
-                        price: action.payload.price,
-                        description: action.payload.description
+                        name:action.payload.name,
+                        quantity:1,
+                        mass:action.payload.mass,
+                        image:action.payload.img,
+                        price:priceItem
                     }
                     state.Carts.push(_cart);
                 }
             }
-            return {
+            return{
                 ...state,
-                numberCart: state.numberCart + 1
+                numberCart:state.numberCart +1
             }
+
         case "INCREASE_QUANTITY":
             state.Carts[action.payload].quantity++;
-            return {
+            return{
                 ...state,
                 Carts: state.Carts,
-                numberCart: state.numberCart + 1
+                numberCart:state.numberCart +1
             }
+
         case "DECREASE_QUANTITY":
             let qty = state.Carts[action.payload].quantity;
-            if (qty > 1) {
+            if(qty>1){
                 state.Carts[action.payload].quantity--;
-                return {
+                return{
                     ...state,
                     Carts: state.Carts,
-                    numberCart: state.numberCart - 1
+                    numberCart:state.numberCart -1
 
                 }
-            } else {
-                state.Carts[action.payload].quantity = 0;
-                return {
+            } else{
+                state.Carts[action.payload].quantity=0;
+                return{
                     ...state,
-                    Carts: state.Carts.filter(item => item.id !== state.Carts[action.payload].id),
-                    numberCart: state.numberCart - 1
-
+                    Carts:state.Carts.filter(item=>item.name!==state.Carts[action.payload].name),
+                    numberCart:state.numberCart -1
+ 
                 }
             }
+
         case "DELETE_CART":
             let quantity_ = state.Carts[action.payload].quantity;
-            return {
+            return{
                 ...state,
-                numberCart: state.numberCart - quantity_,
-                Carts: state.Carts.filter(item => item.id !== state.Carts[action.payload].id)
+                numberCart:state.numberCart - quantity_,
+                Carts:state.Carts.filter(item=>item.name!==state.Carts[action.payload].name)   
             }
+
         default:
             return state;
     }

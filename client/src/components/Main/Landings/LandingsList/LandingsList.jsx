@@ -10,6 +10,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import ContentLoader from 'react-content-loader'
+import { useDispatch, useSelector } from 'react-redux';
 // import images from '../../img';
 
 
@@ -41,6 +42,12 @@ function LandingsList() {
   const [searchData, setSearchData] = useState([])
   const count = Math.ceil(landingsData.length / PER_PAGE);
   const _DATA = usePagination(landingsData, PER_PAGE);
+
+
+  const dispatch = useDispatch();
+  const _products = useSelector(state=>state._products);
+  const numberCart = useSelector(state=>state.numberCart);
+  
 
   const handleChange = (e, p) => {
     setPage(p);
