@@ -4,6 +4,9 @@ const initProduct = {
     _products:[]
 }
 
+const precision = 10;
+let priceItem = Math.floor(Math.random() * (10 * precision  - 1 * precision) + 1 * precision) / (10*precision)
+
 function shopping(state = initProduct, action) {
     switch (action.type) {
         case "GET_ALL_PRODUCTS":
@@ -19,7 +22,7 @@ function shopping(state = initProduct, action) {
                     mass: action.payload.mass,
                     quantity:1,
                     image:action.payload.img,
-                    price:action.payload.price,
+                    price:priceItem,
                 } 
                 state.Carts.push(cart); 
             } else{
@@ -32,11 +35,11 @@ function shopping(state = initProduct, action) {
                 });
                 if(!check){
                     let _cart = {
-                        title:action.payload.name,
+                        name:action.payload.name,
                         quantity:1,
                         mass:action.payload.mass,
                         image:action.payload.img,
-                        price:action.payload.price
+                        price:priceItem
                     }
                     state.Carts.push(_cart);
                 }

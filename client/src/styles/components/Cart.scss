@@ -1,4 +1,5 @@
 @import '../utils/variables.scss';
+@import url('https://fonts.cdnfonts.com/css/nasa');
 
 .cartContainer{
     // max-height: 50vh;
@@ -41,3 +42,33 @@
     color: #fff;
 }
 
+.table{
+    color: $orange;
+    font-family: 'Nasa', monospace;
+    letter-spacing: 3px;
+}
+
+.th{
+    padding:50px
+}
+
+.td{
+    font-size: 18px;
+    border: 1px solid ;
+    padding:20px;
+    text-align: center
+}
+
+.tdQuantity{
+    display: flex;
+    font-size: 18px;
+    border: 1px solid ;
+    padding:45px
+}
+
+.quantityNumber{
+    padding-top: 12px;
+    color: $orange;
+    font-family: 'Nasa', monospace;
+    letter-spacing: 3px
+}
