@@ -22,7 +22,7 @@ function shopping(state = initProduct, action) {
                     mass: action.payload.mass,
                     quantity:1,
                     image:action.payload.img,
-                    price:priceItem,
+                    price:action.payload.price,
                 } 
                 state.Carts.push(cart); 
             } else{
@@ -39,7 +39,7 @@ function shopping(state = initProduct, action) {
                         quantity:1,
                         mass:action.payload.mass,
                         image:action.payload.img,
-                        price:priceItem
+                        price:action.payload.price
                     }
                     state.Carts.push(_cart);
                 }

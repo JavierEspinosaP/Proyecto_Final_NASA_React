@@ -31,9 +31,11 @@ const style = {
 
 function CardList(props) {
 
+  const precision = 10;
+  let priceItem = Math.floor(Math.random() * (10 * precision  - 1 * precision) + 1 * precision) / (10*precision)
 
-  const landing = props.landing
-  // console.log(landing);
+  const landing = {...props.landing, price:priceItem}
+
 
 
   const { loginData } = useContext(loginContext)

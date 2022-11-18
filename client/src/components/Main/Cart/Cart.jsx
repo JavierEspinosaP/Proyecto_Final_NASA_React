@@ -11,21 +11,9 @@ const Cart = () => {
 
 
 
-
+    
+  let TotalCart=0;
   
-  useEffect(() => {
-    if (items.length > 0) {
-  const numberCount = items.map(m => m.quantity)
-  console.log(numberCount);
-  const reduceCount = numberCount.reduce(function(a, b){ return a + b; })    
-    setCount(reduceCount)     
-    console.log(reduceCount); 
-    }
-
-  }, [items])
-  
-    // console.log(items);
-    let TotalCart=0;
     items.forEach(item => {
         TotalCart+=item.quantity * item.price;
     });

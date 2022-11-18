@@ -12,6 +12,7 @@ import useSound from 'use-sound';
 import tick from '../../../assets/sounds/tick.wav'
 import changeSound from '../../../assets/sounds/change.wav'
 import logo from '../../../assets/nasa.png'
+import { useSelector } from 'react-redux';
 
 
 const style = {
@@ -33,6 +34,7 @@ const Nav = () => {
   const [openLogin, setOpenLogin] = React.useState(false);
   const handleOpenLogin = () => setOpenLogin(true);
   let handleCloseLogin = () => setOpenLogin(false);
+  const numberCart = useSelector(state=>state.numberCart);
 
   const landings = ["l", "a", "n", "d", "i", "n", "g", "s"]
   const landingBlue = []
@@ -144,7 +146,7 @@ const Nav = () => {
 
       <div className="cartContainer"><Button onClick={handleOpenCart}>
         <img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts === 1 ?
-          <p className="fontAddProducts">  {String(countProducts)} Producto añadido</p> : <p className="fontAddProducts">{String(countProducts)} Productos añadidos</p>}
+          <p className="fontAddProducts">  {String(numberCart)} Producto añadido</p> : <p className="fontAddProducts">{String(numberCart)} Productos añadidos</p>}
       </div> : null}
     <Modal
       keepMounted
