@@ -1,4 +1,9 @@
+@import '../utils/variables.scss';
+@import url('https://fonts.cdnfonts.com/css/nasa');
+
 .cardList{
+    color: $orange;
+    font-family: 'Nasa', monospace;
     overflow: hidden; 
 }
 

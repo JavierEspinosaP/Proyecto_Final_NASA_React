@@ -16,6 +16,7 @@ import { imageContext } from '../../../../../context/imageContext'
 import { useSelector, useDispatch } from 'react-redux';
 
 
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -59,63 +60,6 @@ function CardList(props) {
       console.log(e);
     }
   }
-
-  const manageProducts = () => {
-    let numberLandingCount = 1
-    const precision = 10;
-    let priceItem = Math.floor(Math.random() * (10 * precision  - 1 * precision) + 1 * precision) / (10*precision)
-
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].name == landing.name) {
-        numberLandingCount++
-      }
-      
-    }
-    let landingCount = { ...landing, quantity: numberLandingCount, price: priceItem }   
-    setProducts([landingCount, ...products])  
-    setCount(countProducts + 1)
-  }
-
-
-  // let isInCart = 0
-
-  // const landingCount = { ...landing, count: numberLandingCount }
-  // for (let i = 0; i < products.length; i++) {
-
-  //   if (products[i].name == landing.name) {
-  //     setNumberLandingCount(numberLandingCount++)
-  //     isInCart++
-      
-  //   }
-  // }
-
-  // if (isInCart == 0) {
-  //   setProducts([landingCount, ...products])
-  // }
-  // console.log(numberLandingCount);
-  // setCount(countProducts + 1)
-
-
-
-  // for (let i = 0; i < products.length; i++) {
-  //   if (products[i].name == landing.name) {
-  //     setNumberLandingCount(numberLandingCount++)
-  //     setProducts([landingCount, ...products]) 
-  //     const remainingLandings = products.slice(i,1)
-  //     console.log(remainingLandings);
-  //     setProducts(remainingLandings);
-  //     // isInCart++
-  //   }
-  //   else{
-  //     let landingCount = { ...landing, count: 1}
-  //     setProducts([landingCount, ...products]) 
-  //   }
-  // }
-
-
-
-
-
 
   return (
     <div>
