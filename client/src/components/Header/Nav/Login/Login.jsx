@@ -11,6 +11,18 @@ import loginSound from '../../../../assets/sounds/login complete.wav'
 import closedEye from '../../../../assets/closedEye.png'
 import openEye from '../../../../assets/openEye.png'
 import registeredUser from '../../../../assets/sounds/registeredUser.wav'
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+
+const regex = '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$'
+
+const schema = yup.object({
+  nickname: yup.string().required().min(3),
+  email: yup.string('introduce a valid email').email('introduce a valid email').required('email is required'),
+  password: yup.string().matches(regex),
+  passwordRepeat: yup.string().matches(schema.password)
+}).required();
 
 const Login = (props) => {
 
@@ -20,6 +32,8 @@ const Login = (props) => {
 
   const [passwordShown, setPasswordShown] = useState(false);
   const [registerForm, setRegisterForm] = useState(false)
+
+  const nicknameError = 'Nickname is required and must contains 3 or more characters'
 
   // Password toggle handler
   const togglePassword = () => {
@@ -97,16 +111,19 @@ const Login = (props) => {
     }
   }
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+  });
 
   return (<div className="formContainer">
     {registerForm ? 
     <form onSubmit={handleSubmit(registration)}>
       <h4 className="landingName">Introduce tus datos</h4>
       <TextField name="nickname" {...register("nickname")} placeholder="Nickname  " />
+      <p>{errors.nickname?nicknameError:null}</p>
       <TextField name="email" {...register("email")} placeholder="Email  " />
       <TextField name="password" type={passwordShown ? "text" : "password"} {...register("password")} placeholder="Password" />
-      <TextField name="password" type={passwordShown ? "text" : "password"} placeholder="Repite password" />
+      <TextField name="passwordRepeat" type={passwordShown ? "text" : "password"} placeholder="Repite password" />
       <Button id={registerForm ?"visibilityRegister":"visibility"} onClick={togglePassword}><img id="eye" src={passwordShown ? openEye : closedEye} alt="eye" /></Button>
       <Button type="submit" variant="contained">Submit</Button>
       <p id="registerP">Para loguearte, click <Button onClick={toggleRegister}><p>aquí</p></Button></p>
