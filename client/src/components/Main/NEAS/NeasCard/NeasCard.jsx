@@ -29,8 +29,11 @@ const style = {
 
 function NeasCard(props) {
 
-const nea = props.data
-const [open, setOpen] = React.useState(false);
+  const precision = 10;
+  let priceItem = Math.floor(Math.random() * (10 * precision  - 1 * precision) + 1 * precision) / (10*precision)
+
+  const nea = {...props.data, price:priceItem}
+  const [open, setOpen] = React.useState(false);
 
   const { loginData } = useContext(loginContext)
 
