@@ -28,6 +28,7 @@ const style = {
 function NeasCard(props) {
 
 const nea = props.data
+console.log(nea);
 const [open, setOpen] = React.useState(false);
 
 const handleOpen = () => {setOpen(true)}
