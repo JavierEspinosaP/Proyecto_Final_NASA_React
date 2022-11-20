@@ -1,16 +1,21 @@
 @import '@sweetalert2/theme-dark/dark.scss';
+@import '../utils/variables.scss';
 
 
 #visibility{
-    position: absolute;
-    top: 175px;
-    left: 365px
+margin-top:15px
+}
+
+.loginInput{
+    width: 300px
+    }
+
+.registerInput{
+width: 300px
 }
 
 #visibilityRegister{
-    position: absolute;
-    top: 235px;
-    left: 340px
+margin-top:15px
 }
 
 #eye{
@@ -19,4 +24,9 @@
 
 #registerP{
     color: #fff;
+}
+
+.pError{
+    color: $orange;
+    max-width: 300px;
 }

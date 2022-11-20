@@ -15,13 +15,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 
-const regex = '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$'
+// const regex = ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$
 
 const schema = yup.object({
-  nickname: yup.string().required().min(3),
   email: yup.string('introduce a valid email').email('introduce a valid email').required('email is required'),
-  password: yup.string().matches(regex),
-  passwordRepeat: yup.string().matches(schema.password)
+  password: yup.string(),
+  // passwordRepeat: yup.string().matches(schema.password)
 }).required();
 
 const Login = (props) => {
@@ -33,7 +32,13 @@ const Login = (props) => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [registerForm, setRegisterForm] = useState(false)
 
-  const nicknameError = 'Nickname is required and must contains 3 or more characters'
+  const [registerError, setRegisterError] = useState(false)
+
+  const [loginError, setLoginError] = useState(false)
+
+  const nicknameError = 'El nickname es requerido y es necesario que contenga 3 o más caracteres'
+  const passwordError = 'La password debe contener al menos una mayúscula, una minúscula, un número y un símbolo'
+  const emailError = 'El email debe contener un formato correcto'
 
   // Password toggle handler
   const togglePassword = () => {
@@ -54,9 +59,16 @@ const Login = (props) => {
   const [registered] = useSound(registeredUser, { volume: 0.5 });
 
   const loginValidation = async (user) => {
+      console.log(user);    
     try {
+
       const res = await axios.get(`https://sleepy-retreat-77024.herokuapp.com/api/users?email=${user.email}`)
       const data = await res.data;
+      console.log(res.data.length);
+      if (res.data.length===0) {
+        setLoginError(true)
+        console.log(loginError);
+      }
       const password = user.password
       console.log(password);
       console.log(data);
@@ -74,6 +86,10 @@ const Login = (props) => {
         change()
 
       }
+      if (res.data.length===0) {
+        setLoginError(true)
+        console.log(loginError);
+      }
     }
     catch {
 
@@ -89,6 +105,7 @@ const Login = (props) => {
       email: user.email,
       password: hash
     }
+    console.log(userCrypt);
 
     try{
       const res = await axios.post("https://sleepy-retreat-77024.herokuapp.com/api/users/create", userCrypt)
@@ -100,11 +117,15 @@ const Login = (props) => {
           icon: 'success',
           title: 'Registered user',
           showConfirmButton: false,
-          timer: 2000
+          timer: 3000
         })
+
         
         registered()
       }
+    else{
+      setRegisterError(true)
+    }
     }
     catch(e){
       console.log(e);
@@ -119,22 +140,31 @@ const Login = (props) => {
     {registerForm ? 
     <form onSubmit={handleSubmit(registration)}>
       <h4 className="landingName">Introduce tus datos</h4>
-      <TextField name="nickname" {...register("nickname")} placeholder="Nickname  " />
-      <p>{errors.nickname?nicknameError:null}</p>
-      <TextField name="email" {...register("email")} placeholder="Email  " />
-      <TextField name="password" type={passwordShown ? "text" : "password"} {...register("password")} placeholder="Password" />
-      <TextField name="passwordRepeat" type={passwordShown ? "text" : "password"} placeholder="Repite password" />
-      <Button id={registerForm ?"visibilityRegister":"visibility"} onClick={togglePassword}><img id="eye" src={passwordShown ? openEye : closedEye} alt="eye" /></Button>
-      <Button type="submit" variant="contained">Submit</Button>
+      {registerError?<p className="pError">El email introducido ya está en uso</p>:null}
+      <TextField className="registerInput" name="nickname" {...register("nickname")} placeholder="Nickname  " />
+      <p className="pError">{errors.nickname?nicknameError:null}</p>
+      <TextField className="registerInput" name="email" {...register("email")} placeholder="Email  " />
+      <p className="pError">{errors.email?emailError:null}</p>
+      <div>
+      <TextField className="registerInput" name="password" type={passwordShown ? "text" : "password"} {...register("password")} placeholder="Password" />
+      <Button id={registerForm ?"visibilityRegister":"visibility"} onClick={togglePassword}><img id="eye" src={passwordShown ? openEye : closedEye} alt="eye" /></Button>         
+      </div>
+      <p className="pError">{errors.password?passwordError:null}</p>     
+      <TextField className="registerInput" name="passwordRepeat" type={passwordShown ? "text" : "password"} placeholder="Repite password" />
+
+      <Button className="registerInput" type="submit" variant="contained">Submit</Button>
       <p id="registerP">Para loguearte, click <Button onClick={toggleRegister}><p>aquí</p></Button></p>
     </form>
 
       : <form onSubmit={handleSubmit(loginValidation)}>
         <h4 className="landingName">Introduce tus credenciales</h4>
-        <TextField name="email" {...register("email")} placeholder="Email  " />
-        <TextField name="password" type={passwordShown ? "text" : "password"} {...register("password")} placeholder="Password  " />
-        <Button id={registerForm ?"visibilityRegister":"visibility"} onClick={togglePassword}><img id="eye" src={passwordShown ? openEye : closedEye} alt="eye" /></Button>
-        <Button type="submit" variant="contained">Submit</Button>
+        {loginError?<p className="pError">Email o contraseña incorrectos</p>: null}        
+        <TextField className="loginInput" name="email" {...register("email")} placeholder="Email  " />
+        <div>
+        <TextField className="loginInput" name="password" type={passwordShown ? "text" : "password"} {...register("password")} placeholder="Password  " />
+        <Button id={registerForm ?"visibilityRegister":"visibility"} onClick={togglePassword}><img id="eye" src={passwordShown ? openEye : closedEye} alt="eye" /></Button>          
+        </div>
+        <Button className="loginInput" type="submit" variant="contained">Submit</Button>
         <p id="registerP">Si aun no tienes cuenta, click <Button onClick={toggleRegister}><p>aquí</p></Button></p>
       </form>}
   </div>)

@@ -116,12 +116,12 @@ const NEAS = () => {
       </Modal>
       </div>
 
-      <div className="search">
+      {/* <div className="search">
       <form onSubmit={handleSubmit}>
           <TextField name="name" label="Busqueda de NEAS" />
           <Button type="submit" variant="contained" onClick={handleOpenSearch}>Search</Button>
         </form>
-      </div>
+      </div> */}
       <div className="modalAdd">
       <Modal
         keepMounted
