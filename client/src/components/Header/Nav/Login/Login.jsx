@@ -18,9 +18,9 @@ import * as yup from 'yup';
 // const regex = ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$
 
 const schema = yup.object({
-  email: yup.string('introduce a valid email').email('introduce a valid email').required('email is required'),
+  nickname: yup.string().min(3).required(),
+  email: yup.string().email().required(),
   password: yup.string(),
-  // passwordRepeat: yup.string().matches(schema.password)
 }).required();
 
 const Login = (props) => {
@@ -35,6 +35,8 @@ const Login = (props) => {
   const [registerError, setRegisterError] = useState(false)
 
   const [loginError, setLoginError] = useState(false)
+
+  const [repPasswordError, setRepPasswordError] = useState(false)
 
   const nicknameError = 'El nickname es requerido y es necesario que contenga 3 o más caracteres'
   const passwordError = 'La password debe contener al menos una mayúscula, una minúscula, un número y un símbolo'
@@ -58,7 +60,10 @@ const Login = (props) => {
 
   const [registered] = useSound(registeredUser, { volume: 0.5 });
 
+
+
   const loginValidation = async (user) => {
+
       console.log(user);    
     try {
 
@@ -91,9 +96,18 @@ const Login = (props) => {
         console.log(loginError);
       }
     }
-    catch {
-
+    catch(e){
+      console.log(e);
     }
+  }
+
+  const sendForm = (event) => {
+    event.preventDefault()
+    const email = event.target.email.value
+    const password = event.target.password.value
+    const user = {email, password}
+
+    loginValidation(user)
   }
 
   const registration = async (user) => {
@@ -106,7 +120,8 @@ const Login = (props) => {
       password: hash
     }
     console.log(userCrypt);
-
+    console.log(user.passwordRepeat);
+    if (user.password == user.passwordRepeat) {
     try{
       const res = await axios.post("https://sleepy-retreat-77024.herokuapp.com/api/users/create", userCrypt)
       const data = await res.data;
@@ -129,12 +144,16 @@ const Login = (props) => {
     }
     catch(e){
       console.log(e);
+    }      
     }
+    else{
+      setRepPasswordError(true)
+    }
+
   }
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(schema)
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm(
+    {resolver: yupResolver(schema)});
 
   return (<div className="formContainer">
     {registerForm ? 
@@ -149,19 +168,23 @@ const Login = (props) => {
       <TextField className="registerInput" name="password" type={passwordShown ? "text" : "password"} {...register("password")} placeholder="Password" />
       <Button id={registerForm ?"visibilityRegister":"visibility"} onClick={togglePassword}><img id="eye" src={passwordShown ? openEye : closedEye} alt="eye" /></Button>         
       </div>
-      <p className="pError">{errors.password?passwordError:null}</p>     
-      <TextField className="registerInput" name="passwordRepeat" type={passwordShown ? "text" : "password"} placeholder="Repite password" />
+      <p className="pError">{errors.password?passwordError:null}</p>   
+      <div>
+      <TextField className="registerInput" name="passwordRepeat" {...register("passwordRepeat")} type={passwordShown ? "text" : "password"} placeholder="Repite password" />    
+      {repPasswordError?<p className="pError">Las contraseñas deben coincidir</p>: null}    
+        </div>  
+
 
       <Button className="registerInput" type="submit" variant="contained">Submit</Button>
       <p id="registerP">Para loguearte, click <Button onClick={toggleRegister}><p>aquí</p></Button></p>
     </form>
 
-      : <form onSubmit={handleSubmit(loginValidation)}>
+      : <form onSubmit={sendForm}>
         <h4 className="landingName">Introduce tus credenciales</h4>
         {loginError?<p className="pError">Email o contraseña incorrectos</p>: null}        
-        <TextField className="loginInput" name="email" {...register("email")} placeholder="Email  " />
+        <TextField className="loginInput" name="email" placeholder="Email  " />
         <div>
-        <TextField className="loginInput" name="password" type={passwordShown ? "text" : "password"} {...register("password")} placeholder="Password  " />
+        <TextField className="loginInput" name="password" type={passwordShown ? "text" : "password"} placeholder="Password  " />
         <Button id={registerForm ?"visibilityRegister":"visibility"} onClick={togglePassword}><img id="eye" src={passwordShown ? openEye : closedEye} alt="eye" /></Button>          
         </div>
         <Button className="loginInput" type="submit" variant="contained">Submit</Button>
