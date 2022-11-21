@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext,  useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useForm } from 'react-hook-form';
@@ -38,6 +38,9 @@ const Login = (props) => {
 
   const [repPasswordError, setRepPasswordError] = useState(false)
 
+
+
+
   const nicknameError = 'El nickname es requerido y es necesario que contenga 3 o más caracteres'
   const passwordError = 'La password debe contener al menos una mayúscula, una minúscula, un número y un símbolo'
   const emailError = 'El email debe contener un formato correcto'
@@ -59,6 +62,10 @@ const Login = (props) => {
   const [change] = useSound(loginSound, { volume: 0.5 });
 
   const [registered] = useSound(registeredUser, { volume: 0.5 });
+
+
+
+  
 
 
 
@@ -119,6 +126,8 @@ const Login = (props) => {
       email: user.email,
       password: hash
     }
+
+
     console.log(userCrypt);
     console.log(user.passwordRepeat);
     if (user.password == user.passwordRepeat) {
@@ -173,8 +182,6 @@ const Login = (props) => {
       <TextField className="registerInput" name="passwordRepeat" {...register("passwordRepeat")} type={passwordShown ? "text" : "password"} placeholder="Repite password" />    
       {repPasswordError?<p className="pError">Las contraseñas deben coincidir</p>: null}    
         </div>  
-
-
       <Button className="registerInput" type="submit" variant="contained">Submit</Button>
       <p id="registerP">Para loguearte, click <Button onClick={toggleRegister}><p>aquí</p></Button></p>
     </form>
@@ -189,6 +196,7 @@ const Login = (props) => {
         </div>
         <Button className="loginInput" type="submit" variant="contained">Submit</Button>
         <p id="registerP">Si aun no tienes cuenta, click <Button onClick={toggleRegister}><p>aquí</p></Button></p>
+
       </form>}
   </div>)
 }

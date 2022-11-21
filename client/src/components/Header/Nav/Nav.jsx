@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext,useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -13,6 +13,7 @@ import tick from '../../../assets/sounds/tick.wav'
 import changeSound from '../../../assets/sounds/change.wav'
 import logo from '../../../assets/nasa.png'
 import { useSelector } from 'react-redux';
+import jwt_decode from "jwt-decode";
 
 
 const style = {
@@ -35,9 +36,30 @@ const Nav = () => {
   const handleOpenLogin = () => setOpenLogin(true);
   let handleCloseLogin = () => setOpenLogin(false);
   const numberCart = useSelector(state=>state.numberCart);
+  const [userGoogle, setUserGoogle] = useState({})
 
   const landings = ["l", "a", "n", "d", "i", "n", "g", "s"]
   const landingBlue = []
+
+
+  function handleCallbackResponse(response){
+    console.log("Encoded JWT ID token: " + response.credential);
+    const userObject = jwt_decode(response.credential);
+    setUserGoogle(userObject)
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "741529201651-87iqkt4276347cbbfvc4vd5mh3mpiufv.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme: "dark", size: "large"}
+    )
+  }, [])
 
 
 
@@ -142,6 +164,9 @@ const Nav = () => {
         <Login edit={openLogin} close={handleCloseLogin} />
       </Box>
     </Modal>
+    
+    <div id="signInDiv"></div>
+
     {loginData ?
 
       <div className="cartContainer"><Button onClick={handleOpenCart}>
