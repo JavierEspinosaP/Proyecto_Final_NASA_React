@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext,useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -13,6 +13,7 @@ import tick from '../../../assets/sounds/tick.wav'
 import changeSound from '../../../assets/sounds/change.wav'
 import logo from '../../../assets/nasa.png'
 import { useSelector } from 'react-redux';
+
 
 
 const style = {
@@ -36,8 +37,12 @@ const Nav = () => {
   let handleCloseLogin = () => setOpenLogin(false);
   const numberCart = useSelector(state=>state.numberCart);
 
+
   const landings = ["l", "a", "n", "d", "i", "n", "g", "s"]
   const landingBlue = []
+
+
+
 
 
 
@@ -142,6 +147,9 @@ const Nav = () => {
         <Login edit={openLogin} close={handleCloseLogin} />
       </Box>
     </Modal>
+    
+
+
     {loginData ?
 
       <div className="cartContainer"><Button onClick={handleOpenCart}>
