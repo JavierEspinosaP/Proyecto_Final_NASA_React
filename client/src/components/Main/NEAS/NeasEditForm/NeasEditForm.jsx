@@ -10,7 +10,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 function NeasEditForm(props) {
 
   const designation = props.designation
-  const discovery_date = props.discovery_date.slice(0,10)
+  const discovery_date = props.discovery_date
   const close = props.handleClose
 
   const { register, handleSubmit } = useForm();

@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useContext} from 'react'
-
 import useSound from 'use-sound';
 import closedEye from '../../../../../assets/closedEye.png'
 import openEye from '../../../../../assets/openEye.png'
@@ -14,6 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import registeredUser from '../../../../../assets/sounds/registeredUser.wav'
 import Login from '../../Login'
+import useRegister from '../../../../../hooks/useRegister'
 
 function Register(props) {
 
