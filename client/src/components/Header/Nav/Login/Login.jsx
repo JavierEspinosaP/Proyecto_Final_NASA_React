@@ -104,10 +104,6 @@ const Login = (props) => {
         })
         change()
     }
-
-
-
-  
   }
 
   useEffect(() => {
@@ -189,6 +185,7 @@ const Login = (props) => {
         </div>
         <Button className="loginInput" type="submit" variant="contained">Submit</Button>
         <p id="registerP">Si aun no tienes cuenta, click <Button onClick={toggleRegister}><p>aquí</p></Button></p>
+        <p id="recoverP">¿Olvidaste la contraseña?<Button ><p>Recuperar</p></Button></p>
         <div id="signInDiv"></div>
       </form>}
   </div>)
