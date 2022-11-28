@@ -71,7 +71,7 @@ const Login = (props) => {
         const jsonEmail = {
           "email": `${email}`
         }
-        return axios.post("http://localhost:3000/api/mailrecover", jsonEmail)
+        return axios.post("https://sleepy-retreat-77024.herokuapp.com/api/mailrecover", jsonEmail)
           .then(response => {
             console.log(response);
           })
