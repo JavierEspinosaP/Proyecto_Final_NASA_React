@@ -71,6 +71,7 @@ const Login = (props) => {
         const jsonEmail = {
           "email": `${email}`
         }
+      console.log(jsonEmail);
         return axios.post("https://sleepy-retreat-77024.herokuapp.com/api/mailrecover", jsonEmail)
           .then(response => {
             console.log(response);
@@ -147,6 +148,7 @@ const Login = (props) => {
 
   useEffect(() => {
     /* global google */
+    
     google.accounts.id.initialize({
       client_id: "741529201651-87iqkt4276347cbbfvc4vd5mh3mpiufv.apps.googleusercontent.com",
       callback: handleCallbackResponse
