@@ -36,6 +36,10 @@ const Login = (props) => {
 
   const [userGoogle, setUserGoogle] = useState({})
 
+  const pruebaEmail = {
+    "email": "cristinafoh001@gmail.com"
+  }
+
 
 
 
@@ -64,7 +68,10 @@ const Login = (props) => {
       confirmButtonText: 'Send it!',
       showLoaderOnConfirm: true,
       preConfirm: (email) => {
-        return axios.post(`https://sleepy-retreat-77024.herokuapp.com/api/mailrecover`, email)
+        const jsonEmail = {
+          "email": `${email}`
+        }
+        return axios.post("http://localhost:3000/api/mailrecover", jsonEmail)
           .then(response => {
             console.log(response);
           })
