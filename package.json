@@ -22,11 +22,14 @@
     "cowsay2": "^2.0.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "googleapis": "^109.0.1",
     "heroku": "^7.64.0",
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.1",
     "node-fetch": "^2.6.7",
+    "nodemailer": "^6.8.0",
     "nodemon": "^2.0.19",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "random-token": "^0.0.8"
   }
 }

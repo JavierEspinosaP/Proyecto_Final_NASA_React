@@ -24,6 +24,17 @@ margin-top:15px
 
 #registerP{
     color: #fff;
+    max-height: 20px;
+}
+
+#recoverP{
+    color: #fff;
+    max-width:300px;
+    max-height: 35px;
+}
+
+.MuiButtonBase-root{
+    max-height: 35px;
 }
 
 .pError{
