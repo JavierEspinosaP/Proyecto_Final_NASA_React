@@ -7,7 +7,8 @@ const changePassword = async (user) =>{
     try{
     const updateEmail = await User.findOneAndUpdate({email: user.email}, {$set: {password:user.password}}) 
     // console.log("esto es user", user);  
-    // console.log(updateEmail);    
+    // console.log(updateEmail);   
+    return updateEmail 
     }
     catch(e){
         console.log(e); 
