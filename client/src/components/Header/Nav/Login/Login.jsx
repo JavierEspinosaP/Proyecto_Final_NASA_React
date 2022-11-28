@@ -52,6 +52,38 @@ const Login = (props) => {
     setRegisterForm(!registerForm);
   };
 
+  function passRecoverModal(){
+    close()
+    Swal.fire({
+      title: 'Introduce tu correo electrónico',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Send it!',
+      showLoaderOnConfirm: true,
+      preConfirm: (email) => {
+        return axios.post(`https://sleepy-retreat-77024.herokuapp.com/api/mailrecover`, email)
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            Swal.showValidationMessage(
+              `Request failed: ${error}`
+            )
+          })
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Contraseña de recuperación enviada"
+        })
+      }
+    })
+  }
+
 
 
   async function handleCallbackResponse(response) {
@@ -185,7 +217,7 @@ const Login = (props) => {
         </div>
         <Button className="loginInput" type="submit" variant="contained">Submit</Button>
         <p id="registerP">Si aun no tienes cuenta, click <Button onClick={toggleRegister}><p>aquí</p></Button></p>
-        <p id="recoverP">¿Olvidaste la contraseña?<Button ><p>Recuperar</p></Button></p>
+        <p id="recoverP">¿Olvidaste la contraseña?<Button onClick={passRecoverModal} ><p>Recuperar</p></Button></p>
         <div id="signInDiv"></div>
       </form>}
   </div>)
