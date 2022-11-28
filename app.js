@@ -10,6 +10,7 @@ const path = require('path')
 const landingsApiRouter = require('./routes/landingsApiRoutes')
 const usersApiRouter = require('./routes/usersApiRoutes')
 const neasApiRouter = require('./routes/neasApiRoutes')
+const mailApiRouter = require('./routes/mailApiRoutes')
 
 //Middleware 404
 const manage404 = require('./middlewares/error404')
@@ -35,6 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', landingsApiRouter)
 app.use('/api', neasApiRouter)
 app.use('/api', usersApiRouter)
+app.use('/api', mailApiRouter)
 
 
 // Serve the static files from the React app
