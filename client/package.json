@@ -11,6 +11,8 @@
     "@mui/icons-material": "^5.10.6",
     "@mui/lab": "^5.0.0-alpha.102",
     "@mui/material": "^5.10.8",
+    "@stripe/react-stripe-js": "^1.15.0",
+    "@stripe/stripe-js": "^1.44.1",
     "@sweetalert2/theme-dark": "^5.0.14",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
