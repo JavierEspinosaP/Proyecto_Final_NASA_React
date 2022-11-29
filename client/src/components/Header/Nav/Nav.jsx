@@ -13,6 +13,9 @@ import tick from '../../../assets/sounds/tick.wav'
 import changeSound from '../../../assets/sounds/change.wav'
 import logo from '../../../assets/nasa.png'
 import { useSelector } from 'react-redux';
+import logoutImg from '../../../assets/logout.png'
+import logoutSound from '../../../assets/sounds/logout_complete.wav'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 
 
@@ -31,7 +34,7 @@ const style = {
 
 const Nav = () => {
 
-  const { loginData } = useContext(loginContext)  
+  const { loginData, setLoginData } = useContext(loginContext)  
   const [openLogin, setOpenLogin] = React.useState(false);
   const handleOpenLogin = () => setOpenLogin(true);
   let handleCloseLogin = () => setOpenLogin(false);
@@ -73,9 +76,22 @@ const Nav = () => {
     { volume: 0.3 }
   );
   const [change] = useSound(changeSound, { volume: 0.5 });
+  const [logout] = useSound(logoutSound, { volume: 0.5 });
   const [isHovering, setIsHovering] = React.useState(false);
 
   const { countProducts } = useContext(countContext)
+
+
+  const handleLogout = () => {
+    setLoginData(false)
+    Swal.fire({
+      icon: 'success',
+      title: 'Logout complete',
+      showConfirmButton: false,
+      timer: 3000
+    })
+    logout()
+  }
 
 
   return <div className="nav">
@@ -155,6 +171,7 @@ const Nav = () => {
       <div className="cartContainer"><Button onClick={handleOpenCart}>
         <img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts === 1 ?
           <p className="fontAddProducts">  {String(numberCart)} Producto añadido</p> : <p className="fontAddProducts">{String(numberCart)} Productos añadidos</p>}
+      <Button id="logoutButton" onClick={handleLogout} ><img id="logoutImg" src={logoutImg} alt="logoutImg" /></Button>
       </div> : null}
     <Modal
       keepMounted
