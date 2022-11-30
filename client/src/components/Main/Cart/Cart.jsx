@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import { countContext } from '../../../context/countContext';
+import { Link } from "react-router-dom";
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 
@@ -18,7 +19,7 @@ const Cart = () => {
         clientSecret: process.env.REACT_APP_CLIENT_SECRET
       };
 
-    //   console.log(options.clientSecret);
+      console.log(options.clientSecret);
     
   let TotalCart=0;
   
@@ -76,7 +77,7 @@ const Cart = () => {
 
     </table>
     <div id="payContainer">
-    <button id="payButton">Pasarela de pago</button>            
+    <Link to="/payments"><button id="payButton">Pasarela de pago</button></Link>         
     </div>
 
     </div>
