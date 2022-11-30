@@ -11,7 +11,7 @@ const Home = () => {
   const {homeData, loadingHome} = useContext(homeContext)
 
     return <div className="home">
-      {loadingHome?spinner:<div className="fetchContainer">
+      {homeData?<div className="fetchContainer">
 
 
         <div className="imgContainer">
@@ -24,7 +24,7 @@ const Home = () => {
           <p>{homeData.explanation}<span>&#160;</span></p>
         </section>
         </div>
-        </div>}</div>
+        </div>:spinner}</div>
     ;
   }
 
