@@ -30,6 +30,7 @@
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.19",
     "path": "^0.12.7",
-    "random-token": "^0.0.8"
+    "random-token": "^0.0.8",
+    "react-app-rewired": "^2.2.1"
   }
 }
