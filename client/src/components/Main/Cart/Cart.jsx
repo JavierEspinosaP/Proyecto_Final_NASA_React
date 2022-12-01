@@ -12,17 +12,17 @@ const Cart = () => {
     const dispatch = useDispatch();
     const items = useSelector(state=>state.Carts);
     useSelector(state=>state.numberCart);
-    let { countProducts, setCount } = useContext(countContext)
 
     const options = {
         // passing the client secret obtained from the server
         clientSecret: process.env.REACT_APP_CLIENT_SECRET
       };
 
-      console.log(options.clientSecret);
+    //   console.log(options.clientSecret);
     
   let TotalCart=0;
   
+    console.log(items);
     items.forEach(item => {
         TotalCart+=item.quantity * item.price;
     });

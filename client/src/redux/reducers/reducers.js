@@ -14,6 +14,13 @@ function shopping(state = initProduct, action) {
                 ...state,
                 _products: action.payload
             }
+        case "REMOVE_ALL_PRODUCTS":
+            state.Carts = [];
+            return {
+                ...state,
+                numberCart: 0,
+                Carts: []
+            }
 
         case "ADD_CART":
             if (state.numberCart === 0) {
@@ -40,7 +47,7 @@ function shopping(state = initProduct, action) {
             } else {
                 let check = false;
                 state.Carts.map((item, i) => {
-                    if (action.payload.orbit_class){
+                    if (action.payload.orbit_class) {
                         if (item.name === action.payload.designation) {
                             state.Carts[i].quantity++;
                             check = true;
@@ -50,7 +57,7 @@ function shopping(state = initProduct, action) {
                         if (item.name === action.payload.name) {
                             state.Carts[i].quantity++;
                             check = true;
-                        }   
+                        }
                     }
 
                 });

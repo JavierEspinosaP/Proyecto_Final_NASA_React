@@ -12,7 +12,7 @@ import useSound from 'use-sound';
 import tick from '../../../assets/sounds/tick.wav'
 import changeSound from '../../../assets/sounds/change.wav'
 import logo from '../../../assets/nasa.png'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import logoutImg from '../../../assets/logout.png'
 import logoutSound from '../../../assets/sounds/logout_complete.wav'
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -39,7 +39,7 @@ const Nav = () => {
   const handleOpenLogin = () => setOpenLogin(true);
   let handleCloseLogin = () => setOpenLogin(false);
   const numberCart = useSelector(state=>state.numberCart);
-
+  const dispatch = useDispatch();
 
   const landings = ["l", "a", "n", "d", "i", "n", "g", "s"]
   const landingBlue = []
@@ -81,10 +81,20 @@ const Nav = () => {
 
   const { countProducts } = useContext(countContext)
 
+  useEffect(() => {
+    if (numberCart==0) {
+      setOpenCart(false)
+    }
+  }, [numberCart])
+  
+
 
 
   const handleLogout = () => {
     setLoginData(false)
+    dispatch({
+      type: "REMOVE_ALL_PRODUCTS"
+  })
     Swal.fire({
       icon: 'success',
       title: 'Logout complete',
@@ -168,9 +178,8 @@ const Nav = () => {
 
 
     {loginData ?
-
       <div className="cartContainer"><Button onClick={handleOpenCart}>
-        <img id="cart" src={CartImg} alt="Carro" /></Button>{countProducts === 1 ?
+        {numberCart>0?<img id="cart" src={CartImg} alt="Carro" />:null}</Button>{countProducts === 1 ?
           <p className="fontAddProducts">  {String(numberCart)} Producto añadido</p> : <p className="fontAddProducts">{String(numberCart)} Productos añadidos</p>}
       <Button id="logoutButton" onClick={handleLogout} ><img id="logoutImg" src={logoutImg} alt="logoutImg" /></Button>
       </div> : null}
