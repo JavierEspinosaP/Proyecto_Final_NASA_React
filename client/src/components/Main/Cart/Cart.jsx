@@ -18,8 +18,6 @@ const Cart = () => {
         clientSecret: process.env.REACT_APP_CLIENT_SECRET
       };
 
-    console.log(options.clientSecret);
-
 
   let TotalCart=0;
   
