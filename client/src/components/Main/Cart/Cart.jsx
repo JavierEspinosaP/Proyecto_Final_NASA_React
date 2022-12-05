@@ -3,25 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import { countContext } from '../../../context/countContext';
 import { Link } from "react-router-dom";
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_51M9UayJ9f9xA7vNuNxTvPlcfD1EqRYHPnhVotfjz2BSF5poyfW5EhCAwsp46Q7Z1fRSy1MSJOVoybGR5HPqY1bG700sru9rKtQ');
+
 
 const Cart = () => {
     const dispatch = useDispatch();
     const items = useSelector(state=>state.Carts);
     useSelector(state=>state.numberCart);
 
-    const options = {
-        // passing the client secret obtained from the server
-        clientSecret: process.env.REACT_APP_CLIENT_SECRET
-      };
+
 
 
   let TotalCart=0;
-  
-    console.log(items);
+
     items.forEach(item => {
         TotalCart+=item.quantity * item.price;
     });

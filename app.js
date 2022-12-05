@@ -9,6 +9,7 @@ const path = require('path')
 //Routes
 const landingsApiRouter = require('./routes/landingsApiRoutes')
 const usersApiRouter = require('./routes/usersApiRoutes')
+const paymentsApiRouter = require('./routes/paymentsApiRoutes')
 const neasApiRouter = require('./routes/neasApiRoutes')
 const mailApiRouter = require('./routes/mailApiRoutes')
 
@@ -36,6 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', landingsApiRouter)
 app.use('/api', neasApiRouter)
 app.use('/api', usersApiRouter)
+app.use('/api', paymentsApiRouter)
 app.use('/api', mailApiRouter)
 
 
