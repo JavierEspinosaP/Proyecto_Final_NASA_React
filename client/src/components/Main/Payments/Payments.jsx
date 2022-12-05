@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {PaymentElement} from '@stripe/react-stripe-js';
-import axios from 'axios'
+import axios from 'axios';
+import Button from '@mui/material/Button';
 
 
 
@@ -31,11 +32,13 @@ const CheckoutForm = () => {
     if(!error){
       const {id} = paymentMethod
 
-      const {data} = await axios.post('http://localhost:3000/api/checkout', {
+      const {data} = await axios.post('https://sleepy-retreat-77024.herokuapp.com/api/checkout', {
         id,
         amount: 10000
       })
       console.log(data);
+
+      elements.getElement(CardElement).clear();
     }
 
   }
@@ -43,7 +46,7 @@ const CheckoutForm = () => {
 
   return <form onSubmit={handleSubmit} className="checkoutForm">
     <CardElement/>
-    <button>Buy</button>
+    <Button>Buy</Button>
   </form>
 }
 
