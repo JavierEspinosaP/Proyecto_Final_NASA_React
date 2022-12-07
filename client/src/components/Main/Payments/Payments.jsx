@@ -5,6 +5,9 @@ import {loadStripe} from '@stripe/stripe-js';
 import {PaymentElement} from '@stripe/react-stripe-js';
 import axios from 'axios';
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 
 
@@ -13,18 +16,26 @@ const stripePromise = loadStripe('pk_test_51M9UayJ9f9xA7vNuNxTvPlcfD1EqRYHPnhVot
 function Payments() {
 
 
-// const stripe = require('stripe')('sk_test_51M9UayJ9f9xA7vNuGpGzP415m8EHmZqzY6uBIfaeDcIzAoBu0TAoDL4Ye1UFDlt7hk4GELTX66JZEg59hoUjQfGg00tfBDQSCg');
-
-
 const CheckoutForm = () => {
 
   const stripe = useStripe();
   const elements = useElements();
+  const dispatch = useDispatch();
+  const items = useSelector(state=>state.Carts);
+  useSelector(state=>state.numberCart);
+
+  let TotalCart=0;
+
+  items.forEach(item => {
+      TotalCart+=item.quantity * item.price;
+  });
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const {error, paymentMethod} = await stripe.createPaymentMethod({
+      // receipt_email: document.getElementById('email').value,  LINEA PARA MANDAR MAIL DE CONFIRMACION AL COMPRADOR
       type: 'card',
       card: elements.getElement(CardElement)
     }
@@ -34,7 +45,7 @@ const CheckoutForm = () => {
 
       const {data} = await axios.post('https://sleepy-retreat-77024.herokuapp.com/api/checkout', {
         id,
-        amount: 10000
+        amount: TotalCart * 100
       })
       console.log(data);
 
@@ -42,14 +53,28 @@ const CheckoutForm = () => {
     }
 
   }
-  
+
+
 
   return <form onSubmit={handleSubmit} className="checkoutForm">
-    <CardElement/>
-    <Button>Buy</Button>
+    <div className="cardContainer">
+    <CardContent>
+    {items.map((item, i)=>{
+      return (
+        <Typography gutterBottom variant="p" color="black" fontFamily="Helvetica" component="div">{item.name} x{item.quantity}</Typography>
+      )
+    })}
+    <Typography gutterBottom variant="p" color="black" fontFamily="Helvetica" component="div">Total: {TotalCart}€</Typography>
+    <Typography gutterBottom variant="p" color="black" fontFamily="Helvetica" component="div">Introduce la tarjeta:</Typography>
+    </CardContent>
+    <CardElement />
+    <Button>Buy</Button>         
+    </div>
+   
+
+
   </form>
 }
-
 
   return (
     <div className="payment">

@@ -95,12 +95,10 @@ const Login = (props) => {
 
 
   async function handleCallbackResponse(response) {
-    console.log("Encoded JWT ID token: " + response.credential);
     const userObject = jwt_decode(response.credential);
     const res = await axios.get(`https://sleepy-retreat-77024.herokuapp.com/api/users?email=${userObject.email}`)
     const data = await res.data;
     if (res.data.length === 0) {
-      console.log(userObject);
       setUserGoogle(userObject)
         const hash = await bcrypt.hash(userObject.jti, 10)
     
@@ -148,7 +146,6 @@ const Login = (props) => {
 
   useEffect(() => {
     /* global google */
-    
     google.accounts.id.initialize({
       client_id: "741529201651-87iqkt4276347cbbfvc4vd5mh3mpiufv.apps.googleusercontent.com",
       callback: handleCallbackResponse

@@ -1,13 +1,25 @@
+@import '../utils/variables.scss';
 .payment{
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-image: $background;
 }
 
 .checkoutForm{
-    width: 300px
+    width: 300px;
+    height: 200px
 }
 
 .checkoutFormContainer{
     display: flex;
     justify-content: center;
-    margin: 200px auto
+    margin: 300px auto
+}
+
+.cardContainer{
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #fff;
 }

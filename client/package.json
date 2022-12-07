@@ -39,6 +39,7 @@
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.6",
+    "react-spinners-css": "^2.0.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.55.0",

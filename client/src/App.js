@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header'
 import Main from './components/Main'
 import Footer from './components/Footer';
-import { homeContext } from './context/homeContext';
 import { neasContext } from './context/neasContext';
 import { landingsContext } from './context/landingsContext'
 import { loginContext } from './context/loginContext'
@@ -23,8 +22,6 @@ const darkTheme = createTheme({
 });
 
 function App() {
-
-  const [homeData, setHomeData] = useState([]);
 
   const [landingsData, setLandingsData] = useState([])
 
@@ -52,10 +49,6 @@ function App() {
     async function fetchData() {
       try {
         // Petición HTTP
-        const resHome = await axios.get("https://api.nasa.gov/planetary/apod?api_key=nm3cjMhXbbfsmeZQhhAQAGCgeZpkN985h3xrg8We");
-
-        const home = await resHome.data;
-
 
         const resLandings = await axios.get("https://sleepy-retreat-77024.herokuapp.com/api/astronomy/landings");
         const landings = await resLandings.data;
@@ -69,7 +62,6 @@ function App() {
         // Guarda en el array de posts el resultado. Procesa los datos
 
         setNeasData(neas)
-        setHomeData(home)
 
             const paintImages = () => {
             for (let i = 0; i < landings.length; i++) {
@@ -90,7 +82,6 @@ function App() {
       } catch (e) {
         setLandingsData([])
         setNeasData([])
-        setHomeData([])
       }
     }
     fetchData();
@@ -112,11 +103,6 @@ function App() {
           }
 
         };
-
-
-  const homeDataObj = {
-    homeData, setHomeData
-  }
 
   const landingsDataObj = {
     landingsData, setLandingsData
@@ -151,13 +137,11 @@ function App() {
               <countContext.Provider value={countObj}>
                 <productsContext.Provider value={productsObj}>
                   <Header />
-                  <homeContext.Provider value={homeDataObj}>
                   <landingsContext.Provider value={landingsDataObj}>
                     <neasContext.Provider value={neasDataObj}>
                       <Main />
                     </neasContext.Provider>
                   </landingsContext.Provider>
-                  </homeContext.Provider>
                 </productsContext.Provider>
               </countContext.Provider>
             </loginContext.Provider>
