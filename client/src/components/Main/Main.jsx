@@ -5,7 +5,7 @@ import Landings from './Landings'
 import LandingsList from './Landings/LandingsList'
 import NEAS from './NEAS'
 import Login from '../Header/Nav/Login'
-import Payments from '../Main/Payments'
+import Cart from '../Main/Cart'
 
 const Main = () => {
 
@@ -16,7 +16,7 @@ const Main = () => {
         <Route element={<LandingsList/>} path={"/landings/list"}/>
         <Route element={<NEAS/>} path={"/neas"}/>
         <Route element={<Login/>} path={"/login"}/>
-        <Route element={<Payments/>} path={"/payments"}/>
+        <Route element={<Cart/>} path={"/cart"}/>
       </Routes>
     </div>;
   }

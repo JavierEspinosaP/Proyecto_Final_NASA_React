@@ -65,7 +65,6 @@ const CheckoutForm = () => {
       )
     })}
     <Typography gutterBottom variant="p" color="black" fontFamily="Helvetica" component="div">Total: {TotalCart}€</Typography>
-    <Typography gutterBottom variant="p" color="black" fontFamily="Helvetica" component="div">Introduce la tarjeta:</Typography>
     </CardContent>
     <CardElement />
     <Button>Buy</Button>         
@@ -79,9 +78,13 @@ const CheckoutForm = () => {
   return (
     <div className="payment">
       <div className="checkoutFormContainer" >
+      <div className="infoContainer">
+      <p>Para la prueba, introduce la tarjeta X</p>
       <Elements stripe={stripePromise} >
         <CheckoutForm />
-      </Elements>        
+      </Elements>               
+      </div>
+ 
       </div>
 
     </div>
