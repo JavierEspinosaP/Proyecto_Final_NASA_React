@@ -178,12 +178,14 @@ const Nav = () => {
 
 
     {loginData ?
-      <div className="cartContainer"><Button onClick={handleOpenCart}>
-        {numberCart>0?<img id="cart" src={CartImg} alt="Carro" />:null}</Button>{countProducts === 1 ?
+      <div className="cartContainer">
+        {numberCart>0?
+        <div><Link to="/cart"><img id="cart" src={CartImg} alt="Carro" /></Link></div>:null}
+        {countProducts === 1 ?
           <p className="fontAddProducts">  {String(numberCart)} Producto añadido</p> : <p className="fontAddProducts">{String(numberCart)} Productos añadidos</p>}
       <Button id="logoutButton" onClick={handleLogout} ><img id="logoutImg" src={logoutImg} alt="logoutImg" /></Button>
       </div> : null}
-    <Modal
+    {/* <Modal
       keepMounted
       open={openCart}
       onClose={handleCloseCart}
@@ -193,7 +195,7 @@ const Nav = () => {
       <Box  sx={style}>
         <Cart edit={openCart} />
       </Box>
-    </Modal>
+    </Modal> */}
   </div>;
 }
 
