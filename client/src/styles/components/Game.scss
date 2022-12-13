@@ -1,0 +1,16 @@
+@import '../utils/variables.scss';
+
+.Game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-image: $background;
+}
+
+.GameTitle{
+    text-align: center;
+    color: $orange;
+    font-family: 'Nasa', monospace;
+    letter-spacing: 3px;
+}

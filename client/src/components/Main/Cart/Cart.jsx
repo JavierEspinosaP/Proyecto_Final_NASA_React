@@ -17,14 +17,6 @@ const Cart = () => {
     useSelector(state => state.numberCart);
 
 
-
-    const initialOptions = {
-        "client-id": "ASUFYRDBrspJZBxnSbo6_rTZSTxZHApqo5GXTwbZkVktb-Pc_SAsTaSGDfQ5hiienZpXABDYRXB2cJv3",
-        currency: "USD",
-        intent: "capture",
-        "data-client-token": "abc123xyz==",
-    };
-
     const ButtonWrapper = ({ currency, showSpinner }) => {
         // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
         // This is the main reason to wrap the PayPalButtons in a new component
@@ -39,21 +31,6 @@ const Cart = () => {
                 },
             });
         }, [currency, showSpinner]);
-    }
-
-    const createOrder = (data, actions) => {
-        return actions.order.create({
-            purchase_units: [
-                {
-                    amount: {
-                        value: "0.01",
-                    },
-                },
-            ],
-        });
-    }
-    const onApprove = (data, actions) => {
-        return actions.order.capture();
     }
 
 
@@ -156,8 +133,6 @@ const Cart = () => {
                     </PayPalScriptProvider>
                 </div>
             </div>
-
-            {/* { (showSpinner && isPending) && <div className="spinner" /> } */}
 
 
         </div>
