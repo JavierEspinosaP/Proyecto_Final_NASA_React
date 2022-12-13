@@ -6,6 +6,7 @@ import LandingsList from './Landings/LandingsList'
 import NEAS from './NEAS'
 import Login from '../Header/Nav/Login'
 import Cart from '../Main/Cart'
+import Game from '../Main/Game'
 
 const Main = () => {
 
@@ -17,6 +18,7 @@ const Main = () => {
         <Route element={<NEAS/>} path={"/neas"}/>
         <Route element={<Login/>} path={"/login"}/>
         <Route element={<Cart/>} path={"/cart"}/>
+        <Route element={<Game/>} path={"/game"}/>
       </Routes>
     </div>;
   }

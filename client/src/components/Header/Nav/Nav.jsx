@@ -1,4 +1,4 @@
-import React, { useContext,useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import logoutImg from '../../../assets/logout.png'
 import logoutSound from '../../../assets/sounds/logout_complete.wav'
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -34,36 +35,64 @@ const style = {
 
 const Nav = () => {
 
-  const { loginData, setLoginData } = useContext(loginContext)  
+  const { loginData, setLoginData } = useContext(loginContext)
   const [openLogin, setOpenLogin] = React.useState(false);
   const handleOpenLogin = () => setOpenLogin(true);
   let handleCloseLogin = () => setOpenLogin(false);
-  const numberCart = useSelector(state=>state.numberCart);
+  const numberCart = useSelector(state => state.numberCart);
   const dispatch = useDispatch();
 
   const landings = ["l", "a", "n", "d", "i", "n", "g", "s"]
   const landingBlue = []
 
+  const [clicks, setClicks] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
+
+  const navigate = useNavigate();
+
+  const handleImageClick = () => {
+    setClicks(clicks + 1);
+
+    if (clicks === 0) {
+      const startTime = Date.now();
+      setElapsedTime(startTime);
+    }
+
+    if (clicks + 1 === 10 && Date.now() - elapsedTime <= 3000) {
+      setClicks(0);
+      setElapsedTime(0);
+      navigate('/game')
+    }
+    if (clicks > 10) {
+      setClicks(0);
+    }
+
+    setTimeout(() => {
+      setClicks(0);
+      setElapsedTime(0);
+    }, 3000);
+  }
 
 
 
 
+  const landingsMap = () => {
+    landings.map(l =>
+      landingBlue.push(l)
 
-  const landingsMap = () => {landings.map(l => 
-    landingBlue.push(l)
-    
-  )} 
+    )
+  }
 
   useEffect(() => {
 
-  handleCloseLogin = () => {
-    if (loginData) {
-      setOpenLogin(false);
-    }      
-  }  
-  handleCloseLogin()
+    handleCloseLogin = () => {
+      if (loginData) {
+        setOpenLogin(false);
+      }
+    }
+    handleCloseLogin()
   }, [loginData])
-  
+
 
 
 
@@ -82,11 +111,11 @@ const Nav = () => {
   const { countProducts } = useContext(countContext)
 
   useEffect(() => {
-    if (numberCart==0) {
+    if (numberCart == 0) {
       setOpenCart(false)
     }
   }, [numberCart])
-  
+
 
 
 
@@ -94,7 +123,7 @@ const Nav = () => {
     setLoginData(false)
     dispatch({
       type: "REMOVE_ALL_PRODUCTS"
-  })
+    })
     Swal.fire({
       icon: 'success',
       title: 'Logout complete',
@@ -106,7 +135,7 @@ const Nav = () => {
 
 
   return <div className="nav">
-    <img id="logo" src={logo} alt="" />
+    <img id="logo" onClick={handleImageClick} src={logo} alt="" />
     <Link className="nav-link" to='/'
       onClick={change}
       onMouseEnter={() => {
@@ -131,7 +160,7 @@ const Nav = () => {
     <Link className="nav-link" to='/landings/list'
       onClick={change}
       onMouseEnter={() => {
-        
+
         setIsHovering(true);
         play();
         landingsMap()
@@ -174,16 +203,16 @@ const Nav = () => {
         <Login edit={openLogin} close={handleCloseLogin} />
       </Box>
     </Modal>
-    
+
 
 
     {loginData ?
       <div className="cartContainer">
-        {numberCart>0?
-        <div><Link to="/cart"><img id="cart" src={CartImg} alt="Carro" /></Link></div>:null}
+        {numberCart > 0 ?
+          <div><Link to="/cart"><img id="cart" src={CartImg} alt="Carro" /></Link></div> : null}
         {countProducts === 1 ?
           <p className="fontAddProducts">  {String(numberCart)} Producto añadido</p> : <p className="fontAddProducts">{String(numberCart)} Productos añadidos</p>}
-      <Button id="logoutButton" onClick={handleLogout} ><img id="logoutImg" src={logoutImg} alt="logoutImg" /></Button>
+        <Button id="logoutButton" onClick={handleLogout} ><img id="logoutImg" src={logoutImg} alt="logoutImg" /></Button>
       </div> : null}
     {/* <Modal
       keepMounted
