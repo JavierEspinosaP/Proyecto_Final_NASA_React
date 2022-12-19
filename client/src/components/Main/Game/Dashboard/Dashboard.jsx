@@ -5,7 +5,7 @@ function Dashboard() {
 
 
   return (
-    <iframe src="https://space-invaders.throb.repl.co/" width="800" height="900" frameborder="0"></iframe>
+    <iframe src="https://effortless-seahorse-fbe3d3.netlify.app/" width="800" height="900" frameborder="0"></iframe>
   );
 }
 
