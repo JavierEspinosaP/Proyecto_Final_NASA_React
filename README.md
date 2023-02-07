@@ -1,4 +1,4 @@
-Puede visitarse en 👉  https://sleepy-retreat-77024.herokuapp.com/
+Puede visitarse en 👉  https://sleepy-retreat-77024.herokuapp.com/ (Parece que en Microsoft Edge, y puede que en otros browsers que desconozco, ciertas partes de la página no se ajustan correctamente, estoy trabajando en ello)
 
 En este proyecto se requería montar una web con el stack MERN completo, base de datos en MongoDB, utilizando su cloud Atlas, servidor configurado con Express y
 un front end desarrollado en ReactJS, además de dar estilos con SASS.
@@ -22,8 +22,15 @@ En esta pantalla se ofrece la posibilidad de ordenar la información por nombre,
 
 ![search](https://user-images.githubusercontent.com/103537170/200192815-410841b3-3a60-412f-b763-f10ea27c3ff8.png)
 
-Por último, la vista NEAS, proporciona información sobre la otra colección de la base de datos, con las mismas funcionalidades que Landings.
+La vista NEAS, proporciona información sobre la otra colección de la base de datos, con las mismas funcionalidades que Landings.
 
-En proceso de desarrollo, se encuentra una nueva funcionalidad, que proporcionará al usuario la posibilidad de "comprar documentos", con un carrito de compra y una pasarela de pago ficticia.
+Podemos loguearnos para acceder a funcionalidades como la "pasarela de pago" ficticia, desarrollada con Redux, con la que podemos añadir al carrito landings o NEAS, y pagarlos con Paypal. Está disponible el registro con mail y contraseña y también con Google. 
 
-Con este proyecto he afianzado conocimientos sobre unir un backend desarrollado con NodeJS y Express y un frontend desarrollado en React, repasado el consumo de API's externas así como SASS para los estilos, la utilización de librerias como Material UI, hooks (paginación), useContext y Leaflet con React.
+Para la recuperación de contraseña he utilizado Nodemailer, en caso de que pidas la recuperación, se te pedirá el correo, y si está en la base de datos, se te enviará una contraseña temporal para que puedas acceder a tu cuenta. En desarrollo se encuentra la funcionalidad para poder restablecer una contraseña que nosotros decidamos.
+
+![carrito](https://user-images.githubusercontent.com/103537170/217319514-45889a6c-e1aa-4f68-bab9-704391f02b6b.jpg)
+
+Por último, y a modo de "Easter Egg", es posible entrar en una vista "oculta" en la que podremos jugar a un juego de la misma temática, desarrollado con la librería Phaser 3, en la que controlaremos una nave y tendremos por objetivo evitar que los asteroides caigan en la tierra (el juego aún se encuentra en version desarrollo y para reiniciar la partida es necesario recargar la página). Para ello se deberá hacer clic en el icono de la NASA 10 veces antes de 3 segundos.
+
+![game](https://user-images.githubusercontent.com/103537170/217319584-4ed252b8-ec8f-4b3d-af35-6d94e5e4f4fe.jpg)
+
