@@ -26,9 +26,9 @@ La vista NEAS, proporciona información sobre la otra colección de la base de d
 
 Podemos loguearnos para acceder a funcionalidades como la "pasarela de pago" ficticia, desarrollada con Redux, con la que podemos añadir al carrito landings o NEAS, y pagarlos con Paypal. Está disponible el registro con mail y contraseña y también con Google. 
 
-Para la recuperación de contraseña he utilizado Nodemailer, en caso de que pidas la recuperación, se te pedirá el correo, y si está en la base de datos, se te enviará una contraseña temporal para que puedas acceder a tu cuenta. En desarrollo se encuentra la funcionalidad para poder restablecer una contraseña que nosotros decidamos.
-
 ![carrito](https://user-images.githubusercontent.com/103537170/217319514-45889a6c-e1aa-4f68-bab9-704391f02b6b.jpg)
+
+Para la recuperación de contraseña he utilizado Nodemailer, en caso de que pidas la recuperación, se te pedirá el correo y se te enviará una contraseña temporal para que puedas acceder a tu cuenta. En desarrollo se encuentra la funcionalidad para poder restablecer una contraseña que nosotros decidamos.
 
 Por último, y a modo de "Easter Egg", es posible entrar en una vista "oculta" en la que podremos jugar a un juego de la misma temática, desarrollado con la librería Phaser 3, en la que controlaremos una nave y tendremos por objetivo evitar que los asteroides caigan en la tierra (el juego aún se encuentra en version desarrollo y para reiniciar la partida es necesario recargar la página). Para ello se deberá hacer clic en el icono de la NASA 10 veces antes de 3 segundos.
 
