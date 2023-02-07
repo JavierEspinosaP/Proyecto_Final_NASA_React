@@ -4,7 +4,7 @@ import Dashboard from './Dashboard'
 function Game() {
   return (
     <div className="Game">
-      <h2>Space Invaders</h2>
+      <h2>Kill the Asteroid</h2>
       <Dashboard />
     </div>
   )
