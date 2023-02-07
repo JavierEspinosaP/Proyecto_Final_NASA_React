@@ -1,4 +1,4 @@
-Puede visitarse en 👉  https://sleepy-retreat-77024.herokuapp.com/ (Parece que en Microsoft Edge, y puede que en otros browsers que desconozco, ciertas partes de la página no se ajustan correctamente, estoy trabajando en ello)
+Puede visitarse en 👉  https://sleepy-retreat-77024.herokuapp.com/
 
 En este proyecto se requería montar una web con el stack MERN completo, base de datos en MongoDB, utilizando su cloud Atlas, servidor configurado con Express y
 un front end desarrollado en ReactJS, además de dar estilos con SASS.
