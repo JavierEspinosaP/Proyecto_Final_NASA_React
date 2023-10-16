@@ -79,7 +79,7 @@ const NEAS = () => {
     e.preventDefault();
     const nea = e.target.name.value;
     console.log(nea);
-    const res = await axios.get(`https://sleepy-retreat-77024.herokuapp.com/api/astronomy/neas?designation=${nea}`)
+    const res = await axios.get(`https://nasa-app-fzbq.onrender.com/api/astronomy/neas?designation=${nea}`)
     const resData = await res.data[0]
     console.log(res);
     setSearchData(resData)

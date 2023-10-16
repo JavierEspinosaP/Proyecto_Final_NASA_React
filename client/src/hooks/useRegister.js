@@ -33,7 +33,7 @@ const [registered] = useSound(registeredUser, { volume: 0.5 });
     console.log(user.passwordRepeat);
     if (user.password == user.passwordRepeat) {
     try{
-      const res = await axios.post("https://sleepy-retreat-77024.herokuapp.com/api/users/create", userCrypt)
+      const res = await axios.post("https://nasa-app-fzbq.onrender.com/api/users/create", userCrypt)
       const data = await res.data;
       console.log(data.Answer);
       if (data.Answer === "User created") {

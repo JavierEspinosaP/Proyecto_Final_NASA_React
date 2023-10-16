@@ -43,7 +43,7 @@ const CheckoutForm = () => {
     if(!error){
       const {id} = paymentMethod
 
-      const {data} = await axios.post('https://sleepy-retreat-77024.herokuapp.com/api/checkout', {
+      const {data} = await axios.post('https://nasa-app-fzbq.onrender.com/api/checkout', {
         id,
         amount: TotalCart * 100
       })

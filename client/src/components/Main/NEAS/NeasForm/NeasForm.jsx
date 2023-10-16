@@ -21,7 +21,7 @@ function NeasForm() {
         orbit: nea.orbit_class,
       };
   
-      const res = await axios.post(`https://sleepy-retreat-77024.herokuapp.com/api/astronomy/neas/create`, neaObj);
+      const res = await axios.post(`https://nasa-app-fzbq.onrender.com/api/astronomy/neas/create`, neaObj);
       const data = await res.data;
       console.log(data);
   

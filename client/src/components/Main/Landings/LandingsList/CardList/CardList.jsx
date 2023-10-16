@@ -54,7 +54,7 @@ function CardList(props) {
 
   const removeLanding = async () => {
     try {
-      const res = await axios.delete(`https://sleepy-retreat-77024.herokuapp.com/api/astronomy/landings/delete/${landing.id}`);
+      const res = await axios.delete(`https://nasa-app-fzbq.onrender.com/api/astronomy/landings/delete/${landing.id}`);
       const data = await res.data;
       console.log(data);
       props.remove();

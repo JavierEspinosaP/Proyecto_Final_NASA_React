@@ -45,7 +45,7 @@ function NeasCard(props) {
 
   const removeNea = async () => {
     try {
-      const res = await axios.delete(`https://sleepy-retreat-77024.herokuapp.com/api/astronomy/neas/delete/${nea.designation}`);
+      const res = await axios.delete(`https://nasa-app-fzbq.onrender.com/api/astronomy/neas/delete/${nea.designation}`);
       const data = await res.data;
       console.log(data);
       props.remove();
