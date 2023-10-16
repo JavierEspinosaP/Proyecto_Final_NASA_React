@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter } from 'react-router-dom';
-import Header from './components/Header'
-import Main from './components/Main'
+import Header from './components/Header';
+import Main from './components/Main';
 import Footer from './components/Footer';
 import { neasContext } from './context/neasContext';
-import { landingsContext } from './context/landingsContext'
-import { loginContext } from './context/loginContext'
-import { productsContext } from './context/productsContext'
-import { countContext } from './context/countContext'
-import { imageContext } from './context/imageContext'
-import images from './components/Main/img.js'
+import { landingsContext } from './context/landingsContext';
+import { loginContext } from './context/loginContext';
+import { productsContext } from './context/productsContext';
+import { countContext } from './context/countContext';
+import { imageContext } from './context/imageContext';
+import images from './components/Main/img.js';
 import './styles/styles.scss';
-import axios from 'axios'
+import axios from 'axios';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -50,11 +50,11 @@ function App() {
       try {
         // Petición HTTP
 
-        const resLandings = await axios.get("https://sleepy-retreat-77024.herokuapp.com/api/astronomy/landings");
+        const resLandings = await axios.get("https://nasa-app-fzbq.onrender.com/api/astronomy/landings");
         const landings = await resLandings.data;
 
         // const landingsImg = await landings.map((l, i) => ({ ...l, img: arrImages[i] }))
-        const resNeas = await axios.get("https://sleepy-retreat-77024.herokuapp.com/api/astronomy/neas");
+        const resNeas = await axios.get("https://nasa-app-fzbq.onrender.com/api/astronomy/neas");
         const neas = await resNeas.data;
 
         

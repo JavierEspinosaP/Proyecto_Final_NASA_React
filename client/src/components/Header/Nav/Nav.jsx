@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import CartImg from '../../../assets/carro.png';
 import { loginContext } from '../../../context/loginContext';
 import { countContext } from '../../../context/countContext';
-import Cart from '../../Main/Cart'
 import useSound from 'use-sound';
 import tick from '../../../assets/sounds/tick.wav'
 import changeSound from '../../../assets/sounds/change.wav'
@@ -17,7 +16,6 @@ import logoutImg from '../../../assets/logout.png'
 import logoutSound from '../../../assets/sounds/logout_complete.wav'
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { useNavigate } from 'react-router-dom';
-
 
 
 const style = {
@@ -191,7 +189,6 @@ const Nav = () => {
         stop();
       }}>Login/Register</p>}
 
-
     <Modal
       keepMounted
       open={openLogin}
@@ -204,8 +201,6 @@ const Nav = () => {
       </Box>
     </Modal>
 
-
-
     {loginData ?
       <div className="cartContainer">
         {numberCart > 0 ?
@@ -214,17 +209,6 @@ const Nav = () => {
           <p className="fontAddProducts">  {String(numberCart)} Producto añadido</p> : <p className="fontAddProducts">{String(numberCart)} Productos añadidos</p>}
         <Button id="logoutButton" onClick={handleLogout} ><img id="logoutImg" src={logoutImg} alt="logoutImg" /></Button>
       </div> : null}
-    {/* <Modal
-      keepMounted
-      open={openCart}
-      onClose={handleCloseCart}
-      aria-labelledby="keep-mounted-modal-title"
-      aria-describedby="keep-mounted-modal-description"
-    >
-      <Box  sx={style}>
-        <Cart edit={openCart} />
-      </Box>
-    </Modal> */}
   </div>;
 }
 
